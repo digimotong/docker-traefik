@@ -18,6 +18,9 @@ custom/*
 compose/*
 !compose/**
 
+!appdata
+appdata/*
+
 !appdata/traefik3
 appdata/traefik3/*
 !appdata/traefik3/rules
