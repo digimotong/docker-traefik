@@ -1,0 +1,36 @@
+services:
+  # YoutubeDL-Material - Material Design Frontend for youtube-dl
+  ytdl_material:
+    image: tzahi12345/youtubedl-material:latest
+    container_name: ytdl_material
+    depends_on:
+      - mongodb-ytdl
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "downloads", "all"]
+    network_mode: "service:gluetun"
+    # ports:
+      # - "8998:17442" # Explosed via gluetun
+    volumes:
+      - $DOCKERDIR/appdata/ytdl_material:/app/appdata
+      - $DOWNLOADSDIR/ytdl_material/audio:/app/audio
+      - $DOWNLOADSDIR/ytdl_material/video:/app/video
+      - $DOWNLOADSDIR/ytdl_material/subscriptions:/app/subscriptions
+      - $DOWNLOADSDIR/ytdl_material/users:/app/users
+    environment: 
+      UID: $PUID
+      GID: $PGID
+      ytdl_mongodb_connection_string: 'mongodb://localhost:27017'
+      ytdl_use_local_db: 'false'
+      write_ytdl_config: 'true'
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

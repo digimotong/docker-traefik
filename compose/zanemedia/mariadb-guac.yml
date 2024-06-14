@@ -1,0 +1,25 @@
+services:
+  # MariaDB - MySQL Database for Guacamole
+  mariadb-guac:
+    container_name: mariadb-guac
+    image: lscr.io/linuxserver/mariadb:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["dbs", "all"]
+    volumes:
+      - $DOCKERDIR/appdata/mariadb-guac:/config
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      FILE__MYSQL_ROOT_PASSWORD: /run/secrets/mysql_root_password
+    secrets:
+      - mysql_root_password
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

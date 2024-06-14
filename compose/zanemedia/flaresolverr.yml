@@ -1,0 +1,16 @@
+services:
+  # FlareSolverr - Bypass Cloudflare and DDoS-GUARD
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    profiles: ["media", "arrs", "all"]
+    networks:
+      - t3_proxy
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

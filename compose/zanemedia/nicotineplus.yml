@@ -1,0 +1,47 @@
+services:
+  # Nicotine+ - Peer-to-Peer Music Downloader
+  nicotineplus:
+    # image: sirjmann92/nicotineplus-proper:latest
+    image: local/nicotineplus-curl:latest
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-nicotineplus
+    pull_policy: build
+    container_name: nicotineplus
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "downloads", "all"]
+    network_mode: "service:gluetun"
+    # ports:
+      # - "6565:6565" # Explosed via gluetun
+    volumes:
+     - $DOCKERDIR/appdata/nicotineplus:/config
+     - $DOCKERDIR/appdata/nicotineplus/data:/data
+     - $DOWNLOADSDIR/nicotineplus:/downloads/nicotineplus
+     - $MEDIADIR/Music:/music:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      LOGIN: $SOULSEEK_USERNAME
+      PASSW: $SOULSEEK_PASSWORD
+      DARKMODE: True
+      UPNP: False
+      AUTO_CONNECT: True
+      TRAY_ICON: False
+      NOTIFY_FILE: False
+      NOTIFY_FOLDER: False
+      NOTIFY_TITLE: False
+      NOTIFY_PM: False
+      NOTIFY_CHATROOM: False
+      NOTIFY_MENTION: False
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

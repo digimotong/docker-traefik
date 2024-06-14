@@ -1,0 +1,38 @@
+services:
+  # Navidrome - Music Server
+  navidrome:
+    image: deluan/navidrome:develop
+    container_name: navidrome
+    restart: unless-stopped
+    profiles: ["media", "all"]
+    networks:
+      - t3_proxy
+    ports:
+      - "4533:4533"
+    volumes:
+      - $DOCKERDIR/appdata/navidrome:/data
+      - $APPDATADIR/temp/navidrome:/data/cache/images
+      - $MEDIADIR/Music:/music:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      ND_SCANSCHEDULE: "@every 5m"
+      ND_LOGLEVEL: info
+      ND_BASEURL: ""
+      ND_TRANSCODINGCACHESIZE: "4GB"
+      ND_LASTFM_APIKEY: $LASTFM_APIKEY
+      ND_LASTFM_SECRET: $LASTFM_SECRET
+      # ND_ENABLETRANSCODINGCONFIG: "true"
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.navidrome-rtr.entrypoints=websecure"
+      - "traefik.http.routers.navidrome-rtr.rule=Host(`navidrome.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.navidrome-rtr.middlewares=chain-no-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.navidrome-rtr.service=navidrome-svc"
+      - "traefik.http.services.navidrome-svc.loadbalancer.server.port=4533"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

@@ -1,0 +1,30 @@
+services:
+  # Client for Notifiarr.com
+  notifiarr:
+    image: golift/notifiarr:latest
+    container_name: notifiarr
+    hostname: notifiarr
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["media", "all"]
+    networks:
+      - t3_proxy
+    ports:
+      - "5454:5454"
+    volumes:
+      - $DOCKERDIR/appdata/notifiarr:/config
+      - /var/run/utmp:/var/run/utmp
+      - /etc/machine-id:/etc/machine-id
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth
+      - "traefik.http.routers.notifiarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.notifiarr-rtr.rule=Host(`notifiarr.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.notifiarr-rtr.middlewares=chain-oauth@file"
+      # HTTP Services
+      - "traefik.http.routers.notifiarr-rtr.service=notifiarr-svc"
+      - "traefik.http.services.notifiarr-svc.loadbalancer.server.port=5454"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

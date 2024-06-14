@@ -1,0 +1,32 @@
+services:
+  # Deemix - Deezer Music Downloader
+  deemix:
+    image: codefaux/deemix-for-lidarr:latest
+    container_name: deemix
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "downloads", "all"]
+    network_mode: "service:gluetun"
+    # ports:
+      # - "6595:6595" # Explosed via gluetun
+    volumes:
+      - $DOCKERDIR/appdata/deemix/config:/config
+      - $DOCKERDIR/appdata/deemix/deemix-gui:/deemix-gui/config
+      - $DOCKERDIR/appdata/deemix/downloads:/downloads # Requires /downloads to be mapped
+      - $MEDIASERVERDIR:/mediaserver
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      UMASK: 0022
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

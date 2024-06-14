@@ -1,0 +1,46 @@
+services:
+  # Jellyfin - Media Server
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    networks:
+      - t3_proxy
+    ports:
+      - "8096:8096"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["media", "all"]
+    user: $PUID:$PGID
+    devices:
+      - /dev/dri:/dev/dri # for harware transcoding
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    volumes:
+      - $DOCKERDIR/appdata/jellyfin:/config
+      - $DOCKERDIR/appdata/jellyfin/cache:/cache
+      - $APPDATADIR/temp/jellyfin/metadata:/config/metadata
+      - $MEDIADIR/Movies:/movies:ro
+      - "$MEDIADIR/TV Shows:/tv:ro"
+      - $MEDIADIR/Music:/music:ro
+      - $MEDIADIR/Anime:/anime:ro
+      # - /dev/shm:/data/transcode # Offload transcoding to RAM if you have enough RAM
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.jellyfin-rtr.entrypoints=websecure"
+      - "traefik.http.routers.jellyfin-rtr.rule=Host(`jellyfin.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.jellyfin-rtr.middlewares=chain-no-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.jellyfin-rtr.service=jellyfin-svc"
+      - "traefik.http.services.jellyfin-svc.loadbalancer.server.port=8096"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      UMASK_SET: 022
+      TZ: $TZ

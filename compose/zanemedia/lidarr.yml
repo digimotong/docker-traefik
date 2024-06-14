@@ -1,0 +1,41 @@
+services:
+  # Lidarr - Music Management
+  lidarr:
+    image: ghcr.io/hotio/lidarr:pr-plugins
+    container_name: lidarr
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["media", "arrs", "all"]
+    networks:
+      - t3_proxy
+    ports:
+      - "8686:8686"
+    volumes:
+      - $DOCKERDIR/appdata/lidarr:/config
+      - $APPDATADIR/temp/lidarr/MediaCover:/config/MediaCover
+      - $MEDIASERVERDIR:/mediaserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth Bypass
+      - "traefik.http.routers.lidarr-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr-bypass.rule=Host(`lidarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$LIDARR_API_KEY`) || Query(`apikey`, `$LIDARR_API_KEY`))"
+      - "traefik.http.routers.lidarr-rtr-bypass.priority=100"
+      # HTTP Routers Auth
+      - "traefik.http.routers.lidarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr.rule=Host(`lidarr.$DOMAINNAME`)"
+      - "traefik.http.routers.lidarr-rtr.priority=99"
+      # Middlewares
+      - "traefik.http.routers.lidarr-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.lidarr-rtr.middlewares=chain-oauth@file"
+      # HTTP Services
+      - "traefik.http.routers.lidarr-rtr.service=lidarr-svc"
+      - "traefik.http.routers.lidarr-rtr-bypass.service=lidarr-svc"
+      - "traefik.http.services.lidarr-svc.loadbalancer.server.port=8686"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
