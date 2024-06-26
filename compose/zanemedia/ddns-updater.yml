@@ -13,7 +13,7 @@ services:
       - $DOCKERDIR/appdata/ddns-updater:/updater/data # Owned by UID 1000
     environment:
       TZ: $TZ
-      PERIOD: 4h
+      PERIOD: 5m
       UPDATE_COOLDOWN_PERIOD: 5m
       PUBLICIP_DNS_TIMEOUT: 3s
       HTTP_TIMEOUT: 10s
