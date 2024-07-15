@@ -35,6 +35,7 @@ services:
       WIREGUARD_ADDRESSES: $WIREGUARD_ADDRESSES
       SERVER_CITIES: $SERVER_CITIES
       ISP: $ISP
+      # OWNED_ONLY: yes
     labels:
       - "traefik.enable=true"
       ## Deemix labels
