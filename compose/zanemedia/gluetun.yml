@@ -27,12 +27,14 @@ services:
       - $DOCKERDIR/appdata/gluetun:/gluetun
     environment:
       TZ: $TZ
+      UPDATER_PERIOD: 24h
       # Wireguard
       VPN_SERVICE_PROVIDER: mullvad
       VPN_TYPE: wireguard
       WIREGUARD_PRIVATE_KEY: $WIREGUARD_PRIVATE_KEY
       WIREGUARD_ADDRESSES: $WIREGUARD_ADDRESSES
       SERVER_CITIES: $SERVER_CITIES
+      ISP: $ISP
     labels:
       - "traefik.enable=true"
       ## Deemix labels
