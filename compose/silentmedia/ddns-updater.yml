@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     profiles: ["core", "all", "dns"]
     networks:
-      - default
+      - t3_proxy
     ports:
       - 8000:8000/tcp
     volumes:
@@ -27,5 +27,5 @@ services:
       LOG_LEVEL: warning
       # SHOUTRRR_ADDRESSES: $DISCORD_SHOUTRRR_ADDRESS
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable Watchtower Monitoring
+      - "com.centurylinklabs.watchtower.monitor-only=true"
