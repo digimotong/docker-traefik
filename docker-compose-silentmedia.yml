@@ -46,6 +46,7 @@ include:
   - compose/$HOSTNAME/socket-proxy.yml
   - compose/$HOSTNAME/oauth.yml
   - compose/$HOSTNAME/portainer.yml
+  - compose/$HOSTNAME/wireguard.yml
   # AD BLOCKING
   - compose/$HOSTNAME/adguardhome.yml
   # ADMIN
