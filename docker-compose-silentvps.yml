@@ -3,6 +3,12 @@
 networks:
   default:
     driver: bridge
+  socket_proxy:
+    name: socket_proxy
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.91.0/24
   
 ########################### SECRETS
   
