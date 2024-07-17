@@ -34,3 +34,13 @@ appdata/traefik3/rules/zanemedia/*
 !appdata/traefik3/rules/zanemedia/tls-opts.yml
 !appdata/traefik3/rules/zanemedia/middlewares-*.yml
 !appdata/traefik3/rules/zanemedia/chain-*.yml
+
+!appdata/wireguard
+appdata/wireguard/*
+!appdata/wireguard/iptables
+appdata/wireguard/iptables/*
+!appdata/wireguard/iptables/rules.v4
+!appdata/wireguard/templates
+appdata/wireguard/templates/*
+!appdata/wireguard/templates/peer.conf
+!appdata/wireguard/templates/server.conf

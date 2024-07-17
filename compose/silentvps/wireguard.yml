@@ -1,7 +1,10 @@
 services:
   # WireGuard - Secure VPN Tunnel
   wireguard:
-    image: lscr.io/linuxserver/wireguard:latest
+    # image: lscr.io/linuxserver/wireguard:latest
+    image: local/wireguard-iptables:latest
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-wireguard
     container_name: wireguard
     restart: unless-stopped
     profiles: ["core", "all"]
