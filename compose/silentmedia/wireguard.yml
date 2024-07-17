@@ -1,0 +1,26 @@
+services:
+  # WireGuard - Secure VPN Tunnel
+  wireguard:
+    image: lscr.io/linuxserver/wireguard:latest
+    container_name: wireguard
+    restart: unless-stopped
+    profiles: ["core", "all"]
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE #optional
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    networks:
+      - t3_proxy
+    ports:
+      - 51820:51820/udp
+    volumes:
+      - $DOCKERDIR/appdata/wireguard:/config
+      - /lib/modules:/lib/modules #optional
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      # Enable Watchtower Monitoring
+      - "com.centurylinklabs.watchtower.monitor-only=true"
