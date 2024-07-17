@@ -1,0 +1,12 @@
+http:
+  middlewares:
+    chain-double-auth:
+      chain:
+        middlewares:
+          - middlewares-rate-limit
+          - middlewares-secure-headers
+          - middlewares-https-redirectscheme
+          - middlewares-redirect-www-to-non-www
+          - middlewares-basic-auth
+          - middlewares-oauth
+          # - middlewares-compress
