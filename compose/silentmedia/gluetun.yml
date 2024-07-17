@@ -16,10 +16,10 @@ services:
     devices:
       - /dev/net/tun
     ports:
-      - "6595:6595" # Exposing Deemix through Docker Host LAN IP
-      - "6565:6565" # Exposing Nicotine+ through Docker Host LAN IP
-      - "8081:8080" # Exposing qBittorrent through Docker Host LAN IP
-      - "8998:17442" # Exposing YoutubeDL-Material through Docker Host LAN IP
+      # - "6595:6595" # Exposing Deemix through Docker Host LAN IP
+      # - "6565:6565" # Exposing Nicotine+ through Docker Host LAN IP
+      # - "8081:8080" # Exposing qBittorrent through Docker Host LAN IP
+      # - "8998:17442" # Exposing YoutubeDL-Material through Docker Host LAN IP
       # - 8888:8888/tcp # HTTP proxy
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks

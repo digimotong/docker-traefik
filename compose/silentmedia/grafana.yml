@@ -9,8 +9,8 @@ services:
     profiles: ["apps", "all"]
     networks:
       - t3_proxy
-    ports:
-      - "3000:3000"
+    # ports:
+      # - "3000:3000"
     user: "$PUID:$PGID"
     volumes:
       - $DOCKERDIR/appdata/grafana:/var/lib/grafana

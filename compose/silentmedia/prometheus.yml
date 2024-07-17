@@ -9,8 +9,8 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["dbs", "all"]
-    ports:
-      - "9090:9090"
+    # ports:
+      # - "9090:9090"
     volumes:
       - $DOCKERDIR/appdata/prometheus/config:/etc/prometheus
       - $DOCKERDIR/appdata/prometheus/data:/prometheus

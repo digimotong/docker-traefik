@@ -10,8 +10,8 @@ services:
     profiles: ["media", "all"]
     networks:
       - t3_proxy
-    ports:
-      - "5454:5454"
+    # ports:
+      # - "5454:5454"
     volumes:
       - $DOCKERDIR/appdata/notifiarr:/config
       - /var/run/utmp:/var/run/utmp

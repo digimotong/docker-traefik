@@ -10,8 +10,8 @@ services:
     profiles: ["media", "all"]
     networks:
       - t3_proxy
-    ports:
-      - "8181:8181"
+    # ports:
+      # - "8181:8181"
     volumes:
       - $DOCKERDIR/appdata/tautulli/config:/config
       - $DOCKERDIR/appdata/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro # For tautulli Plex log viewer
