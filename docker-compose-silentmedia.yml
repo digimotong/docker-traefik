@@ -1,0 +1,90 @@
+########################### NETWORKS
+# You may customize the network subnets (192.168.x.0/24) below as you please.
+networks:
+  default:
+    driver: bridge
+  socket_proxy:
+    name: socket_proxy
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.91.0/24
+  t3_proxy:
+    name: t3_proxy
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.90.0/24
+  
+########################### SECRETS
+secrets:
+  basic_auth_credentials:
+    file: $DOCKERDIR/secrets/basic_auth_credentials
+  cf_dns_api_token:
+    file: $DOCKERDIR/secrets/cf_dns_api_token
+  guac_db_name:
+    file: $DOCKERDIR/secrets/guac_db_name
+  guac_mysql_user:
+    file: $DOCKERDIR/secrets/guac_mysql_user
+  guac_mysql_password:
+    file: $DOCKERDIR/secrets/guac_mysql_password
+  mysql_root_password:
+    file: $DOCKERDIR/secrets/mysql_root_password
+  oauth_secrets:
+    file: $DOCKERDIR/secrets/oauth_secrets
+  plex_claim:
+    file: $DOCKERDIR/secrets/plex_claim
+  watchtower_notification_url:
+    file: $DOCKERDIR/secrets/watchtower_notification_url
+  
+include:
+  ########################### SERVICES
+  # HOSTNAME defined in .env file
+
+  # CORE
+  - compose/$HOSTNAME/traefik.yml
+  - compose/$HOSTNAME/socket-proxy.yml
+  - compose/$HOSTNAME/oauth.yml
+  - compose/$HOSTNAME/portainer.yml
+  # AD BLOCKING
+  - compose/$HOSTNAME/adguardhome.yml
+  # ADMIN
+  - compose/$HOSTNAME/guacamole.yml
+  # COMPLEMENTARY APPS
+  - compose/$HOSTNAME/bazarr.yml
+  - compose/$HOSTNAME/flaresolverr.yml
+  - compose/$HOSTNAME/notifiarr.yml
+  - compose/$HOSTNAME/prowlarr.yml
+  # DATABASES
+  - compose/$HOSTNAME/mariadb-guac.yml
+  - compose/$HOSTNAME/mongodb-ytdl.yml
+  - compose/$HOSTNAME/prometheus.yml
+  # DOWNLOADERS
+  - compose/$HOSTNAME/deemix.yml
+  - compose/$HOSTNAME/nicotineplus.yml
+  - compose/$HOSTNAME/qbittorrent.yml
+  - compose/$HOSTNAME/ytdl_material.yml
+  # FILE MANAGEMENT
+  - compose/$HOSTNAME/mkvtoolnix.yml
+  - compose/$HOSTNAME/vscode.yml
+  # FRONTEND
+  - compose/$HOSTNAME/homepage.yml
+  # MAINTENANCE
+  - compose/$HOSTNAME/ddns-updater.yml
+  - compose/$HOSTNAME/deunhealth.yml
+  - compose/$HOSTNAME/watchtower.yml
+  # MEDIA
+  - compose/$HOSTNAME/jellyfin.yml
+  - compose/$HOSTNAME/kavita.yml
+  - compose/$HOSTNAME/navidrome.yml
+  - compose/$HOSTNAME/plex.yml
+  - compose/$HOSTNAME/tautulli.yml
+  # MONITORING
+  - compose/$HOSTNAME/grafana.yml
+  - compose/$HOSTNAME/node-exporter.yml
+  # NETWORK
+  - compose/$HOSTNAME/gluetun.yml
+  # PVRS
+  - compose/$HOSTNAME/lidarr.yml
+  - compose/$HOSTNAME/radarr.yml
+  - compose/$HOSTNAME/sonarr.yml

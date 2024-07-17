@@ -5,7 +5,8 @@
 !README.md
 !.env.example
 
-!docker-compose-zanemedia.yml
+!docker-compose-silentmedia.yml
+!docker-compose-silentvps.yml
 
 !custom
 custom/*
