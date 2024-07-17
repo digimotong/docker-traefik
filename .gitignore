@@ -11,7 +11,10 @@
 !custom
 custom/*
 !custom/Dockerfile-*
-!custom/rules.v4
+!custom/wireguard
+custom/wireguard/*
+!custom/wireguard/Dockerfile-wireguard
+!custom/wireguard/rules.v4
 
 !secrets_example
 !secrets_example/*
