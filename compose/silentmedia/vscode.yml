@@ -9,8 +9,8 @@ services:
     profiles: ["core", "all"]
     networks:
       - t3_proxy
-    # ports:
-      # - "8443:8443"
+    ports:
+      - "8443:8443"
     volumes:
       - $DOCKERDIR:/data/docker
       - $ZANEPCDIR/Documents/vscode:/data/data

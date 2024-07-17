@@ -1,7 +1,10 @@
 services:
   # WireGuard - Secure VPN Tunnel
   wireguard:
-    image: lscr.io/linuxserver/wireguard:latest
+    # image: lscr.io/linuxserver/wireguard:latest
+    image: local/wireguard-iptables:latest
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-wireguard
     container_name: wireguard
     restart: unless-stopped
     profiles: ["core", "all"]
@@ -14,6 +17,14 @@ services:
       - default
     ports:
       - 51820:51820/udp
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
     volumes:
       - $DOCKERDIR/appdata/wireguard:/config
       - /lib/modules:/lib/modules #optional
@@ -21,7 +32,8 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
-      PEERS: 1 #optional
+      PEERS: silentmedia
+      PERSISTENTKEEPALIVE_PEERS: all
     labels:
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
