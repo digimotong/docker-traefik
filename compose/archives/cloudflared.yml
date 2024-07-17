@@ -1,0 +1,15 @@
+services:
+  # cloudflared - Client for Cloudflare Tunnel
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    profiles: ["core", "all"]
+    command: tunnel run
+    networks:
+      - t3_proxy
+    environment:
+      TUNNEL_TOKEN: $TUNNEL_TOKEN
+    labels:
+      # Enable Watchtower Monitoring
+      - "com.centurylinklabs.watchtower.monitor-only=true"
