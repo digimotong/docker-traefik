@@ -1,7 +1,0 @@
-http:
-  middlewares:
-    middlewares-redirect-www-to-non-www:
-      redirectregex:
-        permanent: true
-        regex: "^https?://www\\.(.+)"
-        replacement: "https://${1}"
