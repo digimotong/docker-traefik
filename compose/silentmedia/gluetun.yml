@@ -15,7 +15,7 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun
-    ports:
+    # ports:
       # - "6595:6595" # Exposing Deemix through Docker Host LAN IP
       # - "6565:6565" # Exposing Nicotine+ through Docker Host LAN IP
       # - "8081:8080" # Exposing qBittorrent through Docker Host LAN IP
