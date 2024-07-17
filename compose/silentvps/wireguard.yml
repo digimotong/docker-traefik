@@ -5,8 +5,6 @@ services:
     image: local/wireguard-iptables:latest
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-wireguard
-      args:
-        - IPTABLESDIR=$DOCKERDIR/appdata/wireguard/iptables
     container_name: wireguard
     restart: unless-stopped
     profiles: ["core", "all"]
