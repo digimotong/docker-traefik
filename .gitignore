@@ -11,6 +11,7 @@
 !custom
 custom/*
 !custom/Dockerfile-*
+!custom/rules.v4
 
 !secrets_example
 !secrets_example/*

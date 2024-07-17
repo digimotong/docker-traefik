@@ -1,0 +1,23 @@
+*nat
+:PREROUTING ACCEPT [58399:9586820]
+:INPUT ACCEPT [724:63142]
+:OUTPUT ACCEPT [43:3206]
+:POSTROUTING ACCEPT [794:45242]
+-A PREROUTING -i eth0 -p tcp -m multiport --dports 80,443 -j DNAT --to-destination 10.13.13.3
+-A POSTROUTING -s 10.13.13.3/32 -o eth0 -j MASQUERADE
+COMMIT
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [37561:13433091]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -i wg0 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+-A INPUT -p udp -m udp --dport 51820 -j ACCEPT
+-A FORWARD -s 10.13.13.3/32 -i wg0 -o eth0 -j ACCEPT
+-A FORWARD -d 10.13.13.3/32 -i eth0 -o wg0 -p tcp -m multiport --dports 80,443 -j ACCEPT
+-A FORWARD -d 10.13.13.3/32 -i eth0 -o wg0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
