@@ -6,7 +6,6 @@
 !.env.example
 
 !docker-compose-silentmedia.yml
-!docker-compose-silentvps.yml
 
 !custom
 custom/*
