@@ -18,7 +18,6 @@ include:
 
   # CORE
   - compose/$HOSTNAME/socket-proxy.yml
-  - compose/$HOSTNAME/wireguard.yml
   # MAINTENANCE
   - compose/$HOSTNAME/ddns-updater.yml
   - compose/$HOSTNAME/watchtower.yml

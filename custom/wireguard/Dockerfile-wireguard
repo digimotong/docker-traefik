@@ -1,9 +1,0 @@
-FROM lscr.io/linuxserver/wireguard:latest
-
-USER root
-
-RUN mkdir -p /iptables
-COPY iptables.sh /iptables
-WORKDIR /iptables
-RUN chmod +x iptables.sh
-CMD iptables.sh

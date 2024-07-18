@@ -11,11 +11,6 @@
 !custom
 custom/*
 !custom/Dockerfile-*
-!custom/wireguard
-custom/wireguard/*
-!custom/wireguard/Dockerfile-wireguard
-!custom/wireguard/iptables.sh
-!custom/wireguard/rules.v1
 
 !secrets_example
 !secrets_example/*
@@ -39,13 +34,3 @@ appdata/traefik3/rules/silentmedia/*
 !appdata/traefik3/rules/silentmedia/tls-opts.yml
 !appdata/traefik3/rules/silentmedia/middlewares-*.yml
 !appdata/traefik3/rules/silentmedia/chain-*.yml
-
-!appdata/wireguard
-appdata/wireguard/*
-!appdata/wireguard/iptables
-appdata/wireguard/iptables/*
-!appdata/wireguard/iptables/rules.v4
-!appdata/wireguard/templates
-appdata/wireguard/templates/*
-!appdata/wireguard/templates/peer.conf
-!appdata/wireguard/templates/server.conf
