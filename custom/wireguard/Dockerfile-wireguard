@@ -1,6 +1,7 @@
 FROM lscr.io/linuxserver/wireguard:latest
 USER root
 RUN mkdir -p /iptables
-COPY rules.v4 /iptables
+COPY iptables.sh /iptables
 WORKDIR /iptables
-RUN iptables-restore < rules.v4
+RUN chmod +x iptables.sh
+RUN ./iptables.sh

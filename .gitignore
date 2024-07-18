@@ -14,7 +14,7 @@ custom/*
 !custom/wireguard
 custom/wireguard/*
 !custom/wireguard/Dockerfile-wireguard
-!custom/wireguard/rules.v4
+!custom/wireguard/iptables.sh
 
 !secrets_example
 !secrets_example/*
