@@ -9,10 +9,11 @@ services:
     profiles: ["core", "all"]
     depends_on:
       - socket-proxy
-    networks:
-      t3_proxy:
-        ipv4_address: 192.168.90.254 # You can specify a static IP
-      socket_proxy:
+    # networks:
+      # t3_proxy:
+        # ipv4_address: 192.168.90.254 # You can specify a static IP
+      # socket_proxy:
+    network_mode: "service:wireguard"
     command: # CLI arguments
       - --global.checkNewVersion=true
       - --global.sendAnonymousUsage=false
@@ -58,19 +59,19 @@ services:
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.delayBeforeCheck=120 # To delay DNS check and reduce LE hitrate
       #- --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.disablePropagationCheck=true
       # - METRICS-PLACEHOLDER-DO-NOT-DELETE
-    ports:
-      - target: 80
-        published: 80
-        protocol: tcp
-        mode: host
-      - target: 443
-        published: 443
-        protocol: tcp
-        mode: host
-      # - target: 8080 # need to enable --api.insecure=true
-      #   published: 8080
-      #   protocol: tcp
-      #   mode: host
+    # ports:
+      # - target: 80
+        # published: 80
+        # protocol: tcp
+        # mode: host
+      # - target: 443
+        # published: 443
+        # protocol: tcp
+        # mode: host
+      # # - target: 8080 # need to enable --api.insecure=true
+      # #   published: 8080
+      # #   protocol: tcp
+      # #   mode: host
     volumes:
       - $DOCKERDIR/appdata/traefik3/rules/$HOSTNAME:/rules 
       # - /var/run/docker.sock:/var/run/docker.sock:ro # Use Docker Socket Proxy instead for improved security
@@ -84,14 +85,21 @@ services:
     secrets:
       - cf_dns_api_token
       - basic_auth_credentials
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
-      - "traefik.enable=true"
-      # HTTP Routers
-      - "traefik.http.routers.traefik-rtr.entrypoints=websecure"
-      - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME`)"
-      # Services - API
-      - "traefik.http.routers.traefik-rtr.service=api@internal"
-      # Middlewares
-      - "traefik.http.routers.traefik-rtr.middlewares=chain-double-auth@file" # For Basic HTTP Authentication
+      # - "traefik.enable=true"
+      # # HTTP Routers
+      # - "traefik.http.routers.traefik-rtr.entrypoints=websecure"
+      # - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME`)"
+      # # Services - API
+      # - "traefik.http.routers.traefik-rtr.service=api@internal"
+      # # Middlewares
+      # - "traefik.http.routers.traefik-rtr.middlewares=chain-double-auth@file" # For Basic HTTP Authentication
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
