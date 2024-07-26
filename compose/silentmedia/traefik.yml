@@ -69,10 +69,10 @@ services:
         # published: 443
         # protocol: tcp
         # mode: host
-      # # - target: 8080 # need to enable --api.insecure=true
-      # #   published: 8080
-      # #   protocol: tcp
-      # #   mode: host
+      # - target: 8080 # need to enable --api.insecure=true
+        # published: 8080
+        # protocol: tcp
+        # mode: host
     volumes:
       - $DOCKERDIR/appdata/traefik3/rules/$HOSTNAME:/rules 
       # - /var/run/docker.sock:/var/run/docker.sock:ro # Use Docker Socket Proxy instead for improved security
