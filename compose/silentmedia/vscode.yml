@@ -13,7 +13,7 @@ services:
     #   - "8443:8443"
     volumes:
       - $DOCKERDIR:/data/docker
-      - $ZANEPCDIR/Documents/vscode:/data/data
+      - "$MEDIADIR/Music/Smart Playlists:/data/playlists"
       - $DOCKERDIR/appdata/vscode:/config
     environment:
       TZ: $TZ
