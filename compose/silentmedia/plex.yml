@@ -50,8 +50,6 @@ services:
       - "traefik.http.services.plex-svc.loadbalancer.server.port=32400"
       # Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
     environment:
       TZ: $TZ
       PLEX_CLAIM_FILE: /run/secrets/plex_claim
