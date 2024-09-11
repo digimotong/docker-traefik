@@ -10,6 +10,9 @@
 !custom
 custom/*
 !custom/Dockerfile-*
+!custom/archives
+custom/archives/*
+!custom/archives/Dockerfile-*
 
 !secrets_example
 !secrets_example/*

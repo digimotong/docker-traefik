@@ -1,0 +1,36 @@
+services:
+  # slskd - Client-Server Application for Soulseek
+  slskd:
+    image: slskd/slskd:latest
+    container_name: slskd
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "downloads", "all"]
+    network_mode: "service:gluetun"
+    # ports:
+      # - "5030:5030" # Explosed via gluetun
+    volumes:
+     - $DOCKERDIR/appdata/slskd:/app
+     - $DOWNLOADSDIR/slskd:/downloads/slskd
+     - $MEDIADIR/Music:/music:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      SLSKD_USERNAME: $SLSKD_USERNAME
+      SLSKD_PASSWORD: $SLSKD_PASSWORD
+      SLSKD_SLSK_USERNAME: $SOULSEEK_USERNAME
+      SLSKD_SLSK_PASSWORD: $SOULSEEK_PASSWORD
+      SLSKD_SHARED_DIR: '/music'
+      SLSKD_REMOTE_CONFIGURATION: false
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

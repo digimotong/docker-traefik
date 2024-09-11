@@ -62,8 +62,8 @@ include:
   - compose/$HOSTNAME/prometheus.yml
   # DOWNLOADERS
   - compose/$HOSTNAME/deemix.yml
-  - compose/$HOSTNAME/nicotineplus.yml
   - compose/$HOSTNAME/qbittorrent.yml
+  - compose/$HOSTNAME/slskd.yml
   - compose/$HOSTNAME/ytdl_material.yml
   # FILE MANAGEMENT
   - compose/$HOSTNAME/mkvtoolnix.yml
