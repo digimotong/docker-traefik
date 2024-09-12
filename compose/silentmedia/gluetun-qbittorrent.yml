@@ -1,0 +1,50 @@
+services:
+  # Gluetun - VPN Client for Docker Containers and More
+  # Gluetun only for use by torrent clients + on demand lan devices.
+  # Arr apps do not need VPN (not recommended), unless you have ISP/country restrictions.
+  gluetun-qbittorrent:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun-qbittorrent
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["core", "all"]
+    networks:
+      - t3_proxy
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    # ports:
+      # - "8081:8080" # Exposing qBittorrent through Docker Host LAN IP
+      # - 8888:8888/tcp # HTTP proxy
+      # - 8388:8388/tcp # Shadowsocks
+      # - 8388:8388/udp # Shadowsocks
+    volumes:
+      - $DOCKERDIR/appdata/gluetun-qbittorrent:/gluetun-qbittorrent
+    environment:
+      TZ: $TZ
+      UPDATER_PERIOD: 24h
+      # Wireguard
+      VPN_SERVICE_PROVIDER: custom
+      VPN_TYPE: wireguard
+      WIREGUARD_ENDPOINT_IP: $QBITTORRENT_WIREGUARD_ENDPOINT_IP
+      WIREGUARD_ENDPOINT_PORT: $QBITTORRENT_WIREGUARD_ENDPOINT_PORT
+      WIREGUARD_PUBLIC_KEY: $QBITTORRENT_WIREGUARD_PUBLIC_KEY
+      WIREGUARD_PRIVATE_KEY: $QBITTORRENT_WIREGUARD_PRIVATE_KEY
+      WIREGUARD_ADDRESSES: $QBITTORRENT_WIREGUARD_ADDRESSES
+      VPN_PORT_FORWARDING: on
+      VPN_PORT_FORWARDING_PROVIDER: protonvpn
+    labels:
+      - "traefik.enable=true"
+      ## qBittorrent labels
+        # HTTP Routers
+      - "traefik.http.routers.gluetun-qbittorrent-rtr.entrypoints=websecure"
+      - "traefik.http.routers.gluetun-qbittorrent-rtr.rule=Host(`qbittorrent.$DOMAINNAME`)"
+        # Middlewares
+      - "traefik.http.routers.gluetun-qbittorrent-rtr.middlewares=chain-oauth@file"
+        # HTTP Services
+      - "traefik.http.routers.gluetun-qbittorrent-rtr.service=gluetun-svc"
+      - "traefik.http.services.gluetun-svc.loadbalancer.server.port=8080"
+      # Enable Watchtower Monitoring
+      - "com.centurylinklabs.watchtower.monitor-only=true"

@@ -83,7 +83,9 @@ include:
   - compose/$HOSTNAME/grafana.yml
   - compose/$HOSTNAME/node-exporter.yml
   # NETWORK
-  - compose/$HOSTNAME/gluetun.yml
+  - compose/$HOSTNAME/gluetun-qbittorrent.yml
+  - compose/$HOSTNAME/gluetun-slskd.yml
+  - compose/$HOSTNAME/glueforward.yml
   # PVRS
   - compose/$HOSTNAME/lidarr.yml
   - compose/$HOSTNAME/radarr.yml
