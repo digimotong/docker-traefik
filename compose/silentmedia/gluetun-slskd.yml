@@ -37,7 +37,6 @@ services:
       WIREGUARD_ADDRESSES: $SLSKD_WIREGUARD_ADDRESSES
       VPN_PORT_FORWARDING: on
       VPN_PORT_FORWARDING_PROVIDER: protonvpn
-      # FIREWALL_VPN_INPUT_PORTS: 45027
     labels:
       - "traefik.enable=true"
       ## Deemix labels
