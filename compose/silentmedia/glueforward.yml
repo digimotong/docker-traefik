@@ -1,7 +1,11 @@
 services:
   # glueforward - Updates qBittorrent's listening port to Gluetun's forwarded port
   glueforward:
-    image: ghcr.io/geoffreycoulaud/glueforward:latest
+    # image: ghcr.io/geoffreycoulaud/glueforward:latest
+    image: local/glueforward-curl:latest
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
+    pull_policy: build
     container_name: glueforward
     security_opt:
       - no-new-privileges:true
@@ -17,6 +21,13 @@ services:
     depends_on:
       - gluetun-qbittorrent
       - qbittorrent
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
