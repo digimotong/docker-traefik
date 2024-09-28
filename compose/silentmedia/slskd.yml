@@ -26,7 +26,7 @@ services:
       SLSKD_DOWNLOADS_DIR: '/downloads/slskd/downloads'
       SLSKD_INCOMPLETE_DIR: '/downloads/slskd/incomplete'
       SLSKD_REMOTE_CONFIGURATION: false
-      SLSKD_SLSK_LISTEN_PORT: 57356
+      SLSKD_SLSK_LISTEN_PORT: 45027
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
       interval: 1m
