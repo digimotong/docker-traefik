@@ -34,6 +34,11 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://example.com || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -45,3 +50,5 @@ services:
       - "traefik.http.routers.traefik-rtr.middlewares=chain-double-auth@file" # For Basic HTTP Authentication
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
