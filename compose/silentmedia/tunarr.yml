@@ -1,0 +1,38 @@
+services:
+  # Tunarr - IPTV backed by Plex/Jellyfin
+  tunarr:
+    image: chrisbenincasa/tunarr:latest-nvidia
+    container_name: tunarr
+    networks:
+      - t3_proxy
+    ports:
+      - "8000:8000"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["media", "all"]
+    devices:
+      - /dev/dri:/dev/dri # for hardware transcoding
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    volumes:
+      - $DOCKERDIR/appdata/tunarr:/config/tunarr
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.tunarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.tunarr-rtr.rule=Host(`tunarr.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.tunarr-rtr.middlewares=chain-double-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.tunarr-rtr.service=tunarr-svc"
+      - "traefik.http.services.tunarr-svc.loadbalancer.server.port=8000"
+      # Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      TZ: $TZ
+      LOG_LEVEL: INFO

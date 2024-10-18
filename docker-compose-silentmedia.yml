@@ -79,6 +79,7 @@ include:
   - compose/$HOSTNAME/navidrome.yml
   - compose/$HOSTNAME/plex.yml
   - compose/$HOSTNAME/tautulli.yml
+  - compose/$HOSTNAME/tunarr.yml
   # MONITORING
   - compose/$HOSTNAME/grafana.yml
   - compose/$HOSTNAME/node-exporter.yml
