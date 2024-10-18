@@ -16,18 +16,15 @@ services:
       - "32413:32413/udp"
       - "32414:32414/udp"
       - "33400:33400/tcp"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["media", "all"]
-    devices:
-      - /dev/dri:/dev/dri # for hardware transcoding
-    runtime: nvidia
     deploy:
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/plex:/config
       - $DOCKERDIR/appdata/plex/transcode:/transcode

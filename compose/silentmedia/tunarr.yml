@@ -7,18 +7,15 @@ services:
       - t3_proxy
     ports:
       - "8000:8000"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["media", "all"]
-    devices:
-      - /dev/dri:/dev/dri # for hardware transcoding
-    runtime: nvidia
     deploy:
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/tunarr:/config/tunarr
     labels:

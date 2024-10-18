@@ -7,19 +7,16 @@ services:
       - t3_proxy
     ports:
       - "8096:8096"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["media", "all"]
     user: $PUID:$PGID
-    devices:
-      - /dev/dri:/dev/dri # for hardware transcoding
-    runtime: nvidia
     deploy:
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config
       - $DOCKERDIR/appdata/jellyfin/cache:/cache
