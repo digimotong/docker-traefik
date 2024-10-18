@@ -13,7 +13,7 @@ services:
     profiles: ["media", "all"]
     user: $PUID:$PGID
     devices:
-      - /dev/dri:/dev/dri # for harware transcoding
+      - /dev/dri:/dev/dri # for hardware transcoding
     runtime: nvidia
     deploy:
       resources:
