@@ -26,7 +26,7 @@ services:
       write_ytdl_config: 'true'
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: "curl -sf https://example.com || exit 1"
-      interval: 1m
+      interval: 3m
       timeout: 10s
       retries: 1
     labels:
