@@ -27,9 +27,9 @@ services:
               capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/plex:/config
-      - $DOCKERDIR/appdata/plex/transcode:/transcode
-      - "$APPDATADIR/temp/plex/metadata:/config/Library/Application Support/Plex Media Server/Metadata"
-      - "$APPDATADIR/temp/plex/media:/config/Library/Application Support/Plex Media Server/Media"
+      - $TEMPDATADIR/plex/transcode:/transcode
+      - "$TEMPDATADIR/plex/metadata:/config/Library/Application Support/Plex Media Server/Metadata"
+      - "$TEMPDATADIR/plex/media:/config/Library/Application Support/Plex Media Server/Media"
       - $MEDIADIR/Movies:/movies:ro
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Music:/music:ro

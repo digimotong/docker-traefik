@@ -13,7 +13,7 @@ services:
       - "8686:8686"
     volumes:
       - $DOCKERDIR/appdata/lidarr:/config
-      - $APPDATADIR/temp/lidarr/MediaCover:/config/MediaCover
+      - $TEMPDATADIR/lidarr/MediaCover:/config/MediaCover
       - $MEDIASERVERDIR:/mediaserver
       - /etc/localtime:/etc/localtime:ro
     environment:

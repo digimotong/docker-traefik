@@ -19,8 +19,8 @@ services:
               capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config
-      - $DOCKERDIR/appdata/jellyfin/cache:/cache
-      - $APPDATADIR/temp/jellyfin/metadata:/config/metadata
+      - $TEMPDATADIR/jellyfin/cache:/cache
+      - $TEMPDATADIR/jellyfin/metadata:/config/metadata
       - $MEDIADIR/Movies:/movies:ro
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Music:/music:ro

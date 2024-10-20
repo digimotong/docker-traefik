@@ -11,9 +11,9 @@ services:
       - "5000:5000"
     volumes:
       - $DOCKERDIR/appdata/kavita:/kavita/config
-      - $APPDATADIR/temp/kavita/cache:/kavita/config/cache
-      - $APPDATADIR/temp/kavita/covers:/kavita/config/covers
-      - $APPDATADIR/temp/kavita/temp:/kavita/config/temp
+      - $TEMPDATADIR/kavita/cache:/kavita/config/cache
+      - $TEMPDATADIR/kavita/covers:/kavita/config/covers
+      - $TEMPDATADIR/kavita/temp:/kavita/config/temp
       - $MEDIADIR/Manga:/manga:ro
     environment:
       TZ: $TZ

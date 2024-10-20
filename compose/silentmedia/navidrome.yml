@@ -11,7 +11,7 @@ services:
       - "4533:4533"
     volumes:
       - $DOCKERDIR/appdata/navidrome:/data
-      - $APPDATADIR/temp/navidrome:/data/cache/images
+      - $TEMPDATADIR/navidrome:/data/cache
       - $MEDIADIR/Music:/music:ro
     environment:
       TZ: $TZ

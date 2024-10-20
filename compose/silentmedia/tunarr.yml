@@ -18,6 +18,8 @@ services:
               capabilities: [gpu]
     volumes:
       - $DOCKERDIR/appdata/tunarr:/config/tunarr
+      - $TEMPDATADIR/tunarr/cache:/config/tunarr/cache
+      - $TEMPDATADIR/tunarr/images:/config/tunarr/images
     labels:
       - "traefik.enable=true"
       # HTTP Routers
