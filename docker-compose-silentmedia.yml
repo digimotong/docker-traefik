@@ -63,7 +63,7 @@ include:
   # DOWNLOADERS
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
-  - compose/$HOSTNAME/slskd.yml
+  # - compose/$HOSTNAME/slskd.yml
   - compose/$HOSTNAME/ytdl_material.yml
   # FILE MANAGEMENT
   - compose/$HOSTNAME/mkvtoolnix.yml
