@@ -9,8 +9,8 @@ services:
     profiles: ["media","all"]
     networks:
       - t3_proxy
-    # ports:
-      # - "5800:5800"
+    ports:
+      - "5800:5800"
     volumes:
       - $DOCKERDIR/appdata/mkvtoolnix:/config
       - $APPDATADIR/mkvtoolnix:/storage
