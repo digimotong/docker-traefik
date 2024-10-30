@@ -1,5 +1,5 @@
 services:
-  # FileBot - Rename Media Files
+  # FileBot - Rename and Organize Media Files
   filebot:
     image: jlesage/filebot:latest
     container_name: filebot
