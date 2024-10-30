@@ -3,6 +3,8 @@ services:
   adguardhome:
     container_name: adguardhome
     image: adguard/adguardhome:latest
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["core", "all", "dns"]
     networks:

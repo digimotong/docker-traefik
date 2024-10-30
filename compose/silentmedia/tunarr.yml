@@ -3,6 +3,8 @@ services:
   tunarr:
     image: chrisbenincasa/tunarr:latest-nvidia
     container_name: tunarr
+    security_opt:
+      - no-new-privileges:true
     networks:
       - t3_proxy
     ports:

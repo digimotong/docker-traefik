@@ -3,6 +3,8 @@ services:
   watchtower:
     container_name: watchtower
     image: containrrr/watchtower:latest
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["core", "all"]
     networks:

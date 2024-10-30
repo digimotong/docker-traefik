@@ -3,6 +3,8 @@ services:
   jellyfin:
     image: jellyfin/jellyfin:latest
     container_name: jellyfin
+    security_opt:
+      - no-new-privileges:true
     networks:
       - t3_proxy
     ports:
