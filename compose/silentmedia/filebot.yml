@@ -12,7 +12,9 @@ services:
     ports:
       - "57064:57064"
     volumes:
-      - $DOCKERDIR/appdata/filebot:/config
+      - $DOCKERDIR/appdata/filebot/config:/config
+      - $DOCKERDIR/appdata/filebot/watch:/watch
+      - $DOCKERDIR/appdata/filebot/output:/output
       - $MEDIASERVERDIR:/storage
     environment:
       USER_ID: $PUID
