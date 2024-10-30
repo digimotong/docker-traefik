@@ -1,14 +1,14 @@
 services:
-  # cross-seed
+  # qBit Manage - Manage qBittorrent Instance
   qbit_manage:
-    container_name: cross-seed
-    image: ghcr.io/cross-seed/cross-seed:latest
+    container_name: qbit_manage
+    image: ghcr.io/stuffanthings/qbit_manage:latest
     networks:
       - t3_proxy
     restart: unless-stopped
     profiles: ["apps", "downloads", "all"]
     volumes:
-      - $DOCKERDIR/appdata/cross-seed:/config
+      - $DOCKERDIR/appdata/qbit_manage:/config
       - $MEDIASERVERDIR:/mediaserver
       - $DOCKERDIR/appdata/qbittorrent/qBittorrent:/qbittorrent/:ro
     environment:
