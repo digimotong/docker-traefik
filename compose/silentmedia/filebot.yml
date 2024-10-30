@@ -13,7 +13,7 @@ services:
       - "57064:57064"
     volumes:
       - $DOCKERDIR/appdata/filebot:/config
-      - $MEDIASERVERDIR:/mediaserver
+      - $MEDIASERVERDIR:/storage
     environment:
       USER_ID: $PUID
       GROUP_ID: $PGID
