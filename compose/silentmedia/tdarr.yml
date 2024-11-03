@@ -1,0 +1,54 @@
+services:
+  # tdarr - Distributed Transcoding System
+  tdarr:
+    image: ghcr.io/haveagitgat/tdarr:latest
+    container_name: tdarr
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - t3_proxy
+    ports:
+      - 8265:8265 # webUI port
+      # - 8266:8266 # server port
+    restart: unless-stopped
+    profiles: ["apps", "arrs", "all"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - $DOCKERDIR/appdata/tdarr/server:/app/server
+      - $DOCKERDIR/appdata/tdarr/configs:/app/configs
+      - $DOCKERDIR/appdata/tdarr/logs:/app/logs
+      - $TEMPDATADIR/tdarr:/temp
+      - $MEDIADIR/Movies:/movies:ro
+      - "$MEDIADIR/TV Shows:/tv:ro"
+      - $MEDIADIR/Anime:/anime:ro
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.tdarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.tdarr-rtr.rule=Host(`tdarr.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.tdarr-rtr.middlewares=chain-oauth@file"
+      # HTTP Services
+      - "traefik.http.routers.tdarr-rtr.service=tdarr-svc"
+      - "traefik.http.services.tdarr-svc.loadbalancer.server.port=8265"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      serverIP: 0.0.0.0
+      serverPort: 8266
+      webUIPort: 8265
+      internalNode: true
+      inContainer: true
+      ffmpegVersion: 6
+      nodeName: InternalNode
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all

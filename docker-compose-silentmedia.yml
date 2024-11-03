@@ -69,6 +69,7 @@ include:
   # FILE MANAGEMENT
   # - compose/$HOSTNAME/filebot.yml
   - compose/$HOSTNAME/mkvtoolnix.yml
+  - compose/$HOSTNAME/tdarr.yml
   - compose/$HOSTNAME/vscode.yml
   # FRONTEND
   - compose/$HOSTNAME/homepage.yml
