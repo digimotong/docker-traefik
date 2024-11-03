@@ -6,7 +6,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["core", "all"]
+    profiles: ["apps", "maintenance", "all"]
     networks:
       - socket_proxy
     depends_on:

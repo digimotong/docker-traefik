@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:8000"
     restart: unless-stopped
-    profiles: ["media", "all"]
+    profiles: ["apps", "media", "arrs", "all"]
     deploy:
       resources:
         reservations:

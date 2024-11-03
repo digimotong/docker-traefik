@@ -10,7 +10,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["apps", "downloads", "all"]
+    profiles: ["apps", "downloads", "vpn", "all"]
     network_mode: "service:gluetun-qbittorrent"
     environment:
       GLUETUN_URL: 'http://localhost:8000'

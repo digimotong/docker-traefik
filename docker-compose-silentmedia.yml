@@ -47,8 +47,6 @@ include:
   - compose/$HOSTNAME/oauth.yml
   - compose/$HOSTNAME/portainer.yml
   - compose/$HOSTNAME/wireguard.yml
-  # AD BLOCKING
-  - compose/$HOSTNAME/adguardhome.yml
   # ADMIN
   - compose/$HOSTNAME/guacamole.yml
   # COMPLEMENTARY APPS
@@ -61,6 +59,8 @@ include:
   - compose/$HOSTNAME/mariadb-guac.yml
   - compose/$HOSTNAME/mongodb-ytdl.yml
   - compose/$HOSTNAME/prometheus.yml
+  # DNS
+  - compose/$HOSTNAME/adguardhome.yml
   # DOWNLOADERS
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
@@ -81,16 +81,16 @@ include:
   - compose/$HOSTNAME/kavita.yml
   - compose/$HOSTNAME/navidrome.yml
   - compose/$HOSTNAME/plex.yml
-  - compose/$HOSTNAME/tautulli.yml
   - compose/$HOSTNAME/tunarr.yml
   # MONITORING
   - compose/$HOSTNAME/grafana.yml
   - compose/$HOSTNAME/node-exporter.yml
-  # NETWORK
-  - compose/$HOSTNAME/gluetun-qbittorrent.yml
-  - compose/$HOSTNAME/gluetun-slskd.yml
-  - compose/$HOSTNAME/glueforward.yml
+  - compose/$HOSTNAME/tautulli.yml
   # PVRS
   - compose/$HOSTNAME/lidarr.yml
   - compose/$HOSTNAME/radarr.yml
   - compose/$HOSTNAME/sonarr.yml
+  # VPN
+  - compose/$HOSTNAME/gluetun-qbittorrent.yml
+  - compose/$HOSTNAME/gluetun-slskd.yml
+  - compose/$HOSTNAME/glueforward.yml

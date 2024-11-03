@@ -19,7 +19,7 @@ services:
       - "32414:32414/udp"
       - "33400:33400/tcp"
     restart: unless-stopped
-    profiles: ["media", "all"]
+    profiles: ["apps", "media", "all"]
     deploy:
       resources:
         reservations:

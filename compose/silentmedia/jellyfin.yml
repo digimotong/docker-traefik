@@ -10,7 +10,7 @@ services:
     ports:
       - "8096:8096"
     restart: unless-stopped
-    profiles: ["media", "all"]
+    profiles: ["apps", "media", "all"]
     user: $PUID:$PGID
     deploy:
       resources:

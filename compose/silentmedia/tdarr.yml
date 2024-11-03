@@ -11,7 +11,7 @@ services:
       - 8265:8265 # webUI port
       # - 8266:8266 # server port
     restart: unless-stopped
-    profiles: ["apps", "arrs", "all"]
+    profiles: ["apps", "arrs", "files", "all"]
     deploy:
       resources:
         reservations:
