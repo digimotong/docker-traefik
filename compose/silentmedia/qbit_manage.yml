@@ -2,7 +2,8 @@ services:
   # qBit Manage - Manage qBittorrent Instance
   qbit_manage:
     container_name: qbit_manage
-    image: ghcr.io/stuffanthings/qbit_manage:latest
+    # image: ghcr.io/stuffanthings/qbit_manage:latest
+    image: ghcr.io/stuffanthings/qbit_manage:develop
     security_opt:
       - no-new-privileges:true
     networks:
