@@ -14,6 +14,8 @@ services:
     profiles: ["apps", "arrs", "files", "all"]
     devices:
       - /dev/dri:/dev/dri
+    group_add:
+      - "993"
     volumes:
       - $DOCKERDIR/appdata/tdarr/server:/app/server
       - $DOCKERDIR/appdata/tdarr/configs:/app/configs

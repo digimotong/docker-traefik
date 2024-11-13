@@ -13,6 +13,8 @@ services:
     profiles: ["apps", "media", "arrs", "all"]
     devices:
       - /dev/dri:/dev/dri
+    group_add:
+      - "993"
     volumes:
       - $DOCKERDIR/appdata/tunarr:/config/tunarr
       - $TEMPDATADIR/tunarr/cache:/config/tunarr/cache

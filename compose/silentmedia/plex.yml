@@ -22,6 +22,8 @@ services:
     profiles: ["apps", "media", "all"]
     devices:
       - /dev/dri:/dev/dri
+    group_add:
+      - "993"
     volumes:
       - $DOCKERDIR/appdata/plex:/config
       - $TEMPDATADIR/plex/transcode:/transcode
