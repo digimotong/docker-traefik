@@ -12,13 +12,8 @@ services:
     restart: unless-stopped
     profiles: ["apps", "media", "all"]
     user: $PUID:$PGID
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config
       - $TEMPDATADIR/jellyfin/cache:/cache

@@ -1,7 +1,7 @@
 services:
   # Tunarr - IPTV backed by Plex/Jellyfin
   tunarr:
-    image: chrisbenincasa/tunarr:latest-nvidia
+    image: chrisbenincasa/tunarr:latest-vaapi
     container_name: tunarr
     security_opt:
       - no-new-privileges:true
@@ -11,13 +11,8 @@ services:
       - "8000:8000"
     restart: unless-stopped
     profiles: ["apps", "media", "arrs", "all"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - $DOCKERDIR/appdata/tunarr:/config/tunarr
       - $TEMPDATADIR/tunarr/cache:/config/tunarr/cache

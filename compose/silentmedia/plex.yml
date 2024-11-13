@@ -20,13 +20,8 @@ services:
       - "33400:33400/tcp"
     restart: unless-stopped
     profiles: ["apps", "media", "all"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - $DOCKERDIR/appdata/plex:/config
       - $TEMPDATADIR/plex/transcode:/transcode

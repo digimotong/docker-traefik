@@ -12,13 +12,8 @@ services:
       # - 8266:8266 # server port
     restart: unless-stopped
     profiles: ["apps", "arrs", "files", "all"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - $DOCKERDIR/appdata/tdarr/server:/app/server
       - $DOCKERDIR/appdata/tdarr/configs:/app/configs
