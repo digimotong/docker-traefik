@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.tdarr-rtr.entrypoints=websecure"
       - "traefik.http.routers.tdarr-rtr.rule=Host(`tdarr.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.tdarr-rtr.middlewares=chain-double-auth@file"
+      - "traefik.http.routers.tdarr-rtr.middlewares=chain-oauth@file"
       # HTTP Services
       - "traefik.http.routers.tdarr-rtr.service=tdarr-svc"
       - "traefik.http.services.tdarr-svc.loadbalancer.server.port=8265"
@@ -43,9 +43,8 @@ services:
       serverIP: 0.0.0.0
       serverPort: 8266
       webUIPort: 8265
+      auth: true
       internalNode: true
       inContainer: true
       ffmpegVersion: 6
-      nodeName: InternalNode
-      NVIDIA_DRIVER_CAPABILITIES: all
-      NVIDIA_VISIBLE_DEVICES: all
+      nodeName: 'Internal Node'
