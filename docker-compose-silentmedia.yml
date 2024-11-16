@@ -68,7 +68,7 @@ include:
   - compose/$HOSTNAME/ytdl_material.yml
   # FILE MANAGEMENT
   - compose/$HOSTNAME/mkvtoolnix.yml
-  # - compose/$HOSTNAME/tdarr.yml
+  - compose/$HOSTNAME/tdarr.yml
   - compose/$HOSTNAME/vscode.yml
   # FRONTEND
   - compose/$HOSTNAME/homepage.yml
