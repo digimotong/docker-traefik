@@ -2,9 +2,9 @@ services:
   # Gluetun - VPN Client for Docker Containers and More
   # Gluetun only for use by torrent clients + on demand lan devices.
   # Arr apps do not need VPN (not recommended), unless you have ISP/country restrictions.
-  gluetun-slskd:
+  gluetun-deemix:
     image: qmcgaw/gluetun:latest
-    container_name: gluetun-slskd
+    container_name: gluetun-deemix
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
@@ -23,18 +23,18 @@ services:
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks
     volumes:
-      - $DOCKERDIR/appdata/gluetun-slskd:/gluetun-slskd
+      - $DOCKERDIR/appdata/gluetun-deemix:/gluetun-deemix
     environment:
       TZ: $TZ
       UPDATER_PERIOD: 24h
       # Wireguard
       VPN_SERVICE_PROVIDER: custom
       VPN_TYPE: wireguard
-      WIREGUARD_ENDPOINT_IP: $SLSKD_WIREGUARD_ENDPOINT_IP
-      WIREGUARD_ENDPOINT_PORT: $SLSKD_WIREGUARD_ENDPOINT_PORT
-      WIREGUARD_PUBLIC_KEY: $SLSKD_WIREGUARD_PUBLIC_KEY
-      WIREGUARD_PRIVATE_KEY: $SLSKD_WIREGUARD_PRIVATE_KEY
-      WIREGUARD_ADDRESSES: $SLSKD_WIREGUARD_ADDRESSES
+      WIREGUARD_ENDPOINT_IP: $DEEMIX_WIREGUARD_ENDPOINT_IP
+      WIREGUARD_ENDPOINT_PORT: $DEEMIX_WIREGUARD_ENDPOINT_PORT
+      WIREGUARD_PUBLIC_KEY: $DEEMIX_WIREGUARD_PUBLIC_KEY
+      WIREGUARD_PRIVATE_KEY: $DEEMIX_WIREGUARD_PRIVATE_KEY
+      WIREGUARD_ADDRESSES: $DEEMIX_WIREGUARD_ADDRESSES
       VPN_PORT_FORWARDING: on
       VPN_PORT_FORWARDING_PROVIDER: protonvpn
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220

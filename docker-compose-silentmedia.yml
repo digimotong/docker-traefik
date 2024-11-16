@@ -42,10 +42,10 @@ include:
   # HOSTNAME defined in .env file
 
   # CORE
-  - compose/$HOSTNAME/traefik.yml
-  - compose/$HOSTNAME/socket-proxy.yml
   - compose/$HOSTNAME/oauth.yml
   - compose/$HOSTNAME/portainer.yml
+  - compose/$HOSTNAME/socket-proxy.yml
+  - compose/$HOSTNAME/traefik.yml
   - compose/$HOSTNAME/wireguard.yml
   # ADMIN
   - compose/$HOSTNAME/guacamole.yml
@@ -68,7 +68,7 @@ include:
   - compose/$HOSTNAME/ytdl_material.yml
   # FILE MANAGEMENT
   - compose/$HOSTNAME/mkvtoolnix.yml
-  - compose/$HOSTNAME/tdarr.yml
+  # - compose/$HOSTNAME/tdarr.yml
   - compose/$HOSTNAME/vscode.yml
   # FRONTEND
   - compose/$HOSTNAME/homepage.yml
@@ -90,6 +90,6 @@ include:
   - compose/$HOSTNAME/radarr.yml
   - compose/$HOSTNAME/sonarr.yml
   # VPN
-  - compose/$HOSTNAME/gluetun-qbittorrent.yml
-  - compose/$HOSTNAME/gluetun-slskd.yml
   - compose/$HOSTNAME/glueforward.yml
+  - compose/$HOSTNAME/gluetun-deemix.yml
+  - compose/$HOSTNAME/gluetun-qbittorrent.yml

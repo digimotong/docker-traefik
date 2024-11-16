@@ -9,7 +9,7 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["dbs", "all"]
-    network_mode: "service:gluetun-slskd"
+    network_mode: "service:gluetun-deemix"
     volumes:
       - $DOCKERDIR/appdata/mongodb-ytdl/config:/data/configdb
       - $DOCKERDIR/appdata/mongodb-ytdl/db:/data/db
