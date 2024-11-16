@@ -9,8 +9,8 @@ services:
     profiles: ["apps", "arrs", "all"]
     networks:
       - t3_proxy
-    ports:
-      - "6767:6767"
+    # ports:
+    #   - "6767:6767"
     volumes:
       - $DOCKERDIR/appdata/bazarr:/config
       - $MEDIADIR/Movies:/movies

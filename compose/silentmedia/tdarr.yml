@@ -7,9 +7,9 @@ services:
       - no-new-privileges:true
     networks:
       - t3_proxy
-    ports:
-      - 8265:8265 # webUI port
-      # - 8266:8266 # server port
+    # ports:
+    #   - 8265:8265 # webUI port
+    #   - 8266:8266 # server port
     restart: unless-stopped
     profiles: ["apps", "arrs", "files", "all"]
     devices:
