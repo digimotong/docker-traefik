@@ -1,0 +1,40 @@
+services:
+  # docker-ripper - Automatically detect and rip optical disks
+  docker-ripper:
+    image: rix1337/docker-ripper:manual-latest
+    container_name: docker-ripper
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "files", "all"]
+    networks:
+      - t3_proxy
+    # ports:
+    #   - "9090:9090"
+    devices:
+      - /dev/sr0:/dev/sr0
+      - /dev/sg0:/dev/sg0
+    volumes:
+      - $DOCKERDIR/appdata/docker-ripper:/config
+      - $APPDATADIR/docker-ripper:/out
+    environment:
+      # USER: $RIPPER_USERNAME
+      # PASS: $RIPPER_PASSWORD
+      EJECTENABLED: true
+      STORAGE_CD: /out/CD
+      STORAGE_DATA: /out/DATA
+      STORAGE_DVD: /out/DVD
+      STORAGE_BD: /out/BD
+      # DEBUG: true
+    labels:
+      # - "traefik.enable=true"
+      # # HTTP Routers
+      # - "traefik.http.routers.ripper-rtr.entrypoints=websecure"
+      # - "traefik.http.routers.ripper-rtr.rule=Host(`ripper.$DOMAINNAME`)"
+      # # Middlewares
+      # - "traefik.http.routers.ripper-rtr.middlewares=chain-double-auth@file"
+      # # HTTP Services
+      # - "traefik.http.routers.ripper-rtr.service=ripper-svc"
+      # - "traefik.http.services.ripper-svc.loadbalancer.server.port=9090"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
