@@ -1,0 +1,19 @@
+services:
+  # Node Exporter - Metrics to Prometheus
+  node_exporter:
+    container_name: node_exporter
+    image: quay.io/prometheus/node-exporter:latest
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "monitoring", "all"]
+    networks:
+      - t3_proxy
+    volumes:
+      - '/:/host:ro,rslave'
+    pid: host
+    command:
+      - '--path.rootfs=/host'
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

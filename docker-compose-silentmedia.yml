@@ -84,7 +84,7 @@ include:
   - compose/$HOSTNAME/tunarr.yml
   # MONITORING
   - compose/$HOSTNAME/grafana.yml
-  - compose/$HOSTNAME/node-exporter.yml
+  - compose/$HOSTNAME/node_exporter.yml
   - compose/$HOSTNAME/tautulli.yml
   # PVRS
   - compose/$HOSTNAME/lidarr.yml
