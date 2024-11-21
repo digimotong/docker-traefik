@@ -15,7 +15,6 @@ services:
       - $DOCKERDIR/appdata/bazarr:/config
       - $MEDIADIR/Movies:/movies
       - "$MEDIADIR/TV Shows:/tv shows"
-      - $MEDIADIR/Anime:/anime
     environment:
       TZ: $TZ
       PUID: $PUID
