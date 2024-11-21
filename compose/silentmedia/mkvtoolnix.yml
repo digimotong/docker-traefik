@@ -15,6 +15,7 @@ services:
       - $DOCKERDIR/appdata/mkvtoolnix:/config
       - $APPDATADIR/mkvtoolnix:/storage
       - $DOWNLOADSDIR:/downloads:ro
+      - $APPDATADIR/docker-ripper:/docker-ripper:ro
     environment:
       USER_ID: $PUID
       GROUP_ID: $PGID
