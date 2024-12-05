@@ -26,6 +26,11 @@ services:
     volumes:
       - $DOCKERDIR/appdata/adguardhome/conf:/opt/adguardhome/conf
       - $DOCKERDIR/appdata/adguardhome/work:/opt/adguardhome/work
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
+      interval: 3m
+      timeout: 10s
+      retries: 1
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -38,3 +43,5 @@ services:
       - "traefik.http.services.adguardhome-svc.loadbalancer.server.port=80"
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
