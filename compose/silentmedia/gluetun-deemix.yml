@@ -49,7 +49,7 @@ services:
       - "traefik.http.routers.deemix-rtr.entrypoints=websecure"
       - "traefik.http.routers.deemix-rtr.rule=Host(`deemix.$DOMAINNAME`)"
         # Middlewares
-      - "traefik.http.routers.deemix-rtr.middlewares=chain-double-auth@file"
+      - "traefik.http.routers.deemix-rtr.middlewares=chain-authelia@file"
         # HTTP Services
       - "traefik.http.routers.deemix-rtr.service=deemix-svc"
       - "traefik.http.services.deemix-svc.loadbalancer.server.port=6595"
@@ -58,7 +58,7 @@ services:
       # - "traefik.http.routers.slskd-rtr.entrypoints=websecure"
       # - "traefik.http.routers.slskd-rtr.rule=Host(`slskd.$DOMAINNAME`)"
       #   # Middlewares
-      # - "traefik.http.routers.slskd-rtr.middlewares=chain-oauth@file"
+      # - "traefik.http.routers.slskd-rtr.middlewares=chain-authelia@file"
       #   # HTTP Services
       # - "traefik.http.routers.slskd-rtr.service=slskd-svc"
       # - "traefik.http.services.slskd-svc.loadbalancer.server.port=5030"
@@ -67,7 +67,7 @@ services:
       - "traefik.http.routers.ytdl_material-rtr.entrypoints=websecure"
       - "traefik.http.routers.ytdl_material-rtr.rule=Host(`ytdl_material.$DOMAINNAME`)"
         # Middlewares
-      - "traefik.http.routers.ytdl_material-rtr.middlewares=chain-oauth-nosniffdisabled@file"
+      - "traefik.http.routers.ytdl_material-rtr.middlewares=chain-authelia-nosniffdisabled@file"
         # HTTP Services
       - "traefik.http.routers.ytdl_material-rtr.service=ytdl_material-svc"
       - "traefik.http.services.ytdl_material-svc.loadbalancer.server.port=17442"

@@ -29,7 +29,7 @@ services:
       - "traefik.http.routers.guacamole-rtr.entrypoints=websecure"
       - "traefik.http.routers.guacamole-rtr.rule=Host(`guacamole.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.guacamole-rtr.middlewares=chain-oauth@file,add-guacamole"
+      - "traefik.http.routers.guacamole-rtr.middlewares=chain-authelia@file,add-guacamole"
       - "traefik.http.middlewares.add-guacamole.addPrefix.prefix=/guacamole"
       # HTTP Services
       - "traefik.http.routers.guacamole-rtr.service=guacamole-svc"

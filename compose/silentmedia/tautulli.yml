@@ -25,7 +25,7 @@ services:
       - "traefik.http.routers.tautulli-rtr.entrypoints=websecure"
       - "traefik.http.routers.tautulli-rtr.rule=Host(`tautulli.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.tautulli-rtr.middlewares=chain-oauth@file"
+      - "traefik.http.routers.tautulli-rtr.middlewares=chain-authelia@file"
       # HTTP Services
       - "traefik.http.routers.tautulli-rtr.service=tautulli-svc"
       - "traefik.http.services.tautulli-svc.loadbalancer.server.port=8181"

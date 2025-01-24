@@ -32,7 +32,7 @@ services:
       # - "traefik.http.routers.ripper-rtr.entrypoints=websecure"
       # - "traefik.http.routers.ripper-rtr.rule=Host(`ripper.$DOMAINNAME`)"
       # # Middlewares
-      # - "traefik.http.routers.ripper-rtr.middlewares=chain-double-auth@file"
+      # - "traefik.http.routers.ripper-rtr.middlewares=chain-authelia@file"
       # # HTTP Services
       # - "traefik.http.routers.ripper-rtr.service=ripper-svc"
       # - "traefik.http.services.ripper-svc.loadbalancer.server.port=9090"

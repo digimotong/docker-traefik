@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.mkvtoolnix-rtr.entrypoints=websecure"
       - "traefik.http.routers.mkvtoolnix-rtr.rule=Host(`mkvtoolnix.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.mkvtoolnix-rtr.middlewares=chain-oauth@file"
+      - "traefik.http.routers.mkvtoolnix-rtr.middlewares=chain-authelia@file"
       # HTTP Services
       - "traefik.http.routers.mkvtoolnix-rtr.service=mkvtoolnix-svc"
       - "traefik.http.services.mkvtoolnix-svc.loadbalancer.server.port=5800"

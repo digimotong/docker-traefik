@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.filebot-rtr.entrypoints=websecure"
       - "traefik.http.routers.filebot-rtr.rule=Host(`filebot.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.filebot-rtr.middlewares=chain-oauth@file"
+      - "traefik.http.routers.filebot-rtr.middlewares=chain-authelia@file"
       # HTTP Services
       - "traefik.http.routers.filebot-rtr.service=filebot-svc"
       - "traefik.http.services.filebot-svc.loadbalancer.server.port=57064"

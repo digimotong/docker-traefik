@@ -47,7 +47,7 @@ services:
       - "traefik.http.routers.gluetun-qbittorrent-rtr.entrypoints=websecure"
       - "traefik.http.routers.gluetun-qbittorrent-rtr.rule=Host(`qbittorrent.$DOMAINNAME`)"
         # Middlewares
-      - "traefik.http.routers.gluetun-qbittorrent-rtr.middlewares=chain-oauth@file"
+      - "traefik.http.routers.gluetun-qbittorrent-rtr.middlewares=chain-authelia@file"
         # HTTP Services
       - "traefik.http.routers.gluetun-qbittorrent-rtr.service=gluetun-svc"
       - "traefik.http.services.gluetun-svc.loadbalancer.server.port=8080"

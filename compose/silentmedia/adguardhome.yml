@@ -37,7 +37,7 @@ services:
       - "traefik.http.routers.adguardhome-rtr.entrypoints=websecure"
       - "traefik.http.routers.adguardhome-rtr.rule=Host(`adguardhome.$DOMAINNAME`)"
       # Middlewares
-      - "traefik.http.routers.adguardhome-rtr.middlewares=chain-oauth@file"
+      - "traefik.http.routers.adguardhome-rtr.middlewares=chain-authelia@file"
       # HTTP Services
       - "traefik.http.routers.adguardhome-rtr.service=adguardhome-svc"
       - "traefik.http.services.adguardhome-svc.loadbalancer.server.port=80"
