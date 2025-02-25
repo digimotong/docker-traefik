@@ -28,15 +28,12 @@ services:
       TZ: $TZ
       UPDATER_PERIOD: 24h
       # Wireguard
-      VPN_SERVICE_PROVIDER: custom
+      VPN_SERVICE_PROVIDER: protonvpn
       VPN_TYPE: wireguard
-      WIREGUARD_ENDPOINT_IP: $DEEMIX_WIREGUARD_ENDPOINT_IP
-      WIREGUARD_ENDPOINT_PORT: $DEEMIX_WIREGUARD_ENDPOINT_PORT
-      WIREGUARD_PUBLIC_KEY: $DEEMIX_WIREGUARD_PUBLIC_KEY
       WIREGUARD_PRIVATE_KEY: $DEEMIX_WIREGUARD_PRIVATE_KEY
-      WIREGUARD_ADDRESSES: $DEEMIX_WIREGUARD_ADDRESSES
+      SERVER_CITIES: $DEEMIX_WIREGUARD_SERVER_CITIES
       VPN_PORT_FORWARDING: on
-      VPN_PORT_FORWARDING_PROVIDER: protonvpn
+      PORT_FORWARD_ONLY: on
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
       interval: 3m
