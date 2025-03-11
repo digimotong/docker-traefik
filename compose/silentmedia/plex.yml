@@ -52,8 +52,6 @@ services:
       PLEX_UID: $PUID
       PLEX_GID: $PGID
       ADVERTISE_IP: "http://$SERVER_IP:32400/,https://plex.$DOMAINNAME/"
-      ALLOWED_NETWORKS: $LOCAL_IPS
-      NVIDIA_VISIBLE_DEVICES: all
-      NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
+      # ALLOWED_NETWORKS: $LOCAL_IPS
     secrets:
       - plex_claim
