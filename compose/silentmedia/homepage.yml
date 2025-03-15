@@ -20,6 +20,7 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
+      HOMEPAGE_ALLOWED_HOSTS: $DOMAINNAME
     labels:
       - "traefik.enable=true"
       # HTTP Routers
