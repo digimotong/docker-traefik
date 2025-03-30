@@ -71,7 +71,7 @@ include:
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
   # - compose/$HOSTNAME/slskd.yml
-  - compose/$HOSTNAME/ytdl_material.yml
+  - compose/$HOSTNAME/ytdl-material.yml
   # FILE MANAGEMENT
   - compose/$HOSTNAME/docker-ripper.yml
   - compose/$HOSTNAME/mkvtoolnix.yml

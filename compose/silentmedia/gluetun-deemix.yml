@@ -61,13 +61,13 @@ services:
       # - "traefik.http.services.slskd-svc.loadbalancer.server.port=5030"
       ## YoutubeDL-Material labels
         # HTTP Routers
-      - "traefik.http.routers.ytdl_material-rtr.entrypoints=websecure"
-      - "traefik.http.routers.ytdl_material-rtr.rule=Host(`ytdl_material.$DOMAINNAME`)"
+      - "traefik.http.routers.ytdl-material-rtr.entrypoints=websecure"
+      - "traefik.http.routers.ytdl-material-rtr.rule=Host(`ytdl-material.$DOMAINNAME`)"
         # Middlewares
-      - "traefik.http.routers.ytdl_material-rtr.middlewares=chain-authelia-nosniffdisabled@file"
+      - "traefik.http.routers.ytdl-material-rtr.middlewares=chain-authelia-nosniffdisabled@file"
         # HTTP Services
-      - "traefik.http.routers.ytdl_material-rtr.service=ytdl_material-svc"
-      - "traefik.http.services.ytdl_material-svc.loadbalancer.server.port=17442"
+      - "traefik.http.routers.ytdl-material-rtr.service=ytdl-material-svc"
+      - "traefik.http.services.ytdl-material-svc.loadbalancer.server.port=17442"
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
       # Enable DeUnhealth

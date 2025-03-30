@@ -1,8 +1,8 @@
 services:
   # YoutubeDL-Material - Material Design Frontend for youtube-dl
-  ytdl_material:
+  ytdl-material:
     image: tzahi12345/youtubedl-material:latest
-    container_name: ytdl_material
+    container_name: ytdl-material
     depends_on:
       - mongodb-ytdl
     security_opt:
@@ -13,11 +13,11 @@ services:
     # ports:
       # - "8998:17442" # Explosed via gluetun
     volumes:
-      - $DOCKERDIR/appdata/ytdl_material:/app/appdata
-      - $DOWNLOADSDIR/ytdl_material/audio:/app/audio
-      - $DOWNLOADSDIR/ytdl_material/video:/app/video
-      - $DOWNLOADSDIR/ytdl_material/subscriptions:/app/subscriptions
-      - $DOWNLOADSDIR/ytdl_material/users:/app/users
+      - $DOCKERDIR/appdata/ytdl-material:/app/appdata
+      - $DOWNLOADSDIR/ytdl-material/audio:/app/audio
+      - $DOWNLOADSDIR/ytdl-material/video:/app/video
+      - $DOWNLOADSDIR/ytdl-material/subscriptions:/app/subscriptions
+      - $DOWNLOADSDIR/ytdl-material/users:/app/users
     environment: 
       UID: $PUID
       GID: $PGID
