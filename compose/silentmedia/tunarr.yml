@@ -1,12 +1,12 @@
 services:
   # Tunarr - IPTV backed by Plex/Jellyfin
   tunarr:
-    image: chrisbenincasa/tunarr:latest-vaapi
     container_name: tunarr
-    security_opt:
-      - no-new-privileges:true
+    image: chrisbenincasa/tunarr:latest-vaapi
     networks:
       - t3_proxy
+    security_opt:
+      - no-new-privileges:true
     # ports:
     #   - "8000:8000"
     restart: unless-stopped
@@ -19,6 +19,9 @@ services:
       - $DOCKERDIR/appdata/tunarr:/config/tunarr
       - $TEMPDATADIR/tunarr/cache:/config/tunarr/cache
       - $TEMPDATADIR/tunarr/images:/config/tunarr/images
+    environment:
+      TZ: $TZ
+      LOG_LEVEL: INFO
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -31,6 +34,3 @@ services:
       - "traefik.http.services.tunarr-svc.loadbalancer.server.port=8000"
       # Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
-    environment:
-      TZ: $TZ
-      LOG_LEVEL: INFO

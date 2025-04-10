@@ -1,14 +1,14 @@
 services:
   # Radarr - Movie management
   radarr:
-    image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
+    image: lscr.io/linuxserver/radarr:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "arrs", "all"]
-    networks:
-      - t3_proxy
     ports:
       - "7878:7878"
     volumes:

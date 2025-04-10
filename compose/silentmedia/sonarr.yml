@@ -1,14 +1,14 @@
 services:
   # Sonarr - TV Shows Management
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "arrs", "all"]
-    networks:
-      - t3_proxy
     ports:
       - "8989:8989"
     volumes:

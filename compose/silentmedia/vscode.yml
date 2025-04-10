@@ -1,14 +1,14 @@
 services:
   # VSCode - VSCode Editing
   vscode:
-    image: lscr.io/linuxserver/code-server:latest
     container_name: vscode
+    image: lscr.io/linuxserver/code-server:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "files", "all"]
-    networks:
-      - t3_proxy
     ports:
       - "8443:8443"
     volumes:

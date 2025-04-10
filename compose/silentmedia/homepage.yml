@@ -1,15 +1,15 @@
 services:
    # Homepage - Application Dashboard
   homepage:
-    image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+    networks:
+      - t3_proxy
+      - socket_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "all"]
-    networks:
-      - t3_proxy
-      - socket_proxy
     # ports:
     #  - "$HOMEPAGE_PORT:3000" 
     volumes:

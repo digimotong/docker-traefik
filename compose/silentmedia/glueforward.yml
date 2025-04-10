@@ -1,26 +1,26 @@
 services:
   # glueforward - Updates qBittorrent's listening port to Gluetun's forwarded port
   glueforward:
+    container_name: glueforward
     # image: ghcr.io/geoffreycoulaud/glueforward:latest
     image: local/glueforward-curl:latest
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
     pull_policy: build
-    container_name: glueforward
+    network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "downloads", "vpn", "all"]
-    network_mode: "service:gluetun-qbittorrent"
+    depends_on:
+      - gluetun-qbittorrent
+      - qbittorrent
     environment:
       GLUETUN_URL: 'http://localhost:8000'
       QBITTORRENT_URL: 'http://localhost:8080'
       QBITTORRENT_USERNAME: $QBITTORRENT_USERNAME
       QBITTORRENT_PASSWORD: $QBITTORRENT_PASSWORD
       SUCCESS_INTERVAL: 60
-    depends_on:
-      - gluetun-qbittorrent
-      - qbittorrent
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: "curl -sf https://example.com || exit 1"
       interval: 3m

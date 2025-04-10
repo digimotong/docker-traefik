@@ -1,12 +1,12 @@
 services:
   # tdarr - Distributed Transcoding System
   tdarr:
-    image: ghcr.io/haveagitgat/tdarr:latest
     container_name: tdarr
-    security_opt:
-      - no-new-privileges:true
+    image: ghcr.io/haveagitgat/tdarr:latest
     networks:
       - t3_proxy
+    security_opt:
+      - no-new-privileges:true
     # ports:
     #   - 8265:8265 # webUI port
     #   - 8266:8266 # server port
@@ -24,18 +24,6 @@ services:
       - $MEDIADIR/Movies:/movies:ro
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Anime:/anime:ro
-    labels:
-      - "traefik.enable=true"
-      # HTTP Routers
-      - "traefik.http.routers.tdarr-rtr.entrypoints=websecure"
-      - "traefik.http.routers.tdarr-rtr.rule=Host(`tdarr.$DOMAINNAME`)"
-      # Middlewares
-      - "traefik.http.routers.tdarr-rtr.middlewares=chain-authelia@file"
-      # HTTP Services
-      - "traefik.http.routers.tdarr-rtr.service=tdarr-svc"
-      - "traefik.http.services.tdarr-svc.loadbalancer.server.port=8265"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
     environment:
       TZ: $TZ
       PUID: $PUID
@@ -48,3 +36,15 @@ services:
       inContainer: true
       ffmpegVersion: 6
       nodeName: 'Internal Node'
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.tdarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.tdarr-rtr.rule=Host(`tdarr.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.tdarr-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.tdarr-rtr.service=tdarr-svc"
+      - "traefik.http.services.tdarr-svc.loadbalancer.server.port=8265"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

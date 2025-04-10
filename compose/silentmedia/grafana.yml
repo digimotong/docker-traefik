@@ -1,14 +1,14 @@
 services:
   # Grafana - Graphical data visualization for InfluxDB data
   grafana:
-    image: grafana/grafana:latest
     container_name: grafana
+    image: grafana/grafana:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "monitoring", "all"]
-    networks:
-      - t3_proxy
     # ports:
       # - "3000:3000"
     user: "$PUID:$PGID"

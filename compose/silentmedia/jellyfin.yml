@@ -1,21 +1,17 @@
 services:
   # Jellyfin - Media Server
   jellyfin:
-    image: jellyfin/jellyfin:latest
     container_name: jellyfin
-    security_opt:
-      - no-new-privileges:true
+    image: jellyfin/jellyfin:latest
     networks:
       - t3_proxy
+    security_opt:
+      - no-new-privileges:true
     ports:
       - "8096:8096"
     restart: unless-stopped
     profiles: ["apps", "media", "all"]
     user: $PUID:$PGID
-    devices:
-      - /dev/dri:/dev/dri
-    group_add:
-      - "993"
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config
       - $TEMPDATADIR/jellyfin/cache:/cache
@@ -40,3 +36,7 @@ services:
     environment:
       UMASK_SET: 022
       TZ: $TZ
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "993"

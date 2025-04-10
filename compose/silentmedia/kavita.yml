@@ -1,14 +1,14 @@
 services:
   # Kavita - Manga Server
   kavita:
-    image: jvmilazz0/kavita:latest
     container_name: kavita
+    image: jvmilazz0/kavita:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "media", "all"]
-    networks:
-      - t3_proxy
     ports:
       - "5000:5000"
     volumes:

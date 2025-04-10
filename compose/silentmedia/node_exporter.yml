@@ -3,12 +3,12 @@ services:
   node_exporter:
     container_name: node_exporter
     image: quay.io/prometheus/node-exporter:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "monitoring", "all"]
-    networks:
-      - t3_proxy
     volumes:
       - '/:/host:ro,rslave'
     pid: host

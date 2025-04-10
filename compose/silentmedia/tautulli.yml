@@ -2,14 +2,14 @@ services:
   # Tautulli - Plex statistics and monitoring
   # Set HTTP Root in Tautulli settings if using PathPrefix
   tautulli:
-    image: lscr.io/linuxserver/tautulli:latest
     container_name: tautulli
+    image: lscr.io/linuxserver/tautulli:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "monitoring", "all"]
-    networks:
-      - t3_proxy
     # ports:
       # - "8181:8181"
     volumes:

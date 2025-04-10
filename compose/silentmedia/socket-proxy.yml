@@ -3,13 +3,13 @@ services:
   socket-proxy:
     container_name: socket-proxy
     image: tecnativa/docker-socket-proxy:latest
+    networks:
+      socket_proxy:
+        ipv4_address: 192.168.91.254 # You can specify a static IP
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["core", "all"]
-    networks:
-      socket_proxy:
-        ipv4_address: 192.168.91.254 # You can specify a static IP
     privileged: true # true for VM. False (default) for unprivileged LXC container.
     # ports:
       #- "2375:2375"

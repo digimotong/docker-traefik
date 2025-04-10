@@ -1,8 +1,8 @@
 services:      
   # Prometheus - Database for sensor data
   prometheus:
-    image: prom/prometheus:latest
     container_name: prometheus
+    image: prom/prometheus:latest
     networks:
       - t3_proxy
     security_opt:

@@ -3,13 +3,13 @@ services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:latest # Use portainer-ce if you do no have a Business Edition license key
+    networks:
+      - t3_proxy
+      - socket_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "core", "all"]
-    networks:
-      - t3_proxy
-      - socket_proxy
     ports:
       - "9000:9000"
     # command: -H unix:///var/run/docker.sock # # Use Docker Socket Proxy instead for improved security

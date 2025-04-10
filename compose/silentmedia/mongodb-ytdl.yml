@@ -5,11 +5,11 @@ services:
     image: mongo:4
     logging:
       driver: "none"
+    network_mode: "service:gluetun-deemix"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["dbs", "all"]
-    network_mode: "service:gluetun-deemix"
     volumes:
       - $DOCKERDIR/appdata/mongodb-ytdl/config:/data/configdb
       - $DOCKERDIR/appdata/mongodb-ytdl/db:/data/db

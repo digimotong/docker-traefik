@@ -3,6 +3,7 @@ services:
   traefik:
     container_name: traefik
     image: traefik:3.1
+    network_mode: "service:wireguard"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
@@ -10,11 +11,6 @@ services:
     depends_on:
       - socket-proxy
       - wireguard
-    # networks:
-      # t3_proxy:
-        # ipv4_address: 192.168.90.254 # You can specify a static IP
-      # socket_proxy:
-    network_mode: "service:wireguard"
     command: # CLI arguments
       - --global.checkNewVersion=true
       - --global.sendAnonymousUsage=false

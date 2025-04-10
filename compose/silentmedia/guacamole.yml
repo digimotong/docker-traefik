@@ -2,14 +2,14 @@ services:
   # Guacamole - Remote desktop, SSH, on Telnet on any HTML5 Browser
   # Create all databases and tables first
   guacamole:
-    image: guacamole/guacamole:latest
     container_name: guacamole
+    image: guacamole/guacamole:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["admin", "apps", "all"]
-    networks:
-      - t3_proxy
     # ports:
       # - "8080:8080"
     environment:
@@ -39,14 +39,14 @@ services:
 
   # Guacamole Daemon - Needed for Guacamole
   guacd:
-    image: guacamole/guacd:latest
     container_name: guacd
+    image: guacamole/guacd:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "all"]
-    networks:
-      - t3_proxy
     labels:
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"

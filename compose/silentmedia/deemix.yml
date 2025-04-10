@@ -1,13 +1,13 @@
 services:
   # Deemix - Deezer Music Downloader
   deemix:
-    image: codefaux/deemix-for-lidarr:latest
     container_name: deemix
+    image: codefaux/deemix-for-lidarr:latest
+    network_mode: "service:gluetun-deemix"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "downloads", "all"]
-    network_mode: "service:gluetun-deemix"
     # ports:
       # - "6595:6595" # Explosed via gluetun
     volumes:

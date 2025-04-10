@@ -1,15 +1,15 @@
 services:
   # Client for Notifiarr.com
   notifiarr:
-    image: golift/notifiarr:latest
     container_name: notifiarr
     hostname: notifiarr
+    image: golift/notifiarr:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "arrs", "all"]
-    networks:
-      - t3_proxy
     # ports:
       # - "5454:5454"
     volumes:

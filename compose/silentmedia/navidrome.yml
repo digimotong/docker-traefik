@@ -1,14 +1,14 @@
 services:
   # Navidrome - Music Server
   navidrome:
-    image: deluan/navidrome:latest
     container_name: navidrome
+    image: deluan/navidrome:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "media", "all"]
-    networks:
-      - t3_proxy
     ports:
       - "4533:4533"
     volumes:

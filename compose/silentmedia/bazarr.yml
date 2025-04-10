@@ -1,14 +1,14 @@
 services:
   # Bazarr - Subtitle Management
   bazarr:
-    image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
+    image: lscr.io/linuxserver/bazarr:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "arrs", "all"]
-    networks:
-      - t3_proxy
     # ports:
     #   - "6767:6767"
     volumes:

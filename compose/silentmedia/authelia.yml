@@ -3,13 +3,13 @@ services:
   authelia:
     container_name: authelia
     image: authelia/authelia:latest
+    networks:
+      - t3_proxy
+      - default
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["core", "all"]
-    networks:
-      - t3_proxy
-      - default
     # ports:
     #   - "9091:9091"
     volumes:

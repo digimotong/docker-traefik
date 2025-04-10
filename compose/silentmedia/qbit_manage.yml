@@ -3,10 +3,10 @@ services:
   qbit_manage:
     container_name: qbit_manage
     image: ghcr.io/stuffanthings/qbit_manage:latest
-    security_opt:
-      - no-new-privileges:true
     networks:
       - t3_proxy
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "downloads", "all"]
     volumes:

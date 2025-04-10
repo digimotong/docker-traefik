@@ -1,13 +1,13 @@
 services:
   # slskd - Client-Server Application for Soulseek
   slskd:
-    image: slskd/slskd:latest
     container_name: slskd
+    image: slskd/slskd:latest
+    network_mode: "service:gluetun-deemix"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "downloads", "all"]
-    network_mode: "service:gluetun-deemix"
     # ports:
       # - "5030:5030" # Explosed via gluetun
     volumes:

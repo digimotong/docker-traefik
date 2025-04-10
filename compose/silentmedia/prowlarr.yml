@@ -1,14 +1,14 @@
 services:
   # Prowlarr - Torrent proxy
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
+    image: ghcr.io/linuxserver/prowlarr:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "arrs", "all"]
-    networks:
-      - t3_proxy
     # ports:
       # - "9696:9696"
     volumes:

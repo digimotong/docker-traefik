@@ -1,14 +1,14 @@
 services:
   # MKVToolNix - Video Editing (Remuxing - changing media container while keeping original source quality)
   mkvtoolnix:
-    image: jlesage/mkvtoolnix:latest
     container_name: mkvtoolnix
+    image: jlesage/mkvtoolnix:latest
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "files", "all"]
-    networks:
-      - t3_proxy
     # ports:
     #   - "5800:5800"
     volumes:
