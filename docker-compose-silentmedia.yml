@@ -62,6 +62,10 @@ include:
   - compose/$HOSTNAME/notifiarr.yml
   - compose/$HOSTNAME/prowlarr.yml
   - compose/$HOSTNAME/qbit_manage.yml
+  # ARRS
+  - compose/$HOSTNAME/lidarr.yml
+  - compose/$HOSTNAME/radarr.yml
+  - compose/$HOSTNAME/sonarr.yml
   # DATABASES
   - compose/$HOSTNAME/mariadb-guac.yml
   - compose/$HOSTNAME/mongodb-ytdl.yml
@@ -91,10 +95,6 @@ include:
   - compose/$HOSTNAME/grafana.yml
   - compose/$HOSTNAME/node_exporter.yml
   - compose/$HOSTNAME/tautulli.yml
-  # ARRS
-  - compose/$HOSTNAME/lidarr.yml
-  - compose/$HOSTNAME/radarr.yml
-  - compose/$HOSTNAME/sonarr.yml
   # VPN
   - compose/$HOSTNAME/glueforward.yml
   - compose/$HOSTNAME/gluetun-deemix.yml
