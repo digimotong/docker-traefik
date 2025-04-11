@@ -10,7 +10,7 @@ services:
     # ports:
     #   - "8000:8000"
     restart: unless-stopped
-    profiles: ["apps", "media", "arrs", "all"]
+    profiles: ["all", "apps", "media", "arrs"]
     devices:
       - /dev/dri:/dev/dri
     group_add:

@@ -53,49 +53,53 @@ include:
   - compose/$HOSTNAME/socket-proxy.yml
   - compose/$HOSTNAME/traefik.yml
   - compose/$HOSTNAME/wireguard.yml
-  # ADMIN
+
+  # APPS
   - compose/$HOSTNAME/guacamole.yml
-  # COMPLEMENTARY APPS
-  - compose/$HOSTNAME/bazarr.yml
-  - compose/$HOSTNAME/flaresolverr.yml
-  - compose/$HOSTNAME/notifiarr.yml
-  - compose/$HOSTNAME/prowlarr.yml
-  - compose/$HOSTNAME/qbit_manage.yml
-  # DATABASES
-  - compose/$HOSTNAME/mariadb-guac.yml
-  - compose/$HOSTNAME/mongodb-ytdl.yml
-  - compose/$HOSTNAME/prometheus.yml
-  # DNS
-  - compose/$HOSTNAME/adguardhome.yml
-  # DOWNLOADERS
-  - compose/$HOSTNAME/deemix.yml
-  - compose/$HOSTNAME/qbittorrent.yml
-  # - compose/$HOSTNAME/slskd.yml
-  - compose/$HOSTNAME/ytdl-material.yml
-  # FILE MANAGEMENT
-  - compose/$HOSTNAME/docker-ripper.yml
-  - compose/$HOSTNAME/mkvtoolnix.yml
-  - compose/$HOSTNAME/tdarr.yml
-  - compose/$HOSTNAME/vscode.yml
-  # FRONTEND
   - compose/$HOSTNAME/homepage.yml
-  # MAINTENANCE
-  - compose/$HOSTNAME/deunhealth.yml
-  - compose/$HOSTNAME/watchtower.yml
+  - compose/$HOSTNAME/vscode.yml
+
   # MEDIA
   - compose/$HOSTNAME/jellyfin.yml
   - compose/$HOSTNAME/kavita.yml
   - compose/$HOSTNAME/navidrome.yml
   - compose/$HOSTNAME/plex.yml
   - compose/$HOSTNAME/tunarr.yml
+
+  # ARRS
+  - compose/$HOSTNAME/bazarr.yml
+  - compose/$HOSTNAME/lidarr.yml
+  - compose/$HOSTNAME/prowlarr.yml
+  - compose/$HOSTNAME/radarr.yml
+  - compose/$HOSTNAME/sonarr.yml
+
+  # DOWNLOADS
+  - compose/$HOSTNAME/deemix.yml
+  - compose/$HOSTNAME/flaresolverr.yml
+  - compose/$HOSTNAME/qbittorrent.yml
+  - compose/$HOSTNAME/ytdl-material.yml
+
   # MONITORING
   - compose/$HOSTNAME/grafana.yml
   - compose/$HOSTNAME/node_exporter.yml
+  - compose/$HOSTNAME/notifiarr.yml
+  - compose/$HOSTNAME/prometheus.yml
   - compose/$HOSTNAME/tautulli.yml
-  # PVRS
-  - compose/$HOSTNAME/lidarr.yml
-  - compose/$HOSTNAME/radarr.yml
-  - compose/$HOSTNAME/sonarr.yml
+
+  # FILES
+  - compose/$HOSTNAME/docker-ripper.yml
+  - compose/$HOSTNAME/mkvtoolnix.yml
+  - compose/$HOSTNAME/tdarr.yml
+
+  # DATABASES
+  - compose/$HOSTNAME/mariadb-guac.yml
+  - compose/$HOSTNAME/mongodb-ytdl.yml
+
+  # MAINTENANCE
+  - compose/$HOSTNAME/deunhealth.yml
+  - compose/$HOSTNAME/qbit_manage.yml
+  - compose/$HOSTNAME/watchtower.yml
+
   # VPN
   - compose/$HOSTNAME/glueforward.yml
   - compose/$HOSTNAME/gluetun-deemix.yml

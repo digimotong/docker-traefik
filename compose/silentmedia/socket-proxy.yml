@@ -9,7 +9,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["core", "all"]
+    profiles: ["all", "core"]
     privileged: true # true for VM. False (default) for unprivileged LXC container.
     # ports:
       #- "2375:2375"

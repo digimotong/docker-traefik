@@ -7,7 +7,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["core", "all"]
+    profiles: ["all", "core"]
     depends_on:
       - socket-proxy
       - wireguard

@@ -7,7 +7,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["apps", "downloads", "all"]
+    profiles: ["all", "apps", "downloads"]
     # ports:
       # - "6595:6595" # Explosed via gluetun
     volumes:

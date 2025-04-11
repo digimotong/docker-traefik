@@ -14,7 +14,7 @@ services:
     devices:
       - /dev/net/tun
     restart: unless-stopped
-    profiles: ["apps", "downloads", "vpn", "all"]
+    profiles: ["all", "apps", "downloads", "vpn"]
     ports:
       - "8081:8080" # Exposing qBittorrent through Docker Host LAN IP
     #   - 8888:8888/tcp # HTTP proxy

@@ -9,7 +9,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["dbs", "all"]
+    profiles: ["all", "dbs"]
     volumes:
       - $DOCKERDIR/appdata/mongodb-ytdl/config:/data/configdb
       - $DOCKERDIR/appdata/mongodb-ytdl/db:/data/db

@@ -10,7 +10,7 @@ services:
     ports:
       - "8096:8096"
     restart: unless-stopped
-    profiles: ["apps", "media", "all"]
+    profiles: ["all", "apps", "media"]
     user: $PUID:$PGID
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config

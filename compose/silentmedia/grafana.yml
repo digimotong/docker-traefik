@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["apps", "monitoring", "all"]
+    profiles: ["all", "apps", "monitoring"]
     # ports:
       # - "3000:3000"
     user: "$PUID:$PGID"

@@ -14,7 +14,7 @@ services:
     devices:
       - /dev/net/tun
     restart: unless-stopped
-    profiles: ["apps", "downloads", "vpn", "all"]
+    profiles: ["all", "apps", "downloads", "vpn"]
     # ports:
       # - "6595:6595" # Exposing Deemix through Docker Host LAN IP
       # - "5030:5030" # Exposing slskd through Docker Host LAN IP

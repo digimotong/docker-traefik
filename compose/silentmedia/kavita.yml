@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["apps", "media", "all"]
+    profiles: ["all", "apps", "media"]
     ports:
       - "5000:5000"
     volumes:
