@@ -7,6 +7,9 @@ services:
     image: qmcgaw/gluetun:latest
     networks:
       - t3_proxy
+    dns:
+      - "1.1.1.1"
+      - "1.0.0.1"
     security_opt:
       - no-new-privileges:true
     cap_add:
