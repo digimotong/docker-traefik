@@ -1,6 +1,5 @@
 services: 
   # Tautulli - Plex statistics and monitoring
-  # Set HTTP Root in Tautulli settings if using PathPrefix
   tautulli:
     container_name: tautulli
     image: lscr.io/linuxserver/tautulli:latest

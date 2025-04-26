@@ -1,7 +1,5 @@
 services:
-  # Gluetun - VPN Client for Docker Containers and More
-  # Gluetun only for use by torrent clients + on demand lan devices.
-  # Arr apps do not need VPN (not recommended), unless you have ISP/country restrictions.
+  # Gluetun - VPN Client for Docker Containers
   gluetun-qbittorrent:
     container_name: gluetun-qbittorrent
     image: qmcgaw/gluetun:latest

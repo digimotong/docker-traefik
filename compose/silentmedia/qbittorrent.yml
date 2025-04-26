@@ -1,6 +1,5 @@
 services:
   # qBittorrent - Torrent downloader
-  # Needs trailing / if using PathPrefixStrip
   qbittorrent:
     container_name: qbittorrent
     image: lscr.io/linuxserver/qbittorrent:latest
