@@ -14,6 +14,7 @@ services:
     volumes:
       - $DOCKERDIR:/data/docker
       - $SCRIPTSDIR:/data/scripts
+      - $REPOSDIR:/data/repos
       - "$MEDIADIR/Music/Playlists:/data/playlists"
       - $DOCKERDIR/appdata/vscode:/config
     environment:
