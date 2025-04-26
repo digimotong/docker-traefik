@@ -75,7 +75,7 @@ include:
   # DOWNLOADS
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
-  # - compose/$HOSTNAME/slskd.yml
+  - compose/$HOSTNAME/slskd.yml
   - compose/$HOSTNAME/ytdl-material.yml
   # FILES
   - compose/$HOSTNAME/docker-ripper.yml
@@ -97,5 +97,6 @@ include:
   - compose/$HOSTNAME/tautulli.yml
   # VPN
   - compose/$HOSTNAME/glueforward.yml
+  - compose/$HOSTNAME/glueslskd.yml
   - compose/$HOSTNAME/gluetun-deemix.yml
   - compose/$HOSTNAME/gluetun-qbittorrent.yml
