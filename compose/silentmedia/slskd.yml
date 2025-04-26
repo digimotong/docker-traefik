@@ -22,7 +22,7 @@ services:
       SLSKD_PASSWORD: $SLSKD_PASSWORD
       SLSKD_SLSK_USERNAME: $SOULSEEK_USERNAME
       SLSKD_SLSK_PASSWORD: $SOULSEEK_PASSWORD
-      # SLSKD_SHARED_DIR: '/music'
+      SLSKD_SHARED_DIR: '/music'
       SLSKD_DOWNLOADS_DIR: '/downloads/slskd/downloads'
       SLSKD_INCOMPLETE_DIR: '/downloads/slskd/incomplete'
       SLSKD_REMOTE_CONFIGURATION: false
