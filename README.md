@@ -9,20 +9,21 @@ All compose files should follow this standardized section ordering:
 1. `container_name`
 2. `image`
 3. `networks`
-4. `security_opt`
-5. `restart`
-6. `profiles` 
-7. `depends_on` (if needed)
-8. `command`/`entrypoint`
-9. `ports`/`expose`
-10. `volumes`
-11. `environment`
-12. `secrets`
-13. `healthcheck`
-14. `labels`
-15. `devices` (if needed)
-16. `group_add` (if needed)
-17. `deploy` (for resource limits)
+4. `dns` (if needed)
+5. `security_opt`
+6. `restart`
+7. `profiles` 
+8. `depends_on` (if needed)
+9. `command`/`entrypoint`
+10. `ports`/`expose`
+11. `volumes`
+12. `environment`
+13. `secrets`
+14. `healthcheck`
+15. `labels`
+16. `devices` (if needed)
+17. `group_add` (if needed)
+18. `deploy` (for resource limits)
 
 Example structure:
 ```yaml
@@ -32,6 +33,7 @@ services:
     image: repo/image:tag
     networks:
       - network1
+    # dns: []
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
