@@ -2,9 +2,7 @@ services:
   # glueslskd - Updates slskd's listening port to Gluetun's forwarded port
   glueslskd:
     container_name: glueslskd
-    # image: ghcr.io/geoffreycoulaud/glueslskd:latest
-    # image: local/glueslskd:latest
-    image: glueslskd
+    image: digimotong/glueslskd:latest
     network_mode: "service:gluetun-deemix"
     security_opt:
       - no-new-privileges:true
