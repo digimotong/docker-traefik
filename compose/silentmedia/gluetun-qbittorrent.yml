@@ -46,5 +46,3 @@ services:
       - "traefik.http.services.gluetun-svc.loadbalancer.server.port=8080"
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
-      # Enable DeUnhealth
-      - "deunhealth.restart.on.unhealthy=true"

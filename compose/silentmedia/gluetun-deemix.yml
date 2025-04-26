@@ -66,5 +66,3 @@ services:
       - "traefik.http.services.ytdl-material-svc.loadbalancer.server.port=17442"
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
-      # Enable DeUnhealth
-      - "deunhealth.restart.on.unhealthy=true"
