@@ -1,0 +1,40 @@
+services:
+  # glueforward - Updates slskd's listening port to Gluetun's forwarded port
+  glueforward-slskd:
+    container_name: glueforward-slskd
+    # image: ghcr.io/geoffreycoulaud/glueforward:latest # Official image
+
+    # image: local/glueforward-curl:latest # Add curl to official image
+    # build:
+    #   dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
+
+    build:
+      context: ../../../repos/glueforward # Build from local repo
+    
+    pull_policy: build
+    network_mode: "service:gluetun-deemix"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "downloads", "vpn"]
+    depends_on:
+      - gluetun-deemix
+      - slskd
+    volumes:
+      - $DOCKERDIR/appdata/slskd/slskd.yml:/config/slskd.yml
+    environment:
+      SERVICE_TYPE: 'slskd'
+      GLUETUN_URL: 'http://localhost:8000'
+      GLUETUN_API_KEY: $GLUESLSKD_API_KEY
+      SLSKD_CONFIG_PATH: "/config/slskd.yml"
+      SUCCESS_INTERVAL: 60
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://example.com || exit 1"
+      interval: 3m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
