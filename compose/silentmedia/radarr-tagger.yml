@@ -1,0 +1,23 @@
+services:
+  # radarr-tagger - Automatically manage Radarr movie tags based on custom format scores 
+  radarr-tagger:
+    container_name: radarr-tagger
+    image: digimotong/radarr-tagger:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    depends_on:
+      - radarr
+    environment:
+      RADARR_URL: http://radarr:7878
+      RADARR_API_KEY: $RADARR_API_KEY
+      LOG_LEVEL: INFO #DEBUG, INFO, WARNING, ERROR
+      SCORE_THRESHOLD: 100
+      INTERVAL_MINUTES: 20
+      MOTONG: true
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
