@@ -1,0 +1,23 @@
+services:
+  # sonarr-tagger - Automatically manage Sonarr movie tags based on custom format scores 
+  sonarr-tagger:
+    container_name: sonarr-tagger
+    image: digimotong/sonarr-tagger:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    depends_on:
+      - sonarr
+    environment:
+      SONARR_URL: http://sonarr:8989
+      SONARR_API_KEY: $SONARR_API_KEY
+      LOG_LEVEL: INFO #DEBUG, INFO, WARNING, ERROR
+      SCORE_THRESHOLD: 100
+      INTERVAL_MINUTES: 20
+      MOTONG: true
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
