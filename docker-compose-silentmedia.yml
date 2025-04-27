@@ -61,6 +61,8 @@ include:
   - compose/$HOSTNAME/homepage.yml
   - compose/$HOSTNAME/notifiarr.yml
   - compose/$HOSTNAME/prowlarr.yml
+  - compose/$HOSTNAME/radarr-tagger.yml
+  - compose/$HOSTNAME/sonarr-tagger.yml
   - compose/$HOSTNAME/qbit_manage.yml
   # ARRS
   - compose/$HOSTNAME/lidarr.yml
