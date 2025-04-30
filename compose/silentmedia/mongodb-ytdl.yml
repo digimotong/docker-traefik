@@ -5,7 +5,7 @@ services:
     image: mongo:4
     logging:
       driver: "none"
-    network_mode: "service:gluetun-deemix"
+    network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped

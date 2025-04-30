@@ -12,13 +12,13 @@ services:
       context: ../../../repos/glueforward # Build from local repo
     
     pull_policy: build
-    network_mode: "service:gluetun-deemix"
+    network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "downloads", "vpn"]
     depends_on:
-      - gluetun-deemix
+      - gluetun-slskd
       - slskd
     volumes:
       - $DOCKERDIR/appdata/slskd/slskd.yml:/config/slskd.yml

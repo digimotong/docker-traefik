@@ -3,7 +3,7 @@ services:
   deemix:
     container_name: deemix
     image: ghcr.io/bambanah/deemix:latest
-    network_mode: "service:gluetun-deemix"
+    network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped

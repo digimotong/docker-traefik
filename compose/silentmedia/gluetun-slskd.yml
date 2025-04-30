@@ -1,7 +1,7 @@
 services:
   # Gluetun - VPN Client for Docker Containers
-  gluetun-deemix:
-    container_name: gluetun-deemix
+  gluetun-slskd:
+    container_name: gluetun-slskd
     image: qmcgaw/gluetun:latest
     networks:
       - t3_proxy
@@ -24,7 +24,7 @@ services:
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks
     volumes:
-      - $DOCKERDIR/appdata/gluetun-deemix:/gluetun
+      - $DOCKERDIR/appdata/gluetun-slskd:/gluetun
     environment:
       TZ: $TZ
       UPDATER_PERIOD: 24h

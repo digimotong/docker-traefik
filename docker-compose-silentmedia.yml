@@ -100,5 +100,5 @@ include:
   # VPN
   - compose/$HOSTNAME/glueforward-qbittorrent.yml
   - compose/$HOSTNAME/glueforward-slskd.yml
-  - compose/$HOSTNAME/gluetun-deemix.yml
   - compose/$HOSTNAME/gluetun-qbittorrent.yml
+  - compose/$HOSTNAME/gluetun-slskd.yml

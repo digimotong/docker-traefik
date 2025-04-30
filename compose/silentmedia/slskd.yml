@@ -3,7 +3,7 @@ services:
   slskd:
     container_name: slskd
     image: slskd/slskd:latest
-    network_mode: "service:gluetun-deemix"
+    network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
