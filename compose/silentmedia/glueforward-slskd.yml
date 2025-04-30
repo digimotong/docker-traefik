@@ -25,7 +25,7 @@ services:
     environment:
       SERVICE_TYPE: 'slskd'
       GLUETUN_URL: 'http://localhost:8000'
-      GLUETUN_API_KEY: $GLUESLSKD_API_KEY
+      GLUETUN_API_KEY: $GLUEFORWARD_SLSKD_API_KEY
       SLSKD_CONFIG_PATH: "/config/slskd.yml"
       SUCCESS_INTERVAL: 60
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
