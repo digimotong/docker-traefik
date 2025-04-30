@@ -1,2 +1,2 @@
 FROM ghcr.io/bambanah/deemix:latest
-RUN apt-get update && apt-get install -y curl
+RUN apk update && apk add curl
