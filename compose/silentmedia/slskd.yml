@@ -2,7 +2,10 @@ services:
   # slskd - Client-Server Application for Soulseek
   slskd:
     container_name: slskd
-    image: slskd/slskd:latest
+    # image: slskd/slskd:latest # Official image
+    image: local/slskd-curl:latest # Add curl to official image
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-slskd
     network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
@@ -27,7 +30,7 @@ services:
       SLSKD_INCOMPLETE_DIR: '/downloads/slskd/incomplete'
       SLSKD_REMOTE_CONFIGURATION: false
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9999"]
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
       interval: 1m
       timeout: 10s
       retries: 3
