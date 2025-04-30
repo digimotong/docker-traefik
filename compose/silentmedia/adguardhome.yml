@@ -38,5 +38,3 @@ services:
       - "traefik.http.services.adguardhome-svc.loadbalancer.server.port=80"
       # Enable Watchtower Monitoring
       - "com.centurylinklabs.watchtower.monitor-only=true"
-      # Enable DeUnhealth
-      # - "deunhealth.restart.on.unhealthy=true"

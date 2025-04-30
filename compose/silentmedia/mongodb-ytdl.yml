@@ -16,5 +16,3 @@ services:
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
-      # Enable DeUnhealth
-      - "deunhealth.restart.on.unhealthy=true"
