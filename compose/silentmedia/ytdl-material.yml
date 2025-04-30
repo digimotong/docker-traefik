@@ -3,12 +3,12 @@ services:
   ytdl-material:
     image: tzahi12345/youtubedl-material:latest
     container_name: ytdl-material
-    depends_on:
-      - mongodb-ytdl
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["apps", "downloads", "all"]
+    depends_on:
+      - mongodb-ytdl
     network_mode: "service:gluetun-slskd"
     # ports:
       # - "8998:17442" # Explosed via gluetun
