@@ -34,7 +34,7 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
-    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+    healthcheck:
       test: ["CMD", "wg", "show"]
       interval: 1m
       timeout: 10s
