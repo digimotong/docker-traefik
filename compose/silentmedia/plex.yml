@@ -43,7 +43,7 @@ services:
       # HTTP Services
       - "traefik.http.routers.plex-rtr.service=plex-svc"
       - "traefik.http.services.plex-svc.loadbalancer.server.port=32400"
-      # Watchtower
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
     environment:
       TZ: $TZ

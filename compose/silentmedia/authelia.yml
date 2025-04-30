@@ -40,5 +40,5 @@ services:
       ## HTTP Services
       - "traefik.http.routers.authelia-rtr.service=authelia-svc"
       - "traefik.http.services.authelia-svc.loadbalancer.server.port=9091"
-      # Enable Watchtower Monitoring
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"

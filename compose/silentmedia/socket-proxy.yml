@@ -48,5 +48,5 @@ services:
       - TASKS=1 # Portainer
       - VOLUMES=1 # Portainer
     labels:
-      # Enable Watchtower Monitoring
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"

@@ -33,7 +33,7 @@ services:
       # HTTP Services
       - "traefik.http.routers.guacamole-rtr.service=guacamole-svc"
       - "traefik.http.services.guacamole-svc.loadbalancer.server.port=8080"
-      # Enable Watchtower Monitoring
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"
 
   # Guacamole Daemon - Needed for Guacamole
@@ -47,5 +47,5 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps"]
     labels:
-      # Enable Watchtower Monitoring
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"

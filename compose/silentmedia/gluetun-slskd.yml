@@ -64,5 +64,5 @@ services:
         # HTTP Services
       - "traefik.http.routers.ytdl-material-rtr.service=ytdl-material-svc"
       - "traefik.http.services.ytdl-material-svc.loadbalancer.server.port=17442"
-      # Enable Watchtower Monitoring
+      # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"

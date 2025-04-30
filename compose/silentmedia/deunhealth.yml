@@ -16,3 +16,6 @@ services:
       HEALTH_SERVER_ADDRESS: 127.0.0.1:9999
       TZ: $TZ
       DOCKER_HOST: tcp://socket-proxy:2375
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
