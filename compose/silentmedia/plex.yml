@@ -33,7 +33,6 @@ services:
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Music:/music:ro
       - $MEDIADIR/Anime:/anime:ro
-      # - /dev/shm:/data/transcode # Offload transcoding to RAM if you have enough RAM
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -52,6 +51,5 @@ services:
       PLEX_UID: $PUID
       PLEX_GID: $PGID
       ADVERTISE_IP: "http://$SERVER_IP:32400/,https://plex.$DOMAINNAME/"
-      # ALLOWED_NETWORKS: $LOCAL_IPS
     secrets:
       - plex_claim
