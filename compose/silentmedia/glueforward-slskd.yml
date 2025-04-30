@@ -29,10 +29,10 @@ services:
       SLSKD_CONFIG_PATH: "/config/slskd.yml"
       SUCCESS_INTERVAL: 60
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-      test: "curl -sf https://example.com || exit 1"
-      interval: 3m
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
       timeout: 10s
-      retries: 1
+      retries: 3
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
