@@ -2,6 +2,7 @@
 
 This is the docker-compose repo of all the apps installed on silentmedia.
 
+Originally based on the [docker-traffic](https://github.com/SimpleHomelab/docker-traefik) repo from [SimpleHomeLab](https://github.com/SimpleHomelab).
 
 ## Docker Compose Section Order Standard
 
