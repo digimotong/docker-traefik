@@ -17,7 +17,8 @@ services:
       LOG_LEVEL: INFO #DEBUG, INFO, WARNING, ERROR
       SCORE_THRESHOLD: 100
       INTERVAL_MINUTES: 20
-      MOTONG: true
+      TAG_4K: true
+      TAG_MOTONG: true
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
