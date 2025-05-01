@@ -7,11 +7,10 @@ services:
       - t3_proxy
     security_opt:
       - no-new-privileges:true
-    ports:
-      - "8096:8096"
     restart: unless-stopped
     profiles: ["all", "apps", "media"]
-    user: $PUID:$PGID
+    ports:
+      - "8096:8096"
     volumes:
       - $DOCKERDIR/appdata/jellyfin:/config
       - $TEMPDATADIR/jellyfin/cache:/cache
@@ -21,6 +20,10 @@ services:
       - $MEDIADIR/Music:/music:ro
       - $MEDIADIR/Anime:/anime:ro
       # - /dev/shm:/data/transcode # Offload transcoding to RAM if you have enough RAM
+    user: $PUID:$PGID
+    environment:
+      UMASK_SET: 022
+      TZ: $TZ
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -33,9 +36,6 @@ services:
       - "traefik.http.services.jellyfin-svc.loadbalancer.server.port=8096"
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
-    environment:
-      UMASK_SET: 022
-      TZ: $TZ
     devices:
       - /dev/dri:/dev/dri
     group_add:

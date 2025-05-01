@@ -20,10 +20,6 @@ services:
       - "32413:32413/udp"
       - "32414:32414/udp"
       - "33400:33400/tcp"
-    devices:
-      - /dev/dri:/dev/dri
-    group_add:
-      - "993"
     volumes:
       - $DOCKERDIR/appdata/plex:/config
       - $TEMPDATADIR/plex/transcode:/transcode
@@ -33,6 +29,14 @@ services:
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Music:/music:ro
       - $MEDIADIR/Anime:/anime:ro
+    environment:
+      TZ: $TZ
+      PLEX_CLAIM_FILE: /run/secrets/plex_claim
+      PLEX_UID: $PUID
+      PLEX_GID: $PGID
+      ADVERTISE_IP: "http://$SERVER_IP:32400/,https://plex.$DOMAINNAME/"
+    secrets:
+      - plex_claim
     labels:
       - "traefik.enable=true"
       # HTTP Routers
@@ -45,11 +49,7 @@ services:
       - "traefik.http.services.plex-svc.loadbalancer.server.port=32400"
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
-    environment:
-      TZ: $TZ
-      PLEX_CLAIM_FILE: /run/secrets/plex_claim
-      PLEX_UID: $PUID
-      PLEX_GID: $PGID
-      ADVERTISE_IP: "http://$SERVER_IP:32400/,https://plex.$DOMAINNAME/"
-    secrets:
-      - plex_claim
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "993"
