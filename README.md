@@ -2,6 +2,7 @@
 
 This is the docker-compose repo of all the apps installed on silentmedia.
 
+
 ## Docker Compose Section Order Standard
 
 All compose files should follow this standardized section ordering:
@@ -17,13 +18,14 @@ All compose files should follow this standardized section ordering:
 9. `command`/`entrypoint`
 10. `ports`/`expose`
 11. `volumes`
-12. `environment`
-13. `secrets`
-14. `healthcheck`
-15. `labels`
-16. `devices` (if needed)
-17. `group_add` (if needed)
-18. `deploy` (for resource limits)
+12. `user` (if needed)
+13. `environment`
+14. `secrets`
+15. `healthcheck`
+16. `labels`
+17. `devices` (if needed)
+18. `group_add` (if needed)
+19. `deploy` (for resource limits)
 
 Example structure:
 ```yaml
@@ -42,6 +44,7 @@ services:
     command: []
     ports: []
     volumes: []
+    # user: $PUID:$PGID
     environment: []
     secrets: []
     healthcheck: {}
