@@ -3,6 +3,8 @@ services:
   sonarr-tagger:
     container_name: sonarr-tagger
     image: digimotong/sonarr-tagger:latest
+    # build:
+    #   context: ../../../repos/sonarr-tagger # Build from local repo
     networks:
       - t3_proxy
     security_opt:
