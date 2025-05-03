@@ -6,6 +6,7 @@ services:
     image: local/slskd-curl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-slskd
+    pull_policy: build
     network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
@@ -25,10 +26,11 @@ services:
       SLSKD_PASSWORD: $SLSKD_PASSWORD
       SLSKD_SLSK_USERNAME: $SOULSEEK_USERNAME
       SLSKD_SLSK_PASSWORD: $SOULSEEK_PASSWORD
-      SLSKD_SHARED_DIR: '/music'
+      # SLSKD_SHARED_DIR: '/music'
       SLSKD_DOWNLOADS_DIR: '/downloads/slskd/downloads'
       SLSKD_INCOMPLETE_DIR: '/downloads/slskd/incomplete'
       SLSKD_REMOTE_CONFIGURATION: false
+      SLSKD_SWAGGER: true # Needed for glueforward API access
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
       interval: 1m

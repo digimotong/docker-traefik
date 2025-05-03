@@ -6,6 +6,7 @@ services:
     image: local/deemix-curl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-deemix
+    pull_policy: build
     network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true

@@ -20,14 +20,16 @@ services:
     depends_on:
       - gluetun-slskd
       - slskd
-    volumes:
-      - $DOCKERDIR/appdata/slskd/slskd.yml:/config/slskd.yml
     environment:
       SERVICE_TYPE: 'slskd'
       GLUETUN_URL: 'http://localhost:8000'
-      GLUETUN_API_KEY: $GLUEFORWARD_SLSKD_API_KEY
-      SLSKD_CONFIG_PATH: "/config/slskd.yml"
+      GLUETUN_API_KEY: $GLUETUN_SLSKD_API_KEY
+      # SLSKD_URL: 'http://localhost:5030'
+      SLSKD_API_KEY: $SLSKD_GLUEFORWARD_API_KEY
       SUCCESS_INTERVAL: 60
+      SLSKD_CONFIG_PATH: "/config/slskd.yml"
+    volumes:
+      - $DOCKERDIR/appdata/slskd/slskd.yml:/config/slskd.yml
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
       interval: 1m
