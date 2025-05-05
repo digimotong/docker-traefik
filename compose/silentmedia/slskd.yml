@@ -29,8 +29,7 @@ services:
       # SLSKD_SHARED_DIR: '/music'
       SLSKD_DOWNLOADS_DIR: '/downloads/slskd/downloads'
       SLSKD_INCOMPLETE_DIR: '/downloads/slskd/incomplete'
-      SLSKD_REMOTE_CONFIGURATION: false
-      SLSKD_SWAGGER: true # Needed for glueforward API access
+      SLSKD_REMOTE_CONFIGURATION: true # Needed for glueforward
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
       interval: 1m
