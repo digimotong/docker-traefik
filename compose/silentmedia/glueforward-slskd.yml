@@ -3,16 +3,9 @@ services:
   glueforward-slskd:
     container_name: glueforward-slskd
     # image: ghcr.io/geoffreycoulaud/glueforward:latest # Official image
-
-    # image: local/glueforward-curl:latest # Add curl to official image
-    # build:
-    #   dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
-
-    image: local/glueforward-dev:latest # Local development image
+    image: local/glueforward-curl:latest # Add curl to official image
     build:
-      context: ../../../repos/glueforward # Build from local repo
-    
-    pull_policy: build
+      dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
     network_mode: "service:gluetun-slskd"
     security_opt:
       - no-new-privileges:true
@@ -29,12 +22,11 @@ services:
       SLSKD_USERNAME: $SLSKD_USERNAME
       SLSKD_PASSWORD: $SLSKD_PASSWORD
       SUCCESS_INTERVAL: 60
-      # LOG_LEVEL: DEBUG
-    # healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-    #   test: ["CMD", "curl", "-f", "http://localhost:9999"]
-    #   interval: 1m
-    #   timeout: 10s
-    #   retries: 3
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
