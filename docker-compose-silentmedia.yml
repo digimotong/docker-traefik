@@ -57,6 +57,7 @@ include:
   - compose/$HOSTNAME/guacamole.yml
   # APPS
   - compose/$HOSTNAME/bazarr.yml
+  - compose/$HOSTNAME/calibre.yml
   - compose/$HOSTNAME/flaresolverr.yml
   - compose/$HOSTNAME/homepage.yml
   - compose/$HOSTNAME/notifiarr.yml
@@ -67,6 +68,7 @@ include:
   # ARRS
   - compose/$HOSTNAME/lidarr.yml
   - compose/$HOSTNAME/radarr.yml
+  - compose/$HOSTNAME/readarr.yml
   - compose/$HOSTNAME/sonarr.yml
   # DATABASES
   - compose/$HOSTNAME/mariadb-guac.yml

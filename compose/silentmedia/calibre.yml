@@ -1,0 +1,35 @@
+services:
+  # Calibre - Book management
+  calibre:
+    container_name: calibre
+    image: lscr.io/linuxserver/calibre:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - $DOCKERDIR/appdata/calibre:/config
+      - $MEDIASERVERDIR:/mediaserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      CUSTOM_USER: $CALIBRE_USERNAME
+      PASSWORD: $CALIBRE_PASSWORD
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.calibre-rtr.entrypoints=websecure"
+      - "traefik.http.routers.calibre-rtr.rule=Host(`calibre.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.calibre-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.calibre-rtr.service=calibre-svc"
+      - "traefik.http.services.calibre-svc.loadbalancer.server.port=8080"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
