@@ -17,7 +17,6 @@ services:
       TZ: $TZ
       mam_id: $MAM_ID
       interval: 5
-      DEBUG: 1
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
       interval: 1m
