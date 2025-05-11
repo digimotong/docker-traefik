@@ -1,0 +1,41 @@
+services:
+  # Readarr - Audiobook management
+  readarr-audiobooks:
+    container_name: readarr-audiobooks
+    image: lscr.io/linuxserver/readarr:develop
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    ports:
+      - "8789:8789"
+    volumes:
+      - $DOCKERDIR/appdata/readarr-audiobooks:/config
+      - $TEMPDATADIR/readarr-audiobooks/MediaCover:/config/MediaCover
+      - $MEDIASERVERDIR:/mediaserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth Bypass
+      - "traefik.http.routers.readarr-audiobooks-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.readarr-audiobooks-rtr-bypass.rule=Host(`speakarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$SPEAKARR_API_KEY`) || Query(`apikey`, `$SPEAKARR_API_KEY`))"
+      - "traefik.http.routers.readarr-audiobooks-rtr-bypass.priority=100"
+      # HTTP Routers Auth
+      - "traefik.http.routers.readarr-audiobooks-rtr.entrypoints=websecure"
+      - "traefik.http.routers.readarr-audiobooks-rtr.rule=Host(`speakarr.$DOMAINNAME`)"
+      - "traefik.http.routers.readarr-audiobooks-rtr.priority=99"
+      # Middlewares
+      - "traefik.http.routers.readarr-audiobooks-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.readarr-audiobooks-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.readarr-audiobooks-rtr.service=readarr-audiobooks-svc"
+      - "traefik.http.routers.readarr-audiobooks-rtr-bypass.service=readarr-audiobooks-svc"
+      - "traefik.http.services.readarr-audiobooks-svc.loadbalancer.server.port=8789"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
