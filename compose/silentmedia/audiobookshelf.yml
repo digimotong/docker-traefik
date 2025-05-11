@@ -1,0 +1,33 @@
+services:
+  # audiobookshelf - Audiobook Server
+  audiobookshelf:
+    container_name: audiobookshelf
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "media"]
+    ports:
+      - "13378:80"
+    volumes:
+      - $DOCKERDIR/appdata/audiobookshelf:/config
+      - $TEMPDATADIR/audiobookshelf/metadata:/metadata
+      - $MEDIADIR/Audiobooks:/audiobooks:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.audiobookshelf-rtr.entrypoints=websecure"
+      - "traefik.http.routers.audiobookshelf-rtr.rule=Host(`audiobookshelf.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.audiobookshelf-rtr.middlewares=chain-no-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.audiobookshelf-rtr.service=audiobookshelf-svc"
+      - "traefik.http.services.audiobookshelf-svc.loadbalancer.server.port=80"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"

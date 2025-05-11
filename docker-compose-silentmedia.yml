@@ -91,6 +91,7 @@ include:
   - compose/$HOSTNAME/deunhealth.yml
   - compose/$HOSTNAME/watchtower.yml
   # MEDIA
+  - compose/$HOSTNAME/audiobookshelf.yml
   - compose/$HOSTNAME/jellyfin.yml
   - compose/$HOSTNAME/kavita.yml
   - compose/$HOSTNAME/navidrome.yml
