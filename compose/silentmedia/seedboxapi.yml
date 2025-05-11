@@ -1,0 +1,30 @@
+services:
+  # seedboxapi - Updates MyAnonamouse's dynamic seedbox IP
+  seedboxapi:
+    container_name: seedboxapi
+    image: myanonamouse/seedboxapi:latest # Official image
+    network_mode: "service:gluetun-qbittorrent"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "downloads", "vpn"]
+    volumes:
+      - $DOCKERDIR/appdata/seedboxapi:/config
+    user: $PUID:$PGID
+    depends_on:
+      - gluetun-qbittorrent
+    environment:
+      TZ: $TZ
+      mam_id: $MAM_ID
+      interval: 5
+      DEBUG: 1
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
