@@ -2,11 +2,11 @@
 
 This is the docker-compose repo of all the apps installed on silentmedia.
 
-Originally based on the [docker-traffic](https://github.com/SimpleHomelab/docker-traefik) repo from [SimpleHomeLab](https://github.com/SimpleHomelab).
+Originally based on the [Docker-Traefik](https://github.com/SimpleHomelab/Docker-Traefik) repo from [SimpleHomelab](https://github.com/SimpleHomelab).
 
 ## Docker Compose Section Order Standard
-
-All compose files should follow this standardized section ordering:
+<details>
+<summary>All compose files should follow this standardized section ordering</summary>
 
 1. `container_name`
 2. `image`
@@ -29,15 +29,17 @@ All compose files should follow this standardized section ordering:
 19. `devices` (if needed)
 20. `group_add` (if needed)
 21. `deploy` (for resource limits)
+</details>
 
-Example structure:
+<details>
+<summary>Example structure</summary>
+
 ```yaml
 services:
   service-name:
     container_name: service-name
     image: repo/image:tag
     # build:
-    # pull_policy: build
     networks:
       - network1
     # dns: []
@@ -56,3 +58,5 @@ services:
     labels: []
     # devices: []
     # deploy: {}
+```
+</details>
