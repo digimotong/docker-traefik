@@ -11,7 +11,7 @@ services:
     profiles: ["all", "apps", "monitoring"]
     # ports:
       # - "3000:3000"
-    user: "$PUID:$PGID"
+    user: $PUID:$PGID
     volumes:
       - $DOCKERDIR/appdata/grafana:/var/lib/grafana
     labels:
