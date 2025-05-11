@@ -1,0 +1,32 @@
+services:
+  # Calibre-Web - Book Server
+  calibre-web:
+    container_name: calibre-web
+    image: lscr.io/linuxserver/calibre-web:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "media"]
+    ports:
+      - "8083:8083"
+    volumes:
+      - $DOCKERDIR/appdata/calibre-web:/config
+      - $MEDIADIR/Books:/books
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.calibre-web-rtr.entrypoints=websecure"
+      - "traefik.http.routers.calibre-web-rtr.rule=Host(`calibre-web.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.calibre-web-rtr.middlewares=chain-no-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.calibre-web-rtr.service=calibre-web-svc"
+      - "traefik.http.services.calibre-web-svc.loadbalancer.server.port=8083"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
