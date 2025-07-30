@@ -2,7 +2,8 @@ services:
   # qBittorrent - Torrent downloader
   qbittorrent:
     container_name: qbittorrent
-    image: lscr.io/linuxserver/qbittorrent:latest
+    # image: lscr.io/linuxserver/qbittorrent:latest
+    image: lscr.io/linuxserver/qbittorrent:5.0.5-libtorrentv1 # Static image for qbit_manage compatibility
     network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true
