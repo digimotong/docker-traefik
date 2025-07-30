@@ -1,0 +1,27 @@
+services: 
+  # JellyPlex-Watched - Sync watch history between Jellyfin and Plex
+  jellyplex-watched:
+    container_name: jellyplex-watched
+    image: luigi311/jellyplex-watched:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps"]
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      JELLYFIN_BASEURL: http://jellyfin:8096
+      JELLYFIN_TOKEN: $JELLYPLEX_JELLYFIN_TOKEN
+      PLEX_BASEURL: http://plex:32400
+      PLEX_TOKEN: $JELLYPLEX_PLEX_TOKEN
+      LIBRARY_MAPPING: '{ "Shows": "TV Shows", "Movies": "Movies", "Anime": "Anime" }'
+      DRYRUN: False
+      DEBUG_LEVEL: INFO
+      USER_MAPPING: $JELLYPLEX_USER_MAPPING
+      WHITELIST_USERS: $JELLYPLEX_WHITELIST_USERS
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
