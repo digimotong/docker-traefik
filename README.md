@@ -19,16 +19,17 @@ Originally based on the [Docker-Traefik](https://github.com/SimpleHomelab/Docker
 9. `profiles` 
 10. `depends_on` (if needed)
 11. `command`/`entrypoint`
-12. `ports`/`expose`
-13. `volumes`
-14. `user` (if needed)
-15. `environment`
-16. `secrets`
-17. `healthcheck`
-18. `labels`
-19. `devices` (if needed)
-20. `group_add` (if needed)
-21. `deploy` (for resource limits)
+12. `mem_limit` (if needed)
+13. `ports`/`expose`
+14. `volumes`
+15. `user` (if needed)
+16. `environment`
+17. `secrets`
+18. `healthcheck`
+19. `labels`
+20. `devices` (if needed)
+21. `group_add` (if needed)
+22. `deploy` (for resource limits)
 </details>
 
 <details>

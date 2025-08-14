@@ -1,0 +1,24 @@
+services:
+  # PostgreSQL - SQL Database for rreading-glasses
+  postgres-rreading:
+    container_name: postgres-rreading
+    image: postgres:17
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["dbs", "all"]
+    volumes:
+      - $DOCKERDIR/appdata/postgres-rreading:/var/lib/postgresql/data
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      POSTGRES_USER: rreading-glasses
+      POSTGRES_PASSWORD: $POSTGRES_RREADING_PASSWORD
+      POSTGRES_DB: rreading-glasses
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      

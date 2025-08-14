@@ -1,0 +1,29 @@
+services:
+  # rreading-glasses - Metadata service for Readarr
+  rreading-glasses:
+    container_name: rreading-glasses
+    image: blampe/rreading-glasses:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps"]
+    depends_on:
+      - postgres-rreading
+    command:
+      - --upstream=www.goodreads.com
+      - --verbose
+    entrypoint: ["/main", "serve"]
+    mem_limit: 128m
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+      POSTGRES_HOST: postgres-rreading
+      POSTGRES_DATABASE: rreading-glasses
+      POSTGRES_USER: rreading-glasses
+      POSTGRES_PASSWORD: $POSTGRES_RREADING_PASSWORD
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
