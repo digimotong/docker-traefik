@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps", "downloads"]
     # ports:
-      # - "5030:5030" # Explosed via gluetun
+      # - "5030:5030" # Exposed via gluetun
     volumes:
      - $DOCKERDIR/appdata/slskd:/app
      - $DOWNLOADSDIR/slskd:/downloads/slskd
@@ -32,9 +32,9 @@ services:
       SLSKD_REMOTE_CONFIGURATION: true # Needed for glueforward
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
+      interval: 3m
+      timeout: 15s
+      retries: 5
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"

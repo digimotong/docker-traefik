@@ -11,7 +11,7 @@ services:
       - mongodb-ytdl
     network_mode: "service:gluetun-slskd"
     # ports:
-      # - "8998:17442" # Explosed via gluetun
+      # - "8998:17442" # Exposed via gluetun
     volumes:
       - $DOCKERDIR/appdata/ytdl-material:/app/appdata
       - $DOWNLOADSDIR/ytdl-material/audio:/app/audio
@@ -26,9 +26,9 @@ services:
       write_ytdl_config: 'true'
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
+      interval: 3m
+      timeout: 15s
+      retries: 5
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"

@@ -13,7 +13,7 @@ services:
     profiles: ["apps", "downloads", "all"]
     network_mode: "service:gluetun"
     # ports:
-      # - "6565:6565" # Explosed via gluetun
+      # - "6565:6565" # Exposed via gluetun
     volumes:
      - $DOCKERDIR/appdata/nicotineplus:/config
      - $DOCKERDIR/appdata/nicotineplus/data:/data

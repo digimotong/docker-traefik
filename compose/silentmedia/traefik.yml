@@ -82,9 +82,9 @@ services:
       - basic_auth_credentials
     healthcheck:
       test: "wget --no-verbose --tries=1 --spider https://example.com || exit 1"
-      interval: 3m
-      timeout: 10s
-      retries: 1
+      interval: 1m
+      timeout: 15s
+      retries: 5
     labels:
       # - "traefik.enable=true"
       # # HTTP Routers

@@ -36,9 +36,9 @@ services:
       PGID: $PGID
     healthcheck:
       test: ["CMD", "wg", "show"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
+      interval: 3m
+      timeout: 15s
+      retries: 5
     labels:
       - "traefik.enable=true"
       # HTTP Routers

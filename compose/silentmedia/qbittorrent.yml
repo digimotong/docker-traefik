@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps", "downloads"]
     # ports:
-    #   - "8081:8080" # Explosed via gluetun
+    #   - "8081:8080" # Exposed via gluetun
     volumes:
       - $DOCKERDIR/appdata/qbittorrent:/config
       - $MEDIASERVERDIR:/mediaserver
@@ -21,9 +21,9 @@ services:
       UMASK_SET: 002
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
+      interval: 3m
+      timeout: 15s
+      retries: 5
     labels: # Traefik labels added via gluetun
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
