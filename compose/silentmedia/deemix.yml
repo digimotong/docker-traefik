@@ -16,8 +16,8 @@ services:
       # - "6595:6595" # Exposed via gluetun
     volumes:
       - $DOCKERDIR/appdata/deemix/config:/config
+      - $DOCKERDIR/appdata/deemix/config/config.json:/config/config.json:ro # https://github.com/bambanah/deemix/issues/159
       - $DOCKERDIR/appdata/deemix/deemix-gui:/deemix-gui/config
-      - $DOCKERDIR/appdata/deemix/downloads:/downloads # Requires /downloads to be mapped
       - $MEDIASERVERDIR:/mediaserver
     environment:
       PUID: $PUID
