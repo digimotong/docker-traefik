@@ -2,7 +2,7 @@ services:
   # seedboxapi - Updates MyAnonamouse's dynamic seedbox IP
   seedboxapi:
     container_name: seedboxapi
-    image: myanonamouse/seedboxapi:latest # Official image
+    image: myanonamouse/seedboxapi:latest
     network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true

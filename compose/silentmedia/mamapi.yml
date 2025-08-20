@@ -1,0 +1,27 @@
+services:
+  # mamapi - Updates MyAnonamouse's dynamic seedbox IP
+  mamapi:
+    container_name: mamapi
+    image: elforkhead/mamapi:latest
+    network_mode: "service:gluetun-qbittorrent"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "downloads", "vpn"]
+    volumes:
+      - $DOCKERDIR/appdata/mamapi:/data
+    depends_on:
+      - gluetun-qbittorrent
+    environment:
+      TZ: $TZ
+      MAM_ID: $MAM_ID
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9999"]
+      interval: 3m
+      timeout: 15s
+      retries: 5
+    labels:
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

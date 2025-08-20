@@ -110,4 +110,4 @@ include:
   - compose/$HOSTNAME/glueforward-slskd.yml
   - compose/$HOSTNAME/gluetun-qbittorrent.yml
   - compose/$HOSTNAME/gluetun-slskd.yml
-  - compose/$HOSTNAME/seedboxapi.yml
+  - compose/$HOSTNAME/mamapi.yml
