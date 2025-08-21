@@ -32,9 +32,9 @@ services:
       SLSKD_REMOTE_CONFIGURATION: true # Needed for glueforward
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
-      interval: 3m
-      timeout: 15s
-      retries: 5
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"
