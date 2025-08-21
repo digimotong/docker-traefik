@@ -13,7 +13,7 @@ services:
       - "8080:8080"
     volumes:
       - $DOCKERDIR/appdata/calibre:/config
-      - $MEDIASERVERDIR:/mediaserver
+      - $MEDIASERVERDIR:/mediaserver:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
       TZ: $TZ
