@@ -2,7 +2,8 @@ services:
   # mamapi - Updates MyAnonamouse's dynamic seedbox IP
   mamapi:
     container_name: mamapi
-    image: elforkhead/mamapi:latest
+    # image: elforkhead/mamapi:latest # Official image
+    image: local/mamapi-curl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-mamapi
     pull_policy: build
