@@ -43,7 +43,6 @@ services:
     # build:
     networks:
       - network1
-    # dns: []
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
