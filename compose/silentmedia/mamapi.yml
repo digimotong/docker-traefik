@@ -3,6 +3,9 @@ services:
   mamapi:
     container_name: mamapi
     image: elforkhead/mamapi:latest
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-mamapi
+    pull_policy: build
     network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true
@@ -16,10 +19,10 @@ services:
       TZ: $TZ
       MAM_ID: $MAM_ID
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9999"]
-      interval: 3m
-      timeout: 15s
-      retries: 5
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.enable=true"

@@ -1,0 +1,2 @@
+FROM elforkhead/mamapi:latest
+RUN apk update && apk add curl
