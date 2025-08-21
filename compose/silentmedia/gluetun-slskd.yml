@@ -5,9 +5,6 @@ services:
     image: qmcgaw/gluetun:latest
     networks:
       - t3_proxy
-    dns:
-      - "1.1.1.1"
-      - "1.0.0.1"
     security_opt:
       - no-new-privileges:true
     cap_add:
@@ -27,7 +24,7 @@ services:
       - $DOCKERDIR/appdata/gluetun-slskd:/gluetun
     environment:
       TZ: $TZ
-      UPDATER_PERIOD: 24h
+      UPDATER_PERIOD: 2h
       # Wireguard
       VPN_SERVICE_PROVIDER: protonvpn
       VPN_TYPE: wireguard
@@ -35,6 +32,12 @@ services:
       SERVER_CITIES: $SLSKD_WIREGUARD_SERVER_CITIES
       VPN_PORT_FORWARDING: on
       PORT_FORWARD_ONLY: on
+      # https://github.com/qdm12/gluetun/issues/2154
+      DNS_ADDRESS: 9.9.9.9
+      DOT: off
+      HEALTH_TARGET_ADDRESS: cloudflare.com:80
+      HEALTH_VPN_DURATION_INITIAL: 120s
+      WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL: 25s
     labels:
       - "traefik.enable=true"
       ## Deemix labels
