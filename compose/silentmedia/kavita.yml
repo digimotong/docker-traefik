@@ -1,0 +1,36 @@
+services:
+  # Kavita - Book and Manga Server
+  kavita:
+    container_name: kavita
+    image: jvmilazz0/kavita:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "media"]
+    ports:
+      - "5000:5000"
+    volumes:
+      - $DOCKERDIR/appdata/kavita:/kavita/config
+      - $TEMPDATADIR/kavita/cache:/kavita/config/cache
+      - $TEMPDATADIR/kavita/covers:/kavita/config/covers
+      - $TEMPDATADIR/kavita/temp:/kavita/config/temp
+      - $MEDIADIR/Books:/books:ro
+      - $MEDIADIR/Manga:/manga:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.kavita-rtr.entrypoints=websecure"
+      - "traefik.http.routers.kavita-rtr.rule=Host(`kavita.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.kavita-rtr.middlewares=chain-no-auth@file"
+      # HTTP Services
+      - "traefik.http.routers.kavita-rtr.service=kavita-svc"
+      - "traefik.http.services.kavita-svc.loadbalancer.server.port=5000"
+      # Enable Watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
