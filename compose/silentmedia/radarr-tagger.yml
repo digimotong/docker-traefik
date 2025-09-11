@@ -3,6 +3,7 @@ services:
   radarr-tagger:
     container_name: radarr-tagger
     image: digimotong/radarr-tagger:latest
+    # image: local/radarr-tagger:latest # Local image
     # build:
     #   context: ../../../repos/radarr-tagger # Build from local repo
     networks:
