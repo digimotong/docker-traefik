@@ -57,6 +57,7 @@ include:
   - compose/$HOSTNAME/guacamole.yml
   # APPS
   - compose/$HOSTNAME/bazarr.yml
+  - compose/$HOSTNAME/calibre.yml
   - compose/$HOSTNAME/flaresolverr.yml
   - compose/$HOSTNAME/homepage.yml
   - compose/$HOSTNAME/jellyplex-watched.yml
@@ -94,6 +95,7 @@ include:
   - compose/$HOSTNAME/watchtower.yml
   # MEDIA
   - compose/$HOSTNAME/audiobookshelf.yml
+  - compose/$HOSTNAME/calibre-web.yml
   - compose/$HOSTNAME/jellyfin.yml
   - compose/$HOSTNAME/kavita.yml
   - compose/$HOSTNAME/navidrome.yml

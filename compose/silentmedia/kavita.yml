@@ -1,5 +1,5 @@
 services:
-  # Kavita - Book and Manga Server
+  # Kavita - Manga Server
   kavita:
     container_name: kavita
     image: jvmilazz0/kavita:latest
@@ -16,7 +16,6 @@ services:
       - $TEMPDATADIR/kavita/cache:/kavita/config/cache
       - $TEMPDATADIR/kavita/covers:/kavita/config/covers
       - $TEMPDATADIR/kavita/temp:/kavita/config/temp
-      - $MEDIADIR/Books:/books:ro
       - $MEDIADIR/Manga:/manga:ro
     environment:
       TZ: $TZ
