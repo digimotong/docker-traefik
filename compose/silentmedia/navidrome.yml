@@ -25,6 +25,7 @@ services:
       ND_TRANSCODINGCACHESIZE: "4GB"
       ND_LASTFM_APIKEY: $LASTFM_APIKEY
       ND_LASTFM_SECRET: $LASTFM_SECRET
+      ND_SCANNER_PURGEMISSING: full
       # ND_ENABLETRANSCODINGCONFIG: "true"
     labels:
       - "traefik.enable=true"
