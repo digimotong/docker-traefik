@@ -2,7 +2,7 @@ services:
   # Traefik 3 - Reverse Proxy
   traefik:
     container_name: traefik
-    image: traefik:3.1
+    image: traefik:3
     network_mode: "service:wireguard"
     security_opt:
       - no-new-privileges:true
