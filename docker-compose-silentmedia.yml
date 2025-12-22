@@ -81,6 +81,7 @@ include:
   # DNS
   - compose/$HOSTNAME/adguardhome.yml
   # DOWNLOADS
+  - compose/$HOSTNAME/cross-seed.yml
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
   - compose/$HOSTNAME/slskd.yml
