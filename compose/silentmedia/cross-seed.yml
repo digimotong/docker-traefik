@@ -15,6 +15,7 @@ services:
     command: daemon
     volumes:
       - $DOCKERDIR/appdata/cross-seed:/config
+      - $MEDIASERVERDIR:/mediaserver
     user: 1000:1000
     labels:
       # Enable Watchtower
