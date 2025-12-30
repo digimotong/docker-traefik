@@ -1,16 +1,18 @@
 services:
   # Cloudflare DDNS - Dynamic DNS Updater
   ddns-updater:
-    image: qmcgaw/ddns-updater:latest
     container_name: ddns-updater
-    restart: unless-stopped
-    profiles: ["core", "all", "dns"]
+    image: qmcgaw/ddns-updater:latest
     networks:
       - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["core", "all", "dns"]
     ports:
       - 8000:8000/tcp
     volumes:
-      - $DOCKERDIR/appdata/ddns-updater:/updater/data # Owned by UID 1000
+      - $DOCKERDIR/appdata/ddns-updater:/updater/data
     environment:
       TZ: $TZ
       PERIOD: 5m

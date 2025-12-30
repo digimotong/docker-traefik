@@ -3,14 +3,16 @@ services:
   traefik:
     container_name: traefik
     image: traefik:3
-    network_mode: "service:wireguard"
+    networks:
+      t3_proxy:
+        ipv4_address: 192.168.90.254
+      socket_proxy:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "core"]
     depends_on:
       - socket-proxy
-      - wireguard
     command: # CLI arguments
       - --global.checkNewVersion=true
       - --global.sendAnonymousUsage=false
@@ -54,19 +56,15 @@ services:
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.resolvers=1.1.1.1:53,1.0.0.1:53
       - --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.delayBeforeCheck=120 # To delay DNS check and reduce LE hitrate
       #- --certificatesResolvers.dns-cloudflare.acme.dnsChallenge.disablePropagationCheck=true
-    # ports:
-      # - target: 80
-        # published: 80
-        # protocol: tcp
-        # mode: host
-      # - target: 443
-        # published: 443
-        # protocol: tcp
-        # mode: host
-      # - target: 8080 # need to enable --api.insecure=true
-        # published: 8080
-        # protocol: tcp
-        # mode: host
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
     volumes:
       - $DOCKERDIR/appdata/traefik3/rules/$HOSTNAME:/rules 
       # - /var/run/docker.sock:/var/run/docker.sock:ro # Use Docker Socket Proxy instead for improved security
@@ -86,14 +84,14 @@ services:
       timeout: 15s
       retries: 5
     labels:
-      # - "traefik.enable=true"
-      # # HTTP Routers
-      # - "traefik.http.routers.traefik-rtr.entrypoints=websecure"
-      # - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME`)"
-      # # Services - API
-      # - "traefik.http.routers.traefik-rtr.service=api@internal"
-      # # Middlewares
-      # - "traefik.http.routers.traefik-rtr.middlewares=chain-authelia@file"
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.traefik-rtr.entrypoints=websecure"
+      - "traefik.http.routers.traefik-rtr.rule=Host(`traefik.$DOMAINNAME`)"
+      # Services - API
+      - "traefik.http.routers.traefik-rtr.service=api@internal"
+      # Middlewares
+      - "traefik.http.routers.traefik-rtr.middlewares=chain-authelia@file"
       # Enable Watchtower
       - "com.centurylinklabs.watchtower.monitor-only=true"
       # Enable DeUnhealth

@@ -49,10 +49,10 @@ include:
 
   # CORE
   - compose/$HOSTNAME/authelia.yml
+  - compose/$HOSTNAME/ddns-updater.yml
   - compose/$HOSTNAME/portainer.yml
   - compose/$HOSTNAME/socket-proxy.yml
   - compose/$HOSTNAME/traefik.yml
-  - compose/$HOSTNAME/wireguard.yml
   # ADMIN
   - compose/$HOSTNAME/guacamole.yml
   # APPS
