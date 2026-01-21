@@ -39,3 +39,4 @@ services:
       - "traefik.http.services.lidarr-svc.loadbalancer.server.port=8686"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^pr-plugins$$"

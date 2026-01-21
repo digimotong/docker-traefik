@@ -26,3 +26,4 @@ services:
       - "traefik.http.services.grafana-svc.loadbalancer.server.port=3000"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"

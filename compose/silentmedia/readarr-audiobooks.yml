@@ -39,3 +39,4 @@ services:
       - "traefik.http.services.readarr-audiobooks-svc.loadbalancer.server.port=8789"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^develop$$"

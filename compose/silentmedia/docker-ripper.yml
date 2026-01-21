@@ -1,8 +1,8 @@
 services:
   # docker-ripper - Automatically detect and rip optical disks
   docker-ripper:
-    image: rix1337/docker-ripper:manual-latest
     container_name: docker-ripper
+    image: rix1337/docker-ripper:manual-latest
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
@@ -38,3 +38,4 @@ services:
       # - "traefik.http.services.ripper-svc.loadbalancer.server.port=9090"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^manual-latest$$"

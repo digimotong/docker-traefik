@@ -38,4 +38,5 @@ services:
       - "traefik.http.services.adguardhome-svc.loadbalancer.server.port=80"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
       - "wud.trigger.exclude=docker.autoupdate"

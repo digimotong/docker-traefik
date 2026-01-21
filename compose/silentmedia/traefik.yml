@@ -94,6 +94,7 @@ services:
       - "traefik.http.routers.traefik-rtr.middlewares=chain-authelia@file"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^3$$"
       - "wud.trigger.exclude=docker.autoupdate"
       # Enable DeUnhealth
       - "deunhealth.restart.on.unhealthy=true"

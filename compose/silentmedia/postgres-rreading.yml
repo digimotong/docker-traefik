@@ -9,8 +9,8 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["dbs", "all"]
-    # volumes:
-    #   - $DOCKERDIR/appdata/postgres-rreading:/var/lib/postgresql
+    volumes:
+      - $DOCKERDIR/appdata/postgres-rreading:/var/lib/postgresql/data
     environment:
       TZ: $TZ
       PUID: $PUID
@@ -21,4 +21,4 @@ services:
     labels:
       # Enable WUD
       - "wud.watch=true"
-      
+      - "wud.tag.include=^17$$"

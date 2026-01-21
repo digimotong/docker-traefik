@@ -28,7 +28,8 @@ services:
       timeout: 10s
       retries: 1
     labels:
-      # Enable WUD
-      - "wud.watch=true"
+      # # Enable WUD
+      # - "wud.watch=true"
+      # - "wud.tag.include=^latest$$"
       # Enable DeUnhealth
       - "deunhealth.restart.on.unhealthy=true"

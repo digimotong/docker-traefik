@@ -31,4 +31,5 @@ services:
       - "traefik.http.services.wud-svc.loadbalancer.server.port=3000"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
       - "wud.trigger.exclude=docker.autoupdate"

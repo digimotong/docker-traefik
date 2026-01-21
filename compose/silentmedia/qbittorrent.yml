@@ -3,7 +3,7 @@ services:
   qbittorrent:
     container_name: qbittorrent
     # image: lscr.io/linuxserver/qbittorrent:latest
-    image: lscr.io/linuxserver/qbittorrent:5.1.2 # Static image for qbit_manage compatibility
+    image: lscr.io/linuxserver/qbittorrent:5.1.4 # Static image for qbit_manage compatibility
     network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true
@@ -27,5 +27,6 @@ services:
     labels: # Traefik labels added via gluetun
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^5.1.4$$"
       # Enable DeUnhealth
       - "deunhealth.restart.on.unhealthy=true"

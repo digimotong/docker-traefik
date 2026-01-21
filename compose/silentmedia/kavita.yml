@@ -33,3 +33,4 @@ services:
       - "traefik.http.services.kavita-svc.loadbalancer.server.port=5000"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"

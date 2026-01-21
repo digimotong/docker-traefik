@@ -69,4 +69,5 @@ services:
       - "traefik.http.services.ytdl-material-svc.loadbalancer.server.port=17442"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
       - "wud.trigger.exclude=docker.autoupdate"

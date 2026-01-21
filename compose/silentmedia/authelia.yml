@@ -42,4 +42,5 @@ services:
       - "traefik.http.services.authelia-svc.loadbalancer.server.port=9091"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
       - "wud.trigger.exclude=docker.autoupdate"

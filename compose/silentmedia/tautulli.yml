@@ -30,3 +30,4 @@ services:
       - "traefik.http.services.tautulli-svc.loadbalancer.server.port=8181"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"

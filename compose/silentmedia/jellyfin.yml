@@ -36,6 +36,7 @@ services:
       - "traefik.http.services.jellyfin-svc.loadbalancer.server.port=8096"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
     devices:
       - /dev/dri:/dev/dri
     group_add:

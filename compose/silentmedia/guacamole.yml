@@ -35,6 +35,7 @@ services:
       - "traefik.http.services.guacamole-svc.loadbalancer.server.port=8080"
       # Enable WUD Monitoring
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
       - "wud.trigger.exclude=docker.autoupdate"
 
   # Guacamole Daemon - Needed for Guacamole
@@ -48,5 +49,7 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps"]
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
+      - "wud.trigger.exclude=docker.autoupdate"

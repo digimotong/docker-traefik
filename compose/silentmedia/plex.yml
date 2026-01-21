@@ -49,6 +49,7 @@ services:
       - "traefik.http.services.plex-svc.loadbalancer.server.port=32400"
       # Enable WUD
       - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
     devices:
       - /dev/dri:/dev/dri
     group_add:
