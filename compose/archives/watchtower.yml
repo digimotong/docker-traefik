@@ -1,5 +1,5 @@
 services:
-  # WatchTower - Automatic Docker Container Updates
+  # Watchtower - Automatic Docker Container Updates
   watchtower:
     container_name: watchtower
     image: containrrr/watchtower:latest

@@ -1,0 +1,31 @@
+services:
+  # WUD (What's Up Docker) - Docker Image Update Notification
+  wud:
+    container_name: wud
+    image: getwud/wud:latest
+    networks:
+      - socket_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["apps", "maintenance", "all"]
+    ports:
+      - 3000:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: $TZ
+      WUD_WATCHER_LOCAL_CRON: "0 0 4 * * *" # Everyday at 04:00
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: false
+      WUD_TRIGGER_DOCKER_AUTOUPDATE_PRUNE: true
+      WUD_TRIGGER_DISCORD_NOTIFY_URL: $WUD_NOTIFICATION_URL
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers
+      - "traefik.http.routers.wud-rtr.entrypoints=websecure"
+      - "traefik.http.routers.wud-rtr.rule=Host(`wud.$DOMAINNAME`)"
+      # Middlewares
+      - "traefik.http.routers.wud-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.wud-rtr.service=wud-svc"
+      - "traefik.http.services.wud-svc.loadbalancer.server.port=3000"

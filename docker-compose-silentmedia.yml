@@ -93,7 +93,7 @@ include:
   - compose/$HOSTNAME/vscode.yml
   # MAINTENANCE
   - compose/$HOSTNAME/deunhealth.yml
-  - compose/$HOSTNAME/watchtower.yml
+  - compose/$HOSTNAME/wud.yml
   # MEDIA
   - compose/$HOSTNAME/audiobookshelf.yml
   - compose/$HOSTNAME/calibre-web.yml
