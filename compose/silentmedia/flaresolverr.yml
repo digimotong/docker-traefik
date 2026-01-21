@@ -16,5 +16,5 @@ services:
       PUID: $PUID
       PGID: $PGID
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

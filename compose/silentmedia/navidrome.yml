@@ -37,5 +37,5 @@ services:
       # HTTP Services
       - "traefik.http.routers.navidrome-rtr.service=navidrome-svc"
       - "traefik.http.services.navidrome-svc.loadbalancer.server.port=4533"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

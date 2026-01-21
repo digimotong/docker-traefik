@@ -48,5 +48,6 @@ services:
       - TASKS=1 # Portainer
       - VOLUMES=1 # Portainer
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.trigger.exclude=docker.autoupdate"

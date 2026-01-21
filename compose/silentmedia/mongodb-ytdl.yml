@@ -14,5 +14,5 @@ services:
       - $DOCKERDIR/appdata/mongodb-ytdl/config:/data/configdb
       - $DOCKERDIR/appdata/mongodb-ytdl/db:/data/db
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

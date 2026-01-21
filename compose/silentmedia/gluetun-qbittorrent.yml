@@ -47,5 +47,6 @@ services:
         # HTTP Services
       - "traefik.http.routers.gluetun-qbittorrent-rtr.service=gluetun-svc"
       - "traefik.http.services.gluetun-svc.loadbalancer.server.port=8080"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.trigger.exclude=docker.autoupdate"

@@ -23,5 +23,5 @@ services:
       USER_MAPPING: $JELLYPLEX_USER_MAPPING
       WHITELIST_USERS: $JELLYPLEX_WHITELIST_USERS
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

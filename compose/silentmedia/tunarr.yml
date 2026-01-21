@@ -32,5 +32,5 @@ services:
       # HTTP Services
       - "traefik.http.routers.tunarr-rtr.service=tunarr-svc"
       - "traefik.http.services.tunarr-svc.loadbalancer.server.port=8000"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

@@ -17,5 +17,5 @@ services:
       TZ: $TZ
       DOCKER_HOST: tcp://socket-proxy:2375
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

@@ -29,5 +29,6 @@ services:
       LOG_LEVEL: warning
       # SHOUTRRR_ADDRESSES: $DISCORD_SHOUTRRR_ADDRESS
     labels:
-      # Enable Watchtower Monitoring
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.trigger.exclude=docker.autoupdate"

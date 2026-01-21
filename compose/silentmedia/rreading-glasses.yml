@@ -25,5 +25,5 @@ services:
       POSTGRES_USER: rreading-glasses
       POSTGRES_PASSWORD: $POSTGRES_RREADING_PASSWORD
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

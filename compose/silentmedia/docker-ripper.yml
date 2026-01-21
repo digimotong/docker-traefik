@@ -36,5 +36,5 @@ services:
       # # HTTP Services
       # - "traefik.http.routers.ripper-rtr.service=ripper-svc"
       # - "traefik.http.services.ripper-svc.loadbalancer.server.port=9090"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

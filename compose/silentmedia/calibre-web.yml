@@ -28,5 +28,5 @@ services:
       # HTTP Services
       - "traefik.http.routers.calibre-web-rtr.service=calibre-web-svc"
       - "traefik.http.services.calibre-web-svc.loadbalancer.server.port=8083"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

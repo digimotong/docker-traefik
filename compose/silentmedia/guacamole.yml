@@ -33,8 +33,9 @@ services:
       # HTTP Services
       - "traefik.http.routers.guacamole-rtr.service=guacamole-svc"
       - "traefik.http.services.guacamole-svc.loadbalancer.server.port=8080"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.trigger.exclude=docker.autoupdate"
 
   # Guacamole Daemon - Needed for Guacamole
   guacd:

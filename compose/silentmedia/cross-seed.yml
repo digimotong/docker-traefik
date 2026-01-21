@@ -18,5 +18,5 @@ services:
       - $MEDIASERVERDIR:/mediaserver
     user: 1000:1000
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

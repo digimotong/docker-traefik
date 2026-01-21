@@ -9,8 +9,8 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["dbs", "all"]
-    volumes:
-      - $DOCKERDIR/appdata/postgres-rreading:/var/lib/postgresql/data
+    # volumes:
+    #   - $DOCKERDIR/appdata/postgres-rreading:/var/lib/postgresql
     environment:
       TZ: $TZ
       PUID: $PUID
@@ -19,6 +19,6 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_RREADING_PASSWORD
       POSTGRES_DB: rreading-glasses
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"
       

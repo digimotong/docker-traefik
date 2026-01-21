@@ -15,5 +15,5 @@ services:
     command:
       - '--path.rootfs=/host'
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

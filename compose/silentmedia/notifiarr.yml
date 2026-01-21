@@ -26,5 +26,5 @@ services:
       # HTTP Services
       - "traefik.http.routers.notifiarr-rtr.service=notifiarr-svc"
       - "traefik.http.services.notifiarr-svc.loadbalancer.server.port=5454"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

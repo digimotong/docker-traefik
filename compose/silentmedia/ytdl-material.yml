@@ -30,7 +30,7 @@ services:
       timeout: 10s
       retries: 1
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"
       # Enable DeUnhealth
       - "deunhealth.restart.on.unhealthy=true"

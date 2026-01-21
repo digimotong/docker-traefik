@@ -23,5 +23,5 @@ services:
       - '--web.enable-lifecycle'
       - '--web.enable-admin-api'
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

@@ -21,5 +21,5 @@ services:
     secrets:
       - mysql_root_password
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

@@ -33,5 +33,5 @@ services:
       - QBT_DIVIDER==
       - QBT_WIDTH=100
     labels:
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"

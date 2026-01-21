@@ -67,5 +67,6 @@ services:
         # HTTP Services
       - "traefik.http.routers.ytdl-material-rtr.service=ytdl-material-svc"
       - "traefik.http.services.ytdl-material-svc.loadbalancer.server.port=17442"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      # Enable WUD Monitoring
+      - "wud.watch=true"
+      - "wud.trigger.exclude=docker.autoupdate"

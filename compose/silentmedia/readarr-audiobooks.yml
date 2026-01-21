@@ -37,5 +37,5 @@ services:
       - "traefik.http.routers.readarr-audiobooks-rtr.service=readarr-audiobooks-svc"
       - "traefik.http.routers.readarr-audiobooks-rtr-bypass.service=readarr-audiobooks-svc"
       - "traefik.http.services.readarr-audiobooks-svc.loadbalancer.server.port=8789"
-      # Enable Watchtower
-      - "com.centurylinklabs.watchtower.enable=true"
+      # Enable WUD
+      - "wud.watch=true"
