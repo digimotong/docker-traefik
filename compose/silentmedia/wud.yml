@@ -19,16 +19,18 @@ services:
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: false
       WUD_TRIGGER_DOCKER_AUTOUPDATE_PRUNE: true
       WUD_TRIGGER_DISCORD_NOTIFY_URL: $WUD_NOTIFICATION_URL
+      WUD_AUTH_BASIC_ADMIN_USER: $WUD_AUTH_BASIC_ADMIN_USER
+      WUD_AUTH_BASIC_ADMIN_HASH: $WUD_AUTH_BASIC_ADMIN_HASH
     labels:
-      - "traefik.enable=true"
-      # HTTP Routers
-      - "traefik.http.routers.wud-rtr.entrypoints=websecure"
-      - "traefik.http.routers.wud-rtr.rule=Host(`wud.$DOMAINNAME`)"
-      # Middlewares
-      - "traefik.http.routers.wud-rtr.middlewares=chain-authelia@file"
-      # HTTP Services
-      - "traefik.http.routers.wud-rtr.service=wud-svc"
-      - "traefik.http.services.wud-svc.loadbalancer.server.port=3000"
+      # - "traefik.enable=true"
+      # # HTTP Routers
+      # - "traefik.http.routers.wud-rtr.entrypoints=websecure"
+      # - "traefik.http.routers.wud-rtr.rule=Host(`wud.$DOMAINNAME`)"
+      # # Middlewares
+      # - "traefik.http.routers.wud-rtr.middlewares=chain-authelia@file"
+      # # HTTP Services
+      # - "traefik.http.routers.wud-rtr.service=wud-svc"
+      # - "traefik.http.services.wud-svc.loadbalancer.server.port=3000"
       # Enable WUD Monitoring
       - "wud.watch=true"
       - "wud.tag.include=^latest$$"
