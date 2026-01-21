@@ -2,7 +2,7 @@ services:
   # Prowlarr - Torrent proxy
   prowlarr:
     container_name: prowlarr
-    image: ghcr.io/linuxserver/prowlarr:latest
+    image: linuxserver/prowlarr:latest
     networks:
       - t3_proxy
     security_opt:

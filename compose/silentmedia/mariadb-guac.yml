@@ -2,7 +2,7 @@ services:
   # MariaDB - MySQL Database for Guacamole
   mariadb-guac:
     container_name: mariadb-guac
-    image: lscr.io/linuxserver/mariadb:latest
+    image: linuxserver/mariadb:latest
     networks:
       - t3_proxy
     security_opt:

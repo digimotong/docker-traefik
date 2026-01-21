@@ -2,7 +2,7 @@ services:
   # Bazarr - Subtitle Management
   bazarr:
     container_name: bazarr
-    image: lscr.io/linuxserver/bazarr:latest
+    image: linuxserver/bazarr:latest
     networks:
       - t3_proxy
     security_opt:

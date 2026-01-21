@@ -2,7 +2,7 @@ services:
   # Calibre-Web - Book Server
   calibre-web:
     container_name: calibre-web
-    image: lscr.io/linuxserver/calibre-web:latest
+    image: linuxserver/calibre-web:latest
     networks:
       - t3_proxy
     security_opt:

@@ -2,7 +2,7 @@ services:
   # VSCode - VSCode Editing
   vscode:
     container_name: vscode
-    image: lscr.io/linuxserver/code-server:latest
+    image: linuxserver/code-server:latest
     networks:
       - t3_proxy
     security_opt:

@@ -2,7 +2,7 @@ services:
   # Radarr - Movie management
   radarr:
     container_name: radarr
-    image: lscr.io/linuxserver/radarr:latest
+    image: linuxserver/radarr:latest
     networks:
       - t3_proxy
     security_opt:

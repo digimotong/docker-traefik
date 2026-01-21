@@ -2,7 +2,7 @@ services:
   # Sonarr - TV Shows Management
   sonarr:
     container_name: sonarr
-    image: lscr.io/linuxserver/sonarr:latest
+    image: linuxserver/sonarr:latest
     networks:
       - t3_proxy
     security_opt:

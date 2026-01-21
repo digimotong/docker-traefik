@@ -1,7 +1,7 @@
 services:
   # WireGuard - Secure VPN Tunnel
   wireguard:
-    image: lscr.io/linuxserver/wireguard:latest
+    image: linuxserver/wireguard:latest
     container_name: wireguard
     security_opt:
       - no-new-privileges:true
