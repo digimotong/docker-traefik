@@ -2,7 +2,7 @@ services:
   # MongoDB - NoSQL Database for YoutubeDL-Material
   mongodb-ytdl:
     container_name: mongodb-ytdl
-    # image: mongo:4 # Official image
+    # image: mongo:4.4 # Official image
     image: local/mongodb-ytdl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-mongodb-ytdl
@@ -22,8 +22,8 @@ services:
       timeout: 10s
       retries: 1
     labels:
-      # Enable WUD
-      - "wud.watch=true"
-      - "wud.tag.include=^4$$"
+      # # Enable WUD
+      # - "wud.watch=true"
+      # - "wud.tag.include=^4.4$$"
       # Enable DeUnhealth
       - "deunhealth.restart.on.unhealthy=true"
