@@ -10,7 +10,8 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps"]
     depends_on:
-      - postgres-rreading
+      postgres-rreading:
+        condition: service_healthy
     command:
       - --upstream=www.goodreads.com
       - --verbose

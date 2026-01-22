@@ -8,7 +8,8 @@ services:
     restart: unless-stopped
     profiles: ["all", "apps", "downloads"]
     depends_on:
-      - mongodb-ytdl
+      mongodb-ytdl:
+        condition: service_healthy
     network_mode: "service:gluetun-slskd"
     # ports:
       # - "8998:17442" # Exposed via gluetun

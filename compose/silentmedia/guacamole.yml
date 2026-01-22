@@ -10,8 +10,10 @@ services:
     restart: unless-stopped
     profiles: ["all", "admin", "apps"]
     depends_on:
-      - guacd
-      - mariadb-guac
+      guacd:
+        condition: service_healthy
+      mariadb-guac:
+        condition: service_healthy
     # ports:
       # - "8080:8080"
     environment:
