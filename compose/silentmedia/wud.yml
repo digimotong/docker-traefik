@@ -13,12 +13,10 @@ services:
       - 3000:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - $DOCKERDIR/appdata/wud:/store
     environment:
       TZ: $TZ
       WUD_WATCHER_LOCAL_CRON: "0 0 4 * * *" # Everyday at 04:00
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: false
-      WUD_WATCHER_LOCAL_WATCHATSTART: false
       WUD_WATCHER_LOCAL_WATCHEVENTS: false
       WUD_TRIGGER_DOCKER_AUTOUPDATE_PRUNE: true
       WUD_TRIGGER_DISCORD_NOTIFY_URL: $WUD_NOTIFICATION_URL
