@@ -10,16 +10,19 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "core"]
-    privileged: true # true for VM. False (default) for unprivileged LXC container.
+    # privileged: true # true for VM. False (default) for unprivileged LXC container.
     # ports:
       #- "2375:2375"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    read_only: true
+    tmpfs:
+      - /run
     environment:
-      - LOG_LEVEL=info # debug,info,notice,warning,err,crit,alert,emerg
-      ## Variables match the URL prefix (i.e. AUTH blocks access to /auth/* parts of the API, etc.).
-      # 0 to revoke access.
-      # 1 to grant access.
+      - LOG_LEVEL=warning # debug,info,notice,warning,err,crit,alert,emerg
+      - ALLOW_START=1 # Portainer
+      - ALLOW_STOP=1 # Portainer
+      - ALLOW_RESTARTS=1 # Portainer
       ## Granted by Default
       - EVENTS=1
       - PING=1
@@ -47,6 +50,7 @@ services:
       - SYSTEM=0
       - TASKS=1 # Portainer
       - VOLUMES=1 # Portainer
+      - DISABLE_IPV6=0 #optional
     labels:
       # Enable WUD Monitoring
       - "wud.watch=true"
