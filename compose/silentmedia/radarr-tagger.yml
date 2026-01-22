@@ -12,8 +12,6 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "arrs"]
-    depends_on:
-      - radarr
     environment:
       RADARR_URL: http://radarr:7878
       RADARR_API_KEY: $RADARR_API_KEY

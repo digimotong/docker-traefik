@@ -11,9 +11,6 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "downloads", "vpn"]
-    depends_on:
-      - gluetun-qbittorrent
-      - qbittorrent
     environment:
       SERVICE_TYPE: 'qbittorrent'
       GLUETUN_URL: 'http://localhost:8000'

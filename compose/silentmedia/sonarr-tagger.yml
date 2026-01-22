@@ -12,8 +12,6 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "arrs"]
-    depends_on:
-      - sonarr
     environment:
       SONARR_URL: http://sonarr:8989
       SONARR_API_KEY: $SONARR_API_KEY
