@@ -8,13 +8,10 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["apps", "maintenance", "all"]
+    profiles: ["all", "apps", "maintenance"]
     ports:
       - 3000:3000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      TZ: $TZ
       WUD_WATCHER_LOCAL_CRON: "0 0 4 * * *" # Everyday at 04:00
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: false
       WUD_WATCHER_LOCAL_WATCHEVENTS: false
@@ -22,6 +19,8 @@ services:
       WUD_TRIGGER_DISCORD_NOTIFY_URL: $WUD_NOTIFICATION_URL
       WUD_AUTH_BASIC_ADMIN_USER: $WUD_AUTH_BASIC_ADMIN_USER
       WUD_AUTH_BASIC_ADMIN_HASH: $WUD_AUTH_BASIC_ADMIN_HASH
+      TZ: $TZ
+      DOCKER_HOST: tcp://socket-proxy:2375
     labels:
       # - "traefik.enable=true"
       # # HTTP Routers
