@@ -2,7 +2,10 @@ services:
   # MongoDB - NoSQL Database for YoutubeDL-Material
   mongodb-ytdl:
     container_name: mongodb-ytdl
-    image: mongo:4
+    # image: mongo:4 # Official image
+    image: local/mongodb-ytdl:latest # Add curl to official image
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-mongodb-ytdl
     logging:
       driver: "none"
     network_mode: "service:gluetun-slskd"
@@ -13,7 +16,14 @@ services:
     volumes:
       - $DOCKERDIR/appdata/mongodb-ytdl/config:/data/configdb
       - $DOCKERDIR/appdata/mongodb-ytdl/db:/data/db
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 1
     labels:
       # Enable WUD
       - "wud.watch=true"
       - "wud.tag.include=^4$$"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
