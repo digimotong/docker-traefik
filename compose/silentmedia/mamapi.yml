@@ -14,8 +14,6 @@ services:
     profiles: ["all", "apps", "downloads", "vpn"]
     volumes:
       - $DOCKERDIR/appdata/mamapi:/data
-    depends_on:
-      - gluetun-qbittorrent
     environment:
       TZ: $TZ
       MAM_ID: $MAM_ID
