@@ -1,0 +1,19 @@
+services:
+  # SeaDexArr - Sync Anime on Sonarr and Radarr with SeaDex
+  seadexarr:
+    container_name: seadexarr
+    image: ghcr.io/bbtufty/seadexarr:latest
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    volumes:
+      - $DOCKERDIR/appdata/seadexarr:/config
+    environment:
+      SCHEDULE_TIME: 6  # Run every 6 hours
+    labels:
+      # Enable WUD
+      - "wud.watch=true"
+      - "wud.tag.include=^latest$$"

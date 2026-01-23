@@ -65,6 +65,7 @@ include:
   - compose/$HOSTNAME/prowlarr.yml
   - compose/$HOSTNAME/radarr-tagger.yml
   - compose/$HOSTNAME/rreading-glasses.yml
+  - compose/$HOSTNAME/seadexarr.yml
   - compose/$HOSTNAME/sonarr-tagger.yml
   - compose/$HOSTNAME/qbit_manage.yml
   # ARRS
