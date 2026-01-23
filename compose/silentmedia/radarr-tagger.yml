@@ -11,7 +11,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["all", "apps", "arrs"]
+    profiles: ["all", "apps", "arrs", "dev"]
     environment:
       RADARR_URL: http://radarr:7878
       RADARR_API_KEY: $RADARR_API_KEY

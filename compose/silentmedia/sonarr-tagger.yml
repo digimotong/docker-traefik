@@ -11,7 +11,7 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["all", "apps", "arrs"]
+    profiles: ["all", "apps", "arrs", "dev"]
     environment:
       SONARR_URL: http://sonarr:8989
       SONARR_API_KEY: $SONARR_API_KEY
@@ -19,6 +19,7 @@ services:
       SCORE_THRESHOLD: 100
       INTERVAL_MINUTES: 20
       TAG_4K: true
+      TAG_MIXED_RELEASE_GROUPS: true
       TAG_MOTONG: true
     labels:
       # Enable WUD
