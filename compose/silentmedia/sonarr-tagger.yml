@@ -21,6 +21,7 @@ services:
       TAG_4K: true
       TAG_MIXED_RELEASE_GROUPS: true
       TAG_MOTONG: true
+      MONITOR_EXISTING_SPECIALS: true
     labels:
       # Enable WUD
       - "wud.watch=true"
