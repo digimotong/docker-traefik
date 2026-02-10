@@ -68,6 +68,7 @@ include:
   - compose/$HOSTNAME/seadexarr.yml
   - compose/$HOSTNAME/sonarr-tagger.yml
   - compose/$HOSTNAME/qbit_manage.yml
+  - compose/$HOSTNAME/teamspeak-server.yml
   # ARRS
   - compose/$HOSTNAME/lidarr.yml
   - compose/$HOSTNAME/radarr.yml
