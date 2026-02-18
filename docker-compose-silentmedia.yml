@@ -64,7 +64,6 @@ include:
   - compose/$HOSTNAME/notifiarr.yml
   - compose/$HOSTNAME/prowlarr.yml
   - compose/$HOSTNAME/radarr-tagger.yml
-  - compose/$HOSTNAME/rreading-glasses.yml
   - compose/$HOSTNAME/seadexarr.yml
   - compose/$HOSTNAME/sonarr-tagger.yml
   - compose/$HOSTNAME/qbit_manage.yml
@@ -77,7 +76,6 @@ include:
   # DATABASES
   - compose/$HOSTNAME/mariadb-guac.yml
   - compose/$HOSTNAME/mongodb-ytdl.yml
-  - compose/$HOSTNAME/postgres-rreading.yml
   - compose/$HOSTNAME/prometheus.yml
   # DNS
   - compose/$HOSTNAME/adguardhome.yml
