@@ -107,8 +107,7 @@ include:
   - compose/$HOSTNAME/node_exporter.yml
   - compose/$HOSTNAME/tautulli.yml
   # VPN
-  - compose/$HOSTNAME/glueforward-qbittorrent.yml
-  - compose/$HOSTNAME/glueforward-slskd.yml
+  - compose/$HOSTNAME/glueforward.yml
   - compose/$HOSTNAME/gluetun-qbittorrent.yml
   - compose/$HOSTNAME/gluetun-slskd.yml
   - compose/$HOSTNAME/mamapi.yml

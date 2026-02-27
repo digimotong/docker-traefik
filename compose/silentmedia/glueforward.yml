@@ -1,23 +1,23 @@
 services:
-  # glueforward - Updates slskd's listening port to Gluetun's forwarded port
-  glueforward-slskd:
-    container_name: glueforward-slskd
+  # glueforward - Updates qBittorrent's listening port to Gluetun's forwarded port
+  glueforward:
+    container_name: glueforward
     # image: ghcr.io/geoffreycoulaud/glueforward:latest # Official image
     image: local/glueforward-curl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-glueforward
-    network_mode: "service:gluetun-slskd"
+    network_mode: "service:gluetun-qbittorrent"
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "downloads", "vpn"]
     environment:
-      SERVICE_TYPE: 'slskd'
+      SERVICE_TYPE: 'qbittorrent'
       GLUETUN_URL: 'http://localhost:8000'
-      GLUETUN_API_KEY: $GLUETUN_SLSKD_API_KEY
-      SLSKD_URL: 'http://localhost:5030'
-      SLSKD_USERNAME: $SLSKD_USERNAME
-      SLSKD_PASSWORD: $SLSKD_PASSWORD
+      GLUETUN_API_KEY: $GLUETUN_QBITTORRENT_API_KEY
+      QBITTORRENT_URL: 'http://localhost:8080'
+      QBITTORRENT_USERNAME: $QBITTORRENT_USERNAME
+      QBITTORRENT_PASSWORD: $QBITTORRENT_PASSWORD
       SUCCESS_INTERVAL: 60
     healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
       test: ["CMD", "curl", "-f", "http://localhost:9999"]
