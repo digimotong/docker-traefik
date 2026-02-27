@@ -6,6 +6,7 @@ services:
     image: local/slskd-curl:latest # Add curl to official image
     build:
       dockerfile: $DOCKERDIR/custom/Dockerfile-slskd
+      pull: true
     pull_policy: build
     network_mode: "service:gluetun-slskd"
     security_opt:
