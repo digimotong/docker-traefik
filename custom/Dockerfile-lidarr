@@ -1,0 +1,2 @@
+FROM ghcr.io/hotio/lidarr:nightly
+RUN apk update && apk add ffmpeg

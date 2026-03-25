@@ -13,10 +13,10 @@ services:
       - /dev/net/tun
     restart: unless-stopped
     profiles: ["all", "apps", "downloads", "vpn"]
-    # ports:
-      # - "6595:6595" # Exposing Deemix through Docker Host LAN IP
-      # - "5030:5030" # Exposing slskd through Docker Host LAN IP
-      # - "8998:17442" # Exposing YoutubeDL-Material through Docker Host LAN IP
+    ports:
+      - "8686:8686" # Lidarr
+      # - "5030:5030" # slskd
+      # - "8998:17442" # YoutubeDL-Material
       # - 8888:8888/tcp # HTTP proxy
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks
@@ -40,15 +40,22 @@ services:
       WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL: 25s
     labels:
       - "traefik.enable=true"
-      ## Deemix labels
-        # HTTP Routers
-      - "traefik.http.routers.deemix-rtr.entrypoints=websecure"
-      - "traefik.http.routers.deemix-rtr.rule=Host(`deemix.$DOMAINNAME`)"
+      ## Lidarr labels
+        # HTTP Routers Auth Bypass
+      - "traefik.http.routers.lidarr-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr-bypass.rule=Host(`lidarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$LIDARR_API_KEY`) || Query(`apikey`, `$LIDARR_API_KEY`))"
+      - "traefik.http.routers.lidarr-rtr-bypass.priority=100"
+        # HTTP Routers Auth
+      - "traefik.http.routers.lidarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr.rule=Host(`lidarr.$DOMAINNAME`)"
+      - "traefik.http.routers.lidarr-rtr.priority=99"
         # Middlewares
-      - "traefik.http.routers.deemix-rtr.middlewares=chain-authelia@file"
+      - "traefik.http.routers.lidarr-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.lidarr-rtr.middlewares=chain-authelia@file"
         # HTTP Services
-      - "traefik.http.routers.deemix-rtr.service=deemix-svc"
-      - "traefik.http.services.deemix-svc.loadbalancer.server.port=6595"
+      - "traefik.http.routers.lidarr-rtr.service=lidarr-svc"
+      - "traefik.http.routers.lidarr-rtr-bypass.service=lidarr-svc"
+      - "traefik.http.services.lidarr-svc.loadbalancer.server.port=8686"
       ## slskd labels
         # HTTP Routers
       - "traefik.http.routers.slskd-rtr.entrypoints=websecure"
