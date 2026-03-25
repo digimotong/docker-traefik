@@ -1,0 +1,38 @@
+services:
+  # Deemix - Deezer Music Downloader
+  deemix:
+    container_name: deemix
+    # image: ghcr.io/bambanah/deemix:latest # Official image
+    image: local/deemix-curl:latest # Add curl to official image
+    build:
+      dockerfile: $DOCKERDIR/custom/Dockerfile-deemix
+      pull: true
+    pull_policy: build
+    network_mode: "service:gluetun-slskd"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "downloads"]
+    # ports:
+      # - "6595:6595" # Exposed via gluetun
+    volumes:
+      - $DOCKERDIR/appdata/deemix/config:/config
+      - $DOCKERDIR/appdata/deemix/config/config.json:/config/config.json:ro # https://github.com/bambanah/deemix/issues/159
+      - $DOCKERDIR/appdata/deemix/deemix-gui:/deemix-gui/config
+      - $MEDIASERVERDIR:/mediaserver
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      UMASK_SET: 0022
+      DEEMIX_MUSIC_DIR: /mediaserver/downloads/deemix
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # # Enable WUD
+      # - "wud.watch=true"
+      # - "wud.tag.include=^latest$$"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"
