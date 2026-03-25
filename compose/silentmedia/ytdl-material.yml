@@ -9,7 +9,7 @@ services:
     profiles: ["all", "apps", "downloads"]
     depends_on:
       mongodb-ytdl:
-        condition: service_healthy
+        condition: service_started
     network_mode: "service:gluetun-slskd"
     # ports:
       # - "8998:17442" # Exposed via gluetun
