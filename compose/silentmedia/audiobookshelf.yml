@@ -15,6 +15,7 @@ services:
       - $DOCKERDIR/appdata/audiobookshelf:/config
       - $TEMPDATADIR/audiobookshelf/metadata:/metadata
       - $MEDIADIR/Audiobooks:/audiobooks:ro
+      - $MEDIADIR/Books:/books:ro
     environment:
       TZ: $TZ
       PUID: $PUID
