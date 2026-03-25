@@ -1,0 +1,42 @@
+services:
+  # Bookshelf - Audiobook management
+  bookshelf-audiobooks:
+    container_name: bookshelf-audiobooks
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    ports:
+      - "8789:8789"
+    volumes:
+      - $DOCKERDIR/appdata/bookshelf-audiobooks:/config
+      - $TEMPDATADIR/bookshelf-audiobooks/MediaCover:/config/MediaCover
+      - $MEDIASERVERDIR:/mediaserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth Bypass
+      - "traefik.http.routers.bookshelf-audiobooks-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr-bypass.rule=Host(`speakarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$SPEAKARR_API_KEY`) || Query(`apikey`, `$SPEAKARR_API_KEY`))"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr-bypass.priority=100"
+      # HTTP Routers Auth
+      - "traefik.http.routers.bookshelf-audiobooks-rtr.entrypoints=websecure"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr.rule=Host(`speakarr.$DOMAINNAME`)"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr.priority=99"
+      # Middlewares
+      - "traefik.http.routers.bookshelf-audiobooks-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.bookshelf-audiobooks-rtr.service=bookshelf-audiobooks-svc"
+      - "traefik.http.routers.bookshelf-audiobooks-rtr-bypass.service=bookshelf-audiobooks-svc"
+      - "traefik.http.services.bookshelf-audiobooks-svc.loadbalancer.server.port=8789"
+      # Enable WUD
+      - "wud.watch=true"
+      - "wud.tag.include=^0.4.18-develop$$"

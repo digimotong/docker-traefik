@@ -1,0 +1,42 @@
+services:
+  # Bookshelf - Book management
+  bookshelf-books:
+    container_name: bookshelf-books
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
+    networks:
+      - t3_proxy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "arrs"]
+    ports:
+      - "8787:8787"
+    volumes:
+      - $DOCKERDIR/appdata/bookshelf-books:/config
+      - $TEMPDATADIR/bookshelf-books/MediaCover:/config/MediaCover
+      - $MEDIASERVERDIR:/mediaserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: $TZ
+      PUID: $PUID
+      PGID: $PGID
+    labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth Bypass
+      - "traefik.http.routers.bookshelf-books-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.bookshelf-books-rtr-bypass.rule=Host(`readarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$READARR_API_KEY`) || Query(`apikey`, `$READARR_API_KEY`))"
+      - "traefik.http.routers.bookshelf-books-rtr-bypass.priority=100"
+      # HTTP Routers Auth
+      - "traefik.http.routers.bookshelf-books-rtr.entrypoints=websecure"
+      - "traefik.http.routers.bookshelf-books-rtr.rule=Host(`readarr.$DOMAINNAME`)"
+      - "traefik.http.routers.bookshelf-books-rtr.priority=99"
+      # Middlewares
+      - "traefik.http.routers.bookshelf-books-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.bookshelf-books-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.bookshelf-books-rtr.service=bookshelf-books-svc"
+      - "traefik.http.routers.bookshelf-books-rtr-bypass.service=bookshelf-books-svc"
+      - "traefik.http.services.bookshelf-books-svc.loadbalancer.server.port=8787"
+      # Enable WUD
+      - "wud.watch=true"
+      - "wud.tag.include=^0.4.18-develop$$"
