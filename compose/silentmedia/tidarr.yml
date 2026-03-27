@@ -1,0 +1,32 @@
+services:
+  # Tidarr - Tidal Music Downloader
+  tidarr:
+    container_name: tidarr
+    image: cstaelen/tidarr:latest
+    network_mode: "service:gluetun-slskd"
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["all", "apps", "downloads"]
+    # ports:
+      # - "8484:8484" # Exposed via gluetun
+    volumes:
+      - $DOCKERDIR/appdata/tidarr/config:/shared
+      - $DOWNLOADSDIR/tidarr:/music
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      UMASK_SET: 0022
+      ADMIN_PASSWORD: $TIDARR_ADMIN_PASSWORD
+      LOCK_QUALITY: true
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 1m
+      timeout: 10s
+      retries: 1
+    labels:
+      # Enable WUD
+      - "wud.watch=true"
+      - "wud.tag.include=^latest$$"
+      # Enable DeUnhealth
+      - "deunhealth.restart.on.unhealthy=true"

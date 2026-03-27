@@ -16,6 +16,7 @@ services:
     ports:
       - "8686:8686" # Lidarr
       # - "5030:5030" # slskd
+      # - "8484:8484" # Tidarr
       # - "8998:17442" # YoutubeDL-Material
       # - 8888:8888/tcp # HTTP proxy
       # - 8388:8388/tcp # Shadowsocks
@@ -65,6 +66,15 @@ services:
         # HTTP Services
       - "traefik.http.routers.slskd-rtr.service=slskd-svc"
       - "traefik.http.services.slskd-svc.loadbalancer.server.port=5030"
+      ## Tidarr labels
+        # HTTP Routers
+      - "traefik.http.routers.tidarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.tidarr-rtr.rule=Host(`tidarr.$DOMAINNAME`)"
+        # Middlewares
+      - "traefik.http.routers.tidarr-rtr.middlewares=chain-authelia@file"
+        # HTTP Services
+      - "traefik.http.routers.tidarr-rtr.service=tidarr-svc"
+      - "traefik.http.services.tidarr-svc.loadbalancer.server.port=8484"
       ## YoutubeDL-Material labels
         # HTTP Routers
       - "traefik.http.routers.ytdl-material-rtr.entrypoints=websecure"
