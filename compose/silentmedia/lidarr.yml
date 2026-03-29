@@ -2,19 +2,15 @@ services:
   # Lidarr - Music Management
   lidarr:
     container_name: lidarr
-    # image: image: ghcr.io/hotio/lidarr:nightly
-    image: local/lidarr-ffmpeg:latest # Add curl to official image
-    build:
-      dockerfile: $DOCKERDIR/custom/Dockerfile-lidarr
-      pull: true
-    pull_policy: build
-    network_mode: "service:gluetun-slskd"
+    image: ghcr.io/hotio/lidarr:nightly
+    networks:
+      - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
     profiles: ["all", "apps", "arrs"]
-    # ports:
-    #   - "8686:8686" # Exposed via gluetun
+    ports:
+      - "8686:8686"
     volumes:
       - $DOCKERDIR/appdata/lidarr:/config
       - $TEMPDATADIR/lidarr/MediaCover:/config/MediaCover
@@ -24,14 +20,23 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
-    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-      test: ["CMD", "curl", "-f", "http://localhost:9999"]
-      interval: 1m
-      timeout: 10s
-      retries: 1
     labels:
+      - "traefik.enable=true"
+      # HTTP Routers Auth Bypass
+      - "traefik.http.routers.lidarr-rtr-bypass.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr-bypass.rule=Host(`lidarr.$DOMAINNAME`) && (Header(`X-Api-Key`, `$LIDARR_API_KEY`) || Query(`apikey`, `$LIDARR_API_KEY`))"
+      - "traefik.http.routers.lidarr-rtr-bypass.priority=100"
+      # HTTP Routers Auth
+      - "traefik.http.routers.lidarr-rtr.entrypoints=websecure"
+      - "traefik.http.routers.lidarr-rtr.rule=Host(`lidarr.$DOMAINNAME`)"
+      - "traefik.http.routers.lidarr-rtr.priority=99"
+      # Middlewares
+      - "traefik.http.routers.lidarr-rtr-bypass.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.lidarr-rtr.middlewares=chain-authelia@file"
+      # HTTP Services
+      - "traefik.http.routers.lidarr-rtr.service=lidarr-svc"
+      - "traefik.http.routers.lidarr-rtr-bypass.service=lidarr-svc"
+      - "traefik.http.services.lidarr-svc.loadbalancer.server.port=8686"
       # Enable WUD
       - "wud.watch=true"
       - "wud.tag.include=^pr-plugins$$"
-      # Enable DeUnhealth
-      - "deunhealth.restart.on.unhealthy=true"
