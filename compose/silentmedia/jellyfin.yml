@@ -15,11 +15,11 @@ services:
       - $DOCKERDIR/appdata/jellyfin:/config
       - $TEMPDATADIR/jellyfin/cache:/cache
       - $TEMPDATADIR/jellyfin/metadata:/config/metadata
+      - $TEMPDATADIR/jellyfin/transcode:/data/transcode
       - $MEDIADIR/Movies:/movies:ro
       - "$MEDIADIR/TV Shows:/tv:ro"
       - $MEDIADIR/Music:/music:ro
       - $MEDIADIR/Anime:/anime:ro
-      # - /dev/shm:/data/transcode # Offload transcoding to RAM if you have enough RAM
     user: $PUID:$PGID
     environment:
       UMASK_SET: 022

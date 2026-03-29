@@ -11,8 +11,10 @@ services:
     # ports:
       # - "8484:8484" # Exposed via gluetun
     volumes:
-      - $DOCKERDIR/appdata/tidarr/config:/shared
-      - $DOWNLOADSDIR/tidarr:/music
+      - $DOCKERDIR/appdata/tidarr:/shared
+      - $MEDIASERVERDIR/downloads/tidarr:/shared/nzb_downloads
+      - $TEMPDATADIR/tidarr/cache:/shared/.cache
+      - $TEMPDATADIR/tidarr/processing:/shared/.processing
     environment:
       PUID: $PUID
       PGID: $PGID
