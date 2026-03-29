@@ -12,6 +12,7 @@ services:
       # - "8484:8484" # Exposed via gluetun
     volumes:
       - $DOCKERDIR/appdata/tidarr:/shared
+      - $MEDIASERVERDIR/downloads/tidarr:/music
       - $MEDIASERVERDIR/downloads/tidarr:/shared/nzb_downloads
       - $TEMPDATADIR/tidarr/cache:/shared/.cache
       - $TEMPDATADIR/tidarr/processing:/shared/.processing
