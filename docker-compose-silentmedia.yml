@@ -57,7 +57,6 @@ include:
   - compose/$HOSTNAME/guacamole.yml
   # APPS
   - compose/$HOSTNAME/bazarr.yml
-  - compose/$HOSTNAME/calibre.yml
   - compose/$HOSTNAME/flaresolverr.yml
   - compose/$HOSTNAME/homepage.yml
   - compose/$HOSTNAME/jellyplex-watched.yml
@@ -69,10 +68,10 @@ include:
   - compose/$HOSTNAME/qbit_manage.yml
   - compose/$HOSTNAME/teamspeak-server.yml
   # ARRS
+  - compose/$HOSTNAME/bookshelf-audiobooks.yml
+  - compose/$HOSTNAME/bookshelf-books.yml
   - compose/$HOSTNAME/lidarr.yml
   - compose/$HOSTNAME/radarr.yml
-  - compose/$HOSTNAME/readarr-audiobooks.yml
-  - compose/$HOSTNAME/readarr-books.yml
   - compose/$HOSTNAME/sonarr.yml
   # DATABASES
   - compose/$HOSTNAME/mariadb-guac.yml
@@ -85,6 +84,7 @@ include:
   - compose/$HOSTNAME/deemix.yml
   - compose/$HOSTNAME/qbittorrent.yml
   - compose/$HOSTNAME/slskd.yml
+  - compose/$HOSTNAME/tidarr.yml
   - compose/$HOSTNAME/ytdl-material.yml
   # FILES
   - compose/$HOSTNAME/docker-ripper.yml
@@ -96,7 +96,6 @@ include:
   - compose/$HOSTNAME/wud.yml
   # MEDIA
   - compose/$HOSTNAME/audiobookshelf.yml
-  - compose/$HOSTNAME/calibre-web.yml
   - compose/$HOSTNAME/jellyfin.yml
   - compose/$HOSTNAME/kavita.yml
   - compose/$HOSTNAME/navidrome.yml
