@@ -53,8 +53,6 @@ include:
   - compose/$HOSTNAME/portainer.yml
   - compose/$HOSTNAME/socket-proxy.yml
   - compose/$HOSTNAME/traefik.yml
-  # ADMIN
-  - compose/$HOSTNAME/guacamole.yml
   # APPS
   - compose/$HOSTNAME/bazarr.yml
   - compose/$HOSTNAME/flaresolverr.yml
