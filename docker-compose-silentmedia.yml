@@ -72,7 +72,6 @@ include:
   - compose/$HOSTNAME/radarr.yml
   - compose/$HOSTNAME/sonarr.yml
   # DATABASES
-  - compose/$HOSTNAME/mariadb-guac.yml
   - compose/$HOSTNAME/mongodb-ytdl.yml
   - compose/$HOSTNAME/prometheus.yml
   # DNS
