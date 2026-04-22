@@ -8,7 +8,9 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["all", "apps", "maintenance"]    
+    profiles: ["all", "apps", "maintenance"]
+    depends_on:
+      - socket-proxy
     environment:
       LOG_LEVEL: info
       HEALTH_SERVER_ADDRESS: 127.0.0.1:9999
