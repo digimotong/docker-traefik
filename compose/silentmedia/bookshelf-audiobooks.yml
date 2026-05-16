@@ -2,13 +2,19 @@ services:
   # Bookshelf - Audiobook management
   bookshelf-audiobooks:
     container_name: bookshelf-audiobooks
-    image: ghcr.io/pennydreadful/bookshelf:hardcover
+    # image: ghcr.io/pennydreadful/bookshelf:hardcover
+    image: local/bookshelf:latest # Local image
+    build:
+      context: ../../../repos/bookshelf
+      dockerfile: docker/Dockerfile
+      args:
+        HARDCOVER: "true"
     networks:
       - t3_proxy
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
-    profiles: ["all", "apps", "arrs"]
+    profiles: ["all", "apps", "arrs", "dev"]
     ports:
       - "8789:8789"
     volumes:
@@ -20,6 +26,7 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
+      METADATA_URL: https://hardcover.bookinfo.pro
     labels:
       - "traefik.enable=true"
       # HTTP Routers Auth Bypass
