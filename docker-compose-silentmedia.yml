@@ -84,7 +84,7 @@ include:
   - compose/$HOSTNAME/tidarr.yml
   - compose/$HOSTNAME/ytdl-material.yml
   # FILES
-  - compose/$HOSTNAME/docker-ripper.yml
+  # - compose/$HOSTNAME/docker-ripper.yml
   - compose/$HOSTNAME/mkvtoolnix.yml
   - compose/$HOSTNAME/tdarr.yml
   - compose/$HOSTNAME/vscode.yml
