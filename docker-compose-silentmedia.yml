@@ -64,7 +64,7 @@ include:
   - compose/$HOSTNAME/seadexarr.yml
   - compose/$HOSTNAME/sonarr-tagger.yml
   - compose/$HOSTNAME/qbit_manage.yml
-  - compose/$HOSTNAME/teamspeak-server.yml
+  # - compose/$HOSTNAME/teamspeak-server.yml
   # ARRS
   - compose/$HOSTNAME/bookshelf-audiobooks.yml
   - compose/$HOSTNAME/bookshelf-books.yml
