@@ -2,13 +2,7 @@ services:
   # Bookshelf - Book management
   bookshelf-books:
     container_name: bookshelf-books
-    # image: ghcr.io/pennydreadful/bookshelf:hardcover
-    image: local/bookshelf:latest # Local image
-    build:
-      context: ../../../repos/bookshelf
-      dockerfile: docker/Dockerfile
-      args:
-        HARDCOVER: "true"
+    image: digimotong/bookshelf:hardcover
     networks:
       - t3_proxy
     security_opt:
@@ -26,7 +20,7 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
-      METADATA_URL: https://hardcover.bookinfo.pro
+      METADATA_URL: http://rreading-glasses:8788
     labels:
       - "traefik.enable=true"
       # HTTP Routers Auth Bypass
