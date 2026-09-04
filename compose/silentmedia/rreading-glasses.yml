@@ -2,7 +2,7 @@ services:
   # rreading-glasses - Metadata service for Readarr
   rreading-glasses:
     container_name: rreading-glasses
-    image: blampe/rreading-glasses:latest
+    image: blampe/rreading-glasses:hardcover
     networks:
       - t3_proxy
     security_opt:
@@ -13,7 +13,6 @@ services:
       postgres-rreading:
         condition: service_started
     command:
-      - --upstream=www.goodreads.com
       - --verbose
     entrypoint: ["/main", "serve"]
     mem_limit: 128m
@@ -21,6 +20,7 @@ services:
       TZ: $TZ
       PUID: $PUID
       PGID: $PGID
+      HARDCOVER_AUTH: $HARDCOVER_API_KEY
       POSTGRES_HOST: postgres-rreading
       POSTGRES_DATABASE: rreading-glasses
       POSTGRES_USER: rreading-glasses
