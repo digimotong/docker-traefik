@@ -2,7 +2,7 @@ services:
   # Bookshelf - Book management
   bookshelf-books:
     container_name: bookshelf-books
-    image: digimotong/bookshelf:hardcover
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
     networks:
       - t3_proxy
     security_opt:

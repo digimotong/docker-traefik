@@ -2,7 +2,7 @@ services:
   # Bookshelf - Audiobook management
   bookshelf-audiobooks:
     container_name: bookshelf-audiobooks
-    image: digimotong/bookshelf:hardcover
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
     networks:
       - t3_proxy
     security_opt:
