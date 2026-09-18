@@ -20,13 +20,14 @@ Originally based on the [Docker-Traefik](https://github.com/SimpleHomelab/Docker
 
 ## Docker Compose Section Order Standard
 
-All compose files should follow this standardized section ordering:
+All compose files should follow this standardized section ordering. Keys not
+listed here go next to the closest related key.
 
 1. `container_name`
 2. `image`
 3. `build` (if needed)
 4. `pull_policy` (if needed)
-5. `networks`
+5. `networks` / `network_mode` (mutually exclusive)
 6. `dns` (if needed)
 7. `security_opt`
 8. `restart`
@@ -55,6 +56,7 @@ services:
     # build:
     networks:
       - network1
+    # network_mode: "service:gluetun-qbittorrent"   # instead of networks
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
